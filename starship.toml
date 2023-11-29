@@ -22,13 +22,15 @@
 
 # Customizing the prompt (and placing desired modules at desired position and sequence):
 format = """
-[╭╴](fg:#9aa5ce)\
+[╭╴](fg:#c0caf5)\
+$os\
+[](fg:#c0caf5 bg:#ffffff)\
 $directory\
 $git_branch$git_commit$git_state$git_metrics$git_status\
 $jobs\
 $line_break\
-[╰╴](fg:#9aa5ce)\
-[ ](fg:#9ece6a)\
+[╰╴](fg:#c0caf5)\
+[ ](fg:#bb9af7)\
 """
 
 # Inserts a blank line between shell prompts:
@@ -38,8 +40,8 @@ add_newline = true
 # Customization and activation of some modules:
 # Listed in the order of their position in the module row above
 [os]
-format = "[$symbol]($style)[ ]()"
-style = "fg:#cfc9c2"
+format = " [$symbol]($style)[ ]()"
+style = "fg:#c0caf5"
 disabled = false
 
 [os.symbols]
@@ -49,9 +51,9 @@ Android = ""
 Arch = ""
 CentOS = ""
 Debian = ""
-DragonFly = "🐉" # ""
+DragonFly = "🐉"        # ""
 Emscripten = "🔗"
-EndeavourOS = "" # ""
+EndeavourOS = ""      # ""
 Fedora = ""
 FreeBSD = ""
 Garuda = ""
@@ -59,24 +61,24 @@ Gentoo = ""
 HardenedBSD = "聯"
 Illumos = "🐦"
 Linux = ""
-Macos = ""
+Macos = " "
 Manjaro = ""
 Mariner = ""
 MidnightBSD = "🌘"
 Mint = ""
 NetBSD = ""
 NixOS = ""
-OpenBSD = "" # ""
+OpenBSD = ""          # ""
 OpenCloudOS = "☁️"
 openEuler = ""
 openSUSE = ""
 OracleLinux = "⊂⊃"
-Pop = "" # ""
+Pop = ""              # ""
 Raspbian = ""
 Redhat = ""
 RedHatEnterprise = ""
 Redox = "🧪"
-Solus = "" # " "
+Solus = ""            # " "
 SUSE = ""
 Ubuntu = ""
 Unknown = ""
@@ -84,16 +86,16 @@ Windows = ""
 
 
 [directory]
-format = '[ ](fg:cyan bold)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)'
+format = '[](fg:cyan bold)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)'
 style = 'fg:cyan bold'
 home_symbol = '~'
-read_only = ' ' # ' ' # ' ''
+read_only = ' '
 read_only_style = 'fg:cyan'
 truncation_length = 2
 truncation_symbol = '…/'
 truncate_to_repo = false
 repo_root_format = '[](fg:cyan bold)[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[ ]()'
-repo_root_style	= 'fg:cyan bold'
+repo_root_style = 'fg:cyan bold'
 use_os_path_sep = true
 disabled = false
 
@@ -107,7 +109,7 @@ symbol = ''
 format = '[\($hash$tag\)]($style)[ ]()'
 style = 'fg:#E04D27'
 commit_hash_length = 8
-tag_symbol = ' ' # ' ''
+tag_symbol = ' '                       # ' ''
 disabled = false
 
 [git_metrics]
@@ -125,18 +127,18 @@ ahead = '[⇡${count} ](fg:yellow)'
 behind = '[⇣${count} ](fg:yellow)'
 diverged = '[⇕${ahead_count}⇡${behind_count}⇣ ](fg:yellow)' # ⇕ ↕ ⇳ 󰹹 󰹺 󰧈 
 up_to_date = '[✓ ](fg:green)'
-untracked = '[ ${count} ](fg:red)' # ' ' # '? '
-stashed = '[${count} ](fg:#A52A2A)' # '📦 '# ' ' # ' ' # ' ' # ' ' 
-modified = '[${count} ](fg:#C8AC00)' # '📝' # '! ' #  #  # 
-staged = '[$${count} ](fg:green)' # '+ '
-renamed = '[${count} ](fg:yellow)' # ' ' # '﫦' # ᴂ #  #  #  # ﳳ
-deleted = '[﯊${count} ](fg:orange)' # '🗑 ' '- '
+untracked = '[ ${count} ](fg:red)'                         # ' ' # '? '
+stashed = '[${count} ](fg:#A52A2A)'                        # '📦 '# ' ' # ' ' # ' ' # ' ' 
+modified = '[${count} ](fg:#C8AC00)'                       # '📝' # '! ' #  #  # 
+staged = '[$${count} ](fg:green)'                          # '+ '
+renamed = '[${count} ](fg:yellow)'                         # ' ' # '﫦' # ᴂ #  #  #  # ﳳ
+deleted = '[﯊${count} ](fg:orange)'                         # '🗑 ' '- '
 disabled = false
 
 [jobs]
 format = '[  ](fg:blue bold)[$number$symbol]($style)'
 style = 'fg:blue'
-symbol = '省' # '廒' # '󰜎' # '' # '✦'
+symbol = '省'                                           # '廒' # '󰜎' # '' # '✦'
 symbol_threshold = 1
 number_threshold = 4
 disabled = false

@@ -3,7 +3,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-if [ $HOME != "/Users/alekseikotliarov" ]; then 
+if [ $HOME = "/home/pipa" ]; then 
     export HOME="/mnt/psf/Home"
     cd
 fi
@@ -13,8 +13,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="heapbytes" # set by `omz`
-SOLARIZED_THEME="dark"
+# ZSH_THEME="heapbytes" # set by `omz`
+# SOLARIZED_THEME="dark"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -105,16 +105,30 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
+
 alias gc="git commit -m"
 alias ga="git add *"
 alias gp="git push"
 alias gs="git status"
+
 alias cn="cargo new"
 alias ct="cargo test"
 alias cr="cargo run"
 alias cb="cargo build"
 alias ccl="cargo clean"
+
 alias vim="nvim"
+alias vi="nvim"
+alias cim="nvim"
+
+alias vf="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
+
+# htpup() {
+#     cd /home/pipa
+#     rm -rf /home/pipa/epita-ing-assistants-acu-myhttpd-2026-aleksei.kotliarov
+#     cp -r /mnt/psf/Home/epita-ing-assistants-acu-myhttpd-2026-aleksei.kotliarov /home/pipa/
+#     cd /home/pipa/epita-ing-assistants-acu-myhttpd-2026-aleksei.kotliarov/httpd
+# }
 
 gccf() {
     gcc -std=c99 -pedantic -Werror -Wall -Wextra -Wvla -fsanitize=address -g -o "out" "$@"
@@ -154,18 +168,30 @@ lik() {
     rm tmp
 }
 
-if [ $HOME = "/Users/alekseikotliarov" ]; then 
-    export PATH=/usr/local/bin:$PATH
-    export MAGICK_HOME=/opt/homebrew/opt/imagemagick/
-    export PATH="/opt/homebrew/opt/imagemagick/bin:$PATH"
-    export PATH="/opt/homebrew/include:$PATH"
-    export PATH="/opt/homebrew/Cellar/ffmpeg/5.1.2_6/include:$PATH"
-    export PATH="/opt/homebrew/include:${PATH:+:${PATH}}"
-    export PATH="/opt/homebrew/opt/clang-build-analyzer/bin:$PATH"
-    export PATH="/opt/homebrew/opt/cmake/bin:$PATH"
-    export PATH="/opt/homebrew/Cellar/clang-build-analyzer/1.5.0/bin:${PATH:+:${PATH}}"
-    export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-    export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-    export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-fi
+case `uname` in
+    Darwin)
+        # commands for OS X go here
+        export PATH=/usr/local/bin:$PATH
+        export MAGICK_HOME=/opt/homebrew/opt/imagemagick/
+        export PATH="/opt/homebrew/opt/imagemagick/bin:$PATH"
+        export PATH="/opt/homebrew/include:$PATH"
+        export PATH="/opt/homebrew/Cellar/ffmpeg/5.1.2_6/include:$PATH"
+        export PATH="/opt/homebrew/include:${PATH:+:${PATH}}"
+        export PATH="/opt/homebrew/opt/clang-build-analyzer/bin:$PATH"
+        export PATH="/opt/homebrew/opt/cmake/bin:$PATH"
+        export PATH="/opt/homebrew/Cellar/clang-build-analyzer/1.5.0/bin:${PATH:+:${PATH}}"
+        export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+        export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+        export CPATH="/opt/homebrew/include"
+        export LIBRARY_PATH="/opt/homebrew/lib" 
+        export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+        ;;
+    Linux)
+        # commands for Linux go here
+        ;;
+    FreeBSD)
+        # commands for FreeBSD go here
+        ;;
+esac
+
 eval "$(starship init zsh)"
