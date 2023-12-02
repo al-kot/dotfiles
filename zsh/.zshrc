@@ -123,6 +123,13 @@ alias cim="nvim"
 
 alias vf="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
 
+alias ls='lsd'
+
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+
 # htpup() {
 #     cd /home/pipa
 #     rm -rf /home/pipa/epita-ing-assistants-acu-myhttpd-2026-aleksei.kotliarov
