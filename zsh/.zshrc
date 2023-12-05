@@ -175,6 +175,25 @@ lik() {
     rm tmp
 }
 
+intdb() {
+    rm -rf "$HOME/atl_sql"
+    initdb --locale "$LANG" -E UTF8
+}
+
+mkdb() {
+    createuser -s postgres
+    createdb -U postgres roger_roger
+    pg_restore -U postgres -O -d roger_roger roger_roger.dump
+}
+
+mntafs() {
+    diskutil unmount force "$HOME/afs"
+    rm -rf "afs"
+    mkdir -p "afs"
+    kinit -f "aleksei.kotliarov@CRI.EPITA.FR"
+    sshfs -o reconnect "aleksei.kotliarov@ssh.cri.epita.fr:/afs/cri.epita.fr/user/a/al/aleksei.kotliarov/u/" "afs"
+}
+
 export PGDATA="$HOME/atl_sql/postgres_data"
 export PGHOST="/tmp"
 
