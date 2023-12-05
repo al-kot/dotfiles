@@ -175,6 +175,9 @@ lik() {
     rm tmp
 }
 
+export PGDATA="$HOME/atl_sql/postgres_data"
+export PGHOST="/tmp"
+
 case `uname` in
     Darwin)
         # commands for OS X go here

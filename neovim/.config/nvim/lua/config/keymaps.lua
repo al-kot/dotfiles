@@ -9,3 +9,6 @@ vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>")
 vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>")
 vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>")
 vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>")
+
+vim.keymap.del("n", "<C-Up>")
+vim.keymap.set("n", "<C-S-Up>", "<cmd>resize +2<cr>")

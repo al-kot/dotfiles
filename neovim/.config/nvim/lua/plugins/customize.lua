@@ -66,7 +66,24 @@ return {
             opts.mapping = cmp.mapping.preset.insert({
                 ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
                 ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+                ["<CR>"] = cmp.mapping.confirm({
+                    behavior = cmp.ConfirmBehavior.Replace,
+                    select = true,
+                }),
             })
+            -- opts.sources = cmp.config.sources({ name = "vim-dadbod-completion" })
         end,
     },
+    -- {
+    --     "neovim/nvim-lspconfig",
+    --     init = function()
+    --         local keys = require("lazyvim.plugins.lsp.keymaps").get()
+    --         -- change a keymap
+    --         keys[#keys + 1] = { "<Tab>", "s" }
+    --         -- disable a keymap
+    --         keys[#keys + 1] = { "K", false }
+    --         -- add a keymap
+    --         keys[#keys + 1] = { "H", "<cmd>echo 'hello'<cr>" }
+    --     end,
+    -- },
 }
