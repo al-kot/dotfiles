@@ -86,7 +86,7 @@ Windows = ""
 
 
 [directory]
-format = '[](fg:cyan bold)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)'
+format = ' [](fg:cyan bold)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)'
 style = 'fg:cyan bold'
 home_symbol = '~'
 read_only = ' '
@@ -94,7 +94,7 @@ read_only_style = 'fg:cyan'
 truncation_length = 2
 truncation_symbol = '…/'
 truncate_to_repo = false
-repo_root_format = '[](fg:cyan bold)[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[ ]()'
+repo_root_format = ' [](fg:cyan bold)[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[ ]()'
 repo_root_style = 'fg:cyan bold'
 use_os_path_sep = true
 disabled = false

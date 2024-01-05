@@ -1,19 +1,19 @@
 return {
-    "tpope/vim-dadbod",
-    "kristijanhusak/vim-dadbod-ui",
-    "kristijanhusak/vim-dadbod-completion",
-    -- Database
-    {
-        "tpope/vim-dadbod",
-        opt = true,
-        requires = {
-            "kristijanhusak/vim-dadbod-ui",
-            "kristijanhusak/vim-dadbod-completion",
-        },
-        config = function()
-            require("config.dadbod").setup()
-        end,
-    },
+    -- "tpope/vim-dadbod",
+    -- "kristijanhusak/vim-dadbod-ui",
+    -- "kristijanhusak/vim-dadbod-completion",
+    -- -- Database
+    -- {
+    --     "tpope/vim-dadbod",
+    --     opt = true,
+    --     requires = {
+    --         "kristijanhusak/vim-dadbod-ui",
+    --         "kristijanhusak/vim-dadbod-completion",
+    --     },
+    --     config = function()
+    --         require("config.dadbod").setup()
+    --     end,
+    -- },
     -- dependencies = {
     --     { "tpope/vim-dadbod", lazy = true },
     --     { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
