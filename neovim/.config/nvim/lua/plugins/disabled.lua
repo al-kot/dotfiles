@@ -1,6 +1,4 @@
 local plugins = {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
     "nvim-pack/nvim-spectre",
     "dstein64/vim-startuptime",
 }
