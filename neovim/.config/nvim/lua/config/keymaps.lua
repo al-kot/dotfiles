@@ -12,3 +12,6 @@ vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>")
 
 vim.keymap.del("n", "<C-Up>")
 vim.keymap.set("n", "<C-S-Up>", "<cmd>resize +2<cr>")
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

@@ -23,7 +23,7 @@
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango: Mononoki Nerd 10
+font pango: Mononoki Nerd Font Regular 10
 
 # set the mod key to the winkey:
 set $mod Mod4
@@ -54,8 +54,8 @@ new_window pixel 1
 # hide_edge_borders both
 
 # Set inner/outer gaps
-gaps inner 4
-gaps outer 0
+gaps inner 6
+gaps outer 4
 
 # show window title bars (not officially supported with i3gaps)
 #default_border normal
@@ -497,8 +497,8 @@ set $yellowbrown	#e1b700
 
 # define colors for windows:
 #class		        	border		bground		text		indicator	child_border
-client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	$mediumgrey
-client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
+client.focused		    	$lightblue	$darkblue	$white		$black	$black
+client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$black
 client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
 client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 
