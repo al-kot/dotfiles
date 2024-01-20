@@ -4,8 +4,8 @@ local plugins = {
     -- "stevearc/aerial.nvim",
     "echasnovski/mini.comment",
     "echasnovski/mini.ai",
-    "echasnovski/mini.pairs",
-    -- "folke/tokyonight.nvim",
+    -- "echasnovski/mini.pairs",
+    "folke/tokyonight.nvim",
     "catppuccin/nvim",
     "nvim-neo-tree/neo-tree.nvim",
     "nvim-pack/nvim-spectre",
@@ -20,6 +20,9 @@ local plugins = {
     "nvimdev/dashboard-nvim",
     "goolord/alpha-nvim",
     "folke/flash.nvim",
+    "akinsho/bufferline.nvim",
+    "echasnovski/mini.bufferline",
+    -- "nvim-telescope/telescope.nvim",
 }
 
 To_disbable = {}
