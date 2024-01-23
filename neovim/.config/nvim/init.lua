@@ -3,4 +3,4 @@ require("config.lazy")
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
-vim.opt.cc = "80"
+vim.cmd("colorscheme kanagawa-wave")
