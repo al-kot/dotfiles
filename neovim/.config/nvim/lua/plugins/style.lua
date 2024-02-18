@@ -1,94 +1,71 @@
 local colors = {
-    night = {
-        vertsplit = "#181A1F",
-        special_grey = "#3B4048",
-        menu_grey = "#3E4452",
-        cursor_grey = "#2C323C",
-        gutter_fg_grey = "#4B5263",
-        blue = "#82b1ff",
-        dark_red = "#BE5046",
-        white = "#bfc7d5",
-        green = "#C3E88D",
-        purple = "#c792ea",
-        yellow = "#ffcb6b",
-        light_red = "#ff869a",
-        red = "#ff5370",
-        dark_yellow = "#F78C6C",
-        cyan = "#89DDFF",
-        comment_grey = "#697098",
-        black = "#292D3E",
-    },
-    kanagawa = require("colors.themes"), -- {
-    --     black = "#a6a69c",
-    --     red = "#E46876",
-    --     green = "#87a987",
-    --     yellow = "#E6C384",
-    --     blue = "#7FB4CA",
-    --     magenta = "#938AA9",
-    --     cyan = "#7AA89F",
-    --     white = "#c5c9c5",
-    -- },
+    black = '#727169',
+    red = '#e82424',
+    green = '#98bb6c',
+    yellow = '#e6c384',
+    blue = '#7fb4ca',
+    magenta = '#938aa9',
+    cyan = '#7aa89f',
+    white = '#dcd7ba',
+    purple = "#c792ea",
 }
 
 local lualine = {
     night = {
         normal = {
-            a = { fg = colors.night.purple, bg = nil, gui = "bold" },
-            b = { fg = colors.night.purple, bg = nil }, --colors_night.menu_grey },
-            c = { fg = colors.night.comment_grey, bg = nil }, --colors_night.black },
+            a = { fg = colors.purple, bg = "none", gui = "bold" },
+            b = { fg = colors.magenta, bg = "none" }, --colors.menu_grey },
+            c = { fg = colors.yellow, bg = "none" },  --colors.black },
         },
         insert = {
-            a = { fg = colors.night.blue, bg = nil, gui = "bold" },
-            b = { fg = colors.night.blue, bg = nil }, --colors_night.menu_grey },
+            a = { fg = colors.blue, bg = "none", gui = "bold" },
+            b = { fg = colors.blue, bg = "none" }, --colors.menu_grey },
         },
         visual = {
-            a = { fg = colors.night.cyan, bg = nil, gui = "bold" },
-            b = { fg = colors.night.cyan, bg = nil }, --colors_night.menu_grey },
+            a = { fg = colors.cyan, bg = "none", gui = "bold" },
+            b = { fg = colors.cyan, bg = "none" }, --colors.menu_grey },
         },
         replace = {
-            a = { fg = colors.night.green, bg = nil, gui = "bold" },
-            b = { fg = colors.night.green, bg = nil }, --colors_night.menu_grey },
+            a = { fg = colors.green, bg = "none", gui = "bold" },
+            b = { fg = colors.green, bg = "none" }, --colors.menu_grey },
         },
         inactive = {
-            a = { fg = colors.night.menu_grey, bg = nil, gui = "bold" },
-            b = { fg = colors.night.black, bg = nil }, --colors_night.menu_grey },
-            c = { fg = colors.night.black, bg = nil }, --colors_night.menu_grey },
+            a = { fg = colors.white, bg = "none", gui = "bold" },
+            b = { fg = colors.black, bg = "none" }, --colors.menu_grey },
+            c = { fg = colors.black, bg = "none" }, --colors.menu_grey },
         },
     },
-    -- kanagawa = {
-    --     normal = {
-    --         a = { fg = colors.kanagawa.syn, bg = nil, gui = "bold" },
-    --         b = { fg = colors.kanagawa.syn, bg = nil }, --colors_kanagawa.menu_grey },
-    --         c = { fg = colors.kanagawa.black, bg = nil }, --colors_kanagawa.black },
-    --     },
-    --
-    --     insert = {
-    --         a = { fg = colors.kanagawa.blue, bg = nil, gui = "bold" },
-    --         b = { fg = colors.kanagawa.blue, bg = nil }, --colors_kanagawa.menu_grey },
-    --     },
-    --     visual = {
-    --         a = { fg = colors.kanagawa.cyan, bg = nil, gui = "bold" },
-    --         b = { fg = colors.kanagawa.cyan, bg = nil }, --colors_kanagawa.menu_grey },
-    --     },
-    --     replace = {
-    --         a = { fg = colors.kanagawa.green, bg = nil, gui = "bold" },
-    --         b = { fg = colors.kanagawa.green, bg = nil }, --colors_kanagawa.menu_grey },
-    --     },
-    --     inactive = {
-    --         a = { fg = colors.kanagawa.black, bg = nil, gui = "bold" },
-    --         b = { fg = colors.kanagawa.black, bg = nil }, --colors_kanagawa.menu_grey },
-    --         c = { fg = colors.kanagawa.black, bg = nil }, --colors_kanagawa.menu_grey },
-    --     },
-    -- },
 }
 
 return {
+    {
+        "rebelot/kanagawa.nvim",
+        priority = 1000,
+        opts = function(_, opts)
+            opts.transparent = true
+            opts.colors = {
+                theme = {
+                    all = {
+                        ui = {
+                            bg_gutter = "none",
+                            float = {
+                                bg = "none",
+                            },
+                        },
+                    },
+                },
+            }
+        end,
+        config = function()
+            vim.cmd([[colorscheme kanagawa]])
+        end
+    },
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         opts = function(_, opts)
             opts.options = {
-                theme = require("colors.themes"),
+                theme = lualine.night,
                 component_separators = { left = "", right = "" },
                 section_separators = { left = "", right = "" },
             }
@@ -98,23 +75,82 @@ return {
         end,
     },
     {
-        "folke/tokyonight.nvim",
-        opts = {
-            terminal_colors_night = true,
-            style = "night",
-            transparent = true,
-            styles = {
-                sidebars = "transparent",
-                floats = "transparent",
-            },
-            dim_inactive = true,
-            on_colors_night = function(colors_night)
-                colors_night.bg_statusline = "#ff00ff"
-            end,
-        },
-    },
-    {
         "fladson/vim-kitty",
         lazy = false,
     },
+    {
+        "folke/which-key.nvim",
+        event = "VeryLazy",
+        opts = {
+            plugins = { spelling = true },
+            defaults = {
+                mode = { "n", "v" },
+                ["g"] = { name = "+goto" },
+                ["gs"] = { name = "+surround" },
+                ["]"] = { name = "+next" },
+                ["["] = { name = "+prev" },
+                ["<leader><tab>"] = { name = "+tabs" },
+                ["<leader>b"] = { name = "+buffer" },
+                ["<leader>c"] = { name = "+code" },
+                ["<leader>f"] = { name = "+file/find" },
+                ["<leader>g"] = { name = "+git" },
+                ["<leader>gh"] = { name = "+hunks" },
+                ["<leader>q"] = { name = "+quit/session" },
+                ["<leader>s"] = { name = "+search" },
+                ["<leader>u"] = { name = "+ui" },
+                ["<leader>w"] = { name = "+windows" },
+                ["<leader>x"] = { name = "+diagnostics/quickfix" },
+            },
+        },
+        config = function(_, opts)
+            local wk = require("which-key")
+            wk.setup(opts)
+            wk.register(opts.defaults)
+        end,
+    },
+    {
+        'stevearc/dressing.nvim',
+        opts = {},
+    },
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        opts = {
+            indent = {
+                char = "▏",
+                tab_char = "▏",
+            },
+            scope = { enabled = false },
+            exclude = {
+                filetypes = {
+                    "help",
+                    "alpha",
+                    "dashboard",
+                    "neo-tree",
+                    "Trouble",
+                    "trouble",
+                    "lazy",
+                    "mason",
+                    "notify",
+                    "toggleterm",
+                    "lazyterm",
+                },
+            },
+        },
+        main = "ibl",
+    },
+    {
+        "echasnovski/mini.indentscope",
+        version = false, -- wait till new 0.7.0 release to put it back on semver
+        opts = function (_, opts)
+            local indent = require("mini.indentscope")
+            opts.delay = 0
+            opts.symbol = "▏"
+            -- symbol = "│"
+            opts.options = { try_as_border = true }
+            opts.draw = { animation = indent.gen_animation.none() }
+        end,
+        -- config = function()
+        --     require('mini.indentscope').gen_animation.none()
+        -- end
+    }
 }

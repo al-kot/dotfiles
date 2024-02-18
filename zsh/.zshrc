@@ -33,6 +33,7 @@ alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
+alias idea='~/Downloads/idea-IU-233.14015.106/bin/idea.sh > /dev/null 2>&1 &'
 
 gccf() {
     gcc -std=c99 -pedantic -Werror -Wall -Wextra -Wvla -fsanitize=address -g -o "out" "$@"
@@ -41,7 +42,7 @@ gccf() {
 
 gtt() {
     echo "\n---add---\n"
-    git add -u
+    git add src/*
     echo "\n---commit---\n"
     git commit -m "gg"
     echo "\n---tag---\n"
@@ -64,7 +65,10 @@ gccl() {
     lik "./out"
 }
 
-
+mkdb() {
+    rm -rf "~/postgres_data"
+    initdb --locale "$LANG" -E UTF8
+}
 
 mntafs() {
     diskutil unmount force "$HOME/afs"
@@ -73,6 +77,10 @@ mntafs() {
     kinit -f "aleksei.kotliarov@CRI.EPITA.FR"
     sshfs -o reconnect "aleksei.kotliarov@ssh.cri.epita.fr:/afs/cri.epita.fr/user/a/al/aleksei.kotliarov/u/" "afs"
 }
+
+export PGDATA="$HOME/postgres_data"
+export PGHOST="/tmp"
+export DB_USERNAME="$(whoami)"
 
 
 case `uname` in
@@ -102,3 +110,13 @@ case `uname` in
 esac
 
 eval "$(starship init zsh)"
+
+[ -f "/home/asq/.ghcup/env" ] && source "/home/asq/.ghcup/env" # ghcup-env
+
+# Add JBang to environment
+alias j!=jbang
+export PATH="$HOME/.jbang/bin:$PATH"
+export PGDATA="$HOME/postgres_data"
+export PGHOST="/tmp"
+export PGDATA="$HOME/postgres_data"
+export PGHOST="/tmp"
