@@ -397,7 +397,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-fill $HOME/afs/.confs/wallpapers/scaled.png
+exec --no-startup-id sleep 1 && feh --bg-fill $HOME/afs/.confs/wallpapers/1280924.jpg
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -583,6 +583,7 @@ bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun \
 
 bindsym $mod+t exec --no-startup-id rofi -show window \
 		-config ~/.config/rofi/rofidmenu.rasi
+
 
 # bindsym F10 exec --no-startup-id rofi -show window \
 #		-config ~/.config/rofi/rofidmenu.rasi
