@@ -29,6 +29,7 @@ return {
             cmp.setup({
                 formatting = lsp_zero.cmp_format(),
                 mapping = cmp.mapping.preset.insert({
+                    ['<Tab>'] = cmp.mapping.select_next_item({ bhaviour = cmp.SelectBehavior.Insert }),
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-d>'] = cmp.mapping.scroll_docs(4),
