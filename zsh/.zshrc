@@ -39,10 +39,17 @@ gccf() {
     gcc -std=c99 -pedantic -Werror -Wall -Wextra -Wvla -fsanitize=address -g -o "out" "$@"
 }
 
+mkzork() {
+    rm -rf build
+    cmake -B build
+    cmake --build build --target libzork
+    cmake --build build --target zorkxplorer
+}
+
 
 gtt() {
-    echo "\n---add---\n"
-    git add src/*
+    # echo "\n---add---\n"
+    # git add src/*
     echo "\n---commit---\n"
     git commit -m "gg"
     echo "\n---tag---\n"

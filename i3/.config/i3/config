@@ -233,8 +233,8 @@ workspace $ws4 output HDMI-0
 workspace $ws5 output HDMI-0
 
 # bind program to workspace and focus to them on startup:
-assign [class="Xfce4-terminal"] $ws1
-assign [class="(?i)firefox"] $ws2
+assign [class="kitty"] $ws1
+assign [class="(?i)firefox"] $ws4
 assign [class="Thunar"] $ws3
 assign [class="thunderbird"] $ws4
 assign [class="TelegramDesktop"] $ws5

@@ -79,3 +79,5 @@ opt.fillchars = {
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
 require("config.keymaps")
+
+vim.api.nvim_set_option("clipboard", "unnamed")
