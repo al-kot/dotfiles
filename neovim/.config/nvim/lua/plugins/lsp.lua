@@ -1,19 +1,7 @@
 return {
-    -- {
-    --     'VonHeikemen/lsp-zero.nvim',
-    --     branch = 'v3.x',
-    --     lazy = true,
-    --     config = false,
-    --     init = function()
-    --         -- Disable automatic setup, we are doing it manually
-    --         vim.g.lsp_zero_extend_cmp = 0
-    --         vim.g.lsp_zero_extend_lspconfig = 0
-    --     end,
-    -- },
     {
         'williamboman/mason.nvim',
         lazy = false,
-        config = true,
         opts = {
             ensure_installed = {
                 "pylsp",
@@ -36,14 +24,7 @@ return {
             { 'L3MON4D3/LuaSnip' },
         },
         config = function(_, opts)
-            -- Here is where you configure the autocompletion settings.
-            -- local lsp_zero = require('lsp-zero')
-            -- lsp_zero.extend_cmp()
-            --
-            -- -- And you can configure cmp even more, if you want to.
             local cmp = require('cmp')
-            -- local cmp_action = lsp_zero.cmp_action()
-
             cmp.setup({
                 snippet = {
                     expand = function(args)
@@ -55,8 +36,6 @@ return {
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-d>'] = cmp.mapping.scroll_docs(4),
-                    -- ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-                    -- ['<C-b>'] = cmp_action.luasnip_jump_backward(),
                     ['<CR>'] = cmp.mapping.confirm({ select = false })
                 }),
                 window = {
@@ -77,33 +56,26 @@ return {
     {
         'neovim/nvim-lspconfig',
         cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+        lazy = false,
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'williamboman/mason-lspconfig.nvim' },
         },
-        opts = {
-            inlay_hints = {
-                enabled = true,
-            },
-        },
         config = function(_, opts)
-            -- -- This is where all the LSP shenanigans will live
-            -- local lsp_zero = require('lsp-zero')
-            -- lsp_zero.extend_lspconfig()
-            --
-            -- --- if you want to know more about lsp-zero and mason.nvim
-            -- --- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
-            -- lsp_zero.on_attach(function(client, bufnr)
-            --     -- see :help lsp-zero-keybindings
-            --     -- to learn the available actions
-            --     lsp_zero.default_keymaps({ buffer = bufnr })
-            -- end)
-
             -- Setup language servers.
             local lspconfig = require('lspconfig')
             lspconfig.lua_ls.setup {}
-            lspconfig.rust_analyzer.setup {}
-        end
+            lspconfig.rust_analyzer.setup {
+                on_attach = function()
+                    vim.lsp.inlay_hint.enable(true)
+                end,
+            }
+            lspconfig.clangd.setup {
+                on_attach = function()
+                    vim.lsp.inlay_hint.enable(true)
+                end,
+            }
+        end,
     },
 }
