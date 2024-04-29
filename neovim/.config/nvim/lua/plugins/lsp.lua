@@ -70,6 +70,7 @@ return {
             lspconfig.lua_ls.setup {}
             lspconfig.clangd.setup {}
             lspconfig.bashls.setup {}
+            lspconfig.tsserver.setup {}
         end
     }
 }
