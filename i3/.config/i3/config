@@ -266,7 +266,7 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec_always --no-startup-id sleep 1 && feh --bg-fill $HOME/Downloads/pxfuel\(3\).jpg
+#exec_always --no-startup-id killall bash
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -344,3 +344,5 @@ bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun \
 bindsym $mod+t exec --no-startup-id rofi -show window \
 		-config ~/.config/rofi/rofidmenu.rasi
 
+exec_always --no-startup-id kill $(ps -ef | grep back4.sh | awk 'NR==1{print $2}')
+exec_always --no-startup-id back4.sh 0.010 ~/Downloads/city2.gif
