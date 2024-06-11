@@ -6,13 +6,8 @@ return {
             ensure_installed = {
                 "pylsp",
                 "clangd",
-                "bashls",
-                "hydra_lsp",
-                "autotools_ls",
-                "jsonls",
-                "rust_analyzer",
-                "lua_ls"
-
+                "lua_ls",
+                "jdtls"
             },
         }
     },
