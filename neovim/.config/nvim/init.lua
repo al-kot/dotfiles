@@ -9,8 +9,8 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
 
-vim.cmd('hi! LineNr guibg=none ctermbg=none')
-vim.cmd('hi! CursorLineNr guibg=none ctermbg=none')
+vim.cmd('hi! CursorLineNr guibg=bg ')
+vim.cmd('hi! CursorLine guibg=#3c474d')
 -- vim.cmd('hi! CursorLine guibg=none ctermbg=none')
 
 -- Enable LazyVim auto format
@@ -31,7 +31,7 @@ opt.clipboard = "unnamedplus"  -- Sync with system clipboard
 opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 2           -- Hide * markup for bold and italic, but not markers with substitutions
 opt.confirm = true             -- Confirm to save changes before exiting modified buffer
--- opt.cursorline = true          -- Enable highlighting of the current line
+opt.cursorline = true          -- Enable highlighting of the current line
 opt.expandtab = true           -- Use spaces instead of tabs
 opt.formatoptions = "jcroqlnt" -- tcqj
 opt.grepformat = "%f:%l:%c:%m"

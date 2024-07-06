@@ -28,9 +28,11 @@ return {
                 },
                 -- formatting = lsp_zero.cmp_format(),
                 mapping = cmp.mapping.preset.insert({
+                    ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+                    ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
                     ['<C-Space>'] = cmp.mapping.complete(),
-                    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-                    ['<C-d>'] = cmp.mapping.scroll_docs(4),
+                    ['<C-l>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-m>'] = cmp.mapping.scroll_docs(4),
                     ['<CR>'] = cmp.mapping.confirm({ select = false })
                 }),
                 window = {
@@ -71,6 +73,12 @@ return {
                     vim.lsp.inlay_hint.enable(true)
                 end,
             }
+            lspconfig.jdtls.setup {
+                on_attach = function()
+                    vim.lsp.inlay_hint.enable(true)
+                end,
+            }
+            lspconfig.tsserver.setup{}
         end,
     },
 }

@@ -1,34 +1,51 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
+-- Colemak
+--
+local kmp = vim.keymap
 
-vim.keymap.del("n", "<C-h>")
-vim.keymap.del("n", "<C-j>")
-vim.keymap.del("n", "<C-k>")
-vim.keymap.del("n", "<C-l>")
-vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>")
-vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>")
-vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>")
-vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>")
+kmp.set({'n', 'v'}, "n", "j")
+kmp.set({'n', 'v'}, "e", "k")
+kmp.set({'n', 'v'}, "i", "l")
+kmp.set({'n', 'v'}, "j", "n")
+kmp.set({'n', 'v'}, "k", "i")
+kmp.set({'n', 'v'}, "l", "e")
+kmp.set({'n', 'v'}, "N", "J")
+kmp.set({'n', 'v'}, "E", "K")
+kmp.set({'n', 'v'}, "I", "L")
+kmp.set({'n', 'v'}, "J", "N")
+kmp.set({'n', 'v'}, "K", "I")
+kmp.set({'n', 'v'}, "L", "E")
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
+kmp.del("n", "<C-h>")
+kmp.del("n", "<C-j>")
+kmp.del("n", "<C-k>")
+kmp.del("n", "<C-l>")
+kmp.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>")
+kmp.set("n", "<C-e>", "<cmd>TmuxNavigateUp<cr>")
+kmp.set("n", "<C-n>", "<cmd>TmuxNavigateDown<cr>")
+kmp.set("n", "<C-i>", "<cmd>TmuxNavigateRight<cr>")
 
-vim.keymap.set("x", "<leader>p", '"_dP')
-vim.keymap.set("i", "<C-c>", "<Esc>")
-vim.keymap.set("n", "<leader>k", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true })
+kmp.set("v", "N", ":m '>+1<CR>gv=gv")
+kmp.set("v", "E", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+kmp.set("n", "<C-l>", "<C-u>zz")
+kmp.set("n", "<C-m>", "<C-d>zz")
+
+kmp.set("x", "<leader>p", '"_dP')
+kmp.set("i", "<C-c>", "<Esc>")
+kmp.set("n", "<leader>k", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+kmp.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true })
+
+kmp.set("n", "<leader>e", vim.cmd.Ex)
 
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+kmp.set('n', '<leader>ff', builtin.find_files, {})
+kmp.set('n', '<leader>fg', builtin.live_grep, {})
+kmp.set('n', '<leader>fb', builtin.buffers, {})
+kmp.set('n', '<leader>fh', builtin.help_tags, {})
 
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -39,22 +56,39 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf }
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-        vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-        vim.keymap.set('n', '<space>wl', function()
+        kmp.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        kmp.set('n', 'gd', vim.lsp.buf.definition, opts)
+        kmp.set('n', 'K', vim.lsp.buf.hover, opts)
+        kmp.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        kmp.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+        kmp.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+        kmp.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+        kmp.set('n', '<space>wl', function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, opts)
-        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-        vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-        vim.keymap.set('n', '<space>f', function()
+        kmp.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+        kmp.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+        kmp.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+        kmp.set('n', 'gr', vim.lsp.buf.references, opts)
+        kmp.set('n', '<space>f', function()
             vim.lsp.buf.format { async = true }
         end, opts)
     end,
 })
+
+local harpoon = require('harpoon')
+harpoon:setup()
+
+kmp.set("n", "<leader>a", function() harpoon:list():add() end)
+
+kmp.set("n", "<S-h>", function() harpoon:list():prev() end)
+kmp.set("n", "<S-l>", function() harpoon:list():next() end)
+kmp.set("n", "<leader>1", function() harpoon:list():select(1) end)
+kmp.set("n", "<leader>2", function() harpoon:list():select(2) end)
+kmp.set("n", "<leader>3", function() harpoon:list():select(3) end)
+kmp.set("n", "<leader>4", function() harpoon:list():select(4) end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+
+kmp.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
