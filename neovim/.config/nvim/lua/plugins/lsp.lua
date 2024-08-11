@@ -7,7 +7,7 @@ return {
                 "pylsp",
                 "clangd",
                 "lua_ls",
-                "jdtls"
+                "rust_analyzer",
             },
         }
     },
@@ -73,12 +73,8 @@ return {
                     vim.lsp.inlay_hint.enable(true)
                 end,
             }
-            lspconfig.jdtls.setup {
-                on_attach = function()
-                    vim.lsp.inlay_hint.enable(true)
-                end,
+            lspconfig.pylyzer.setup {
             }
-            lspconfig.tsserver.setup{}
         end,
     },
 }

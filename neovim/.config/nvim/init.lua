@@ -80,4 +80,17 @@ opt.fillchars = {
 vim.g.markdown_recommended_style = 0
 require("config.keymaps")
 
+vim.g.firenvim_config = {
+    globalSettings = { alt = "all" },
+    localSettings = {
+        [".*"] = {
+            cmdline  = "neovim",
+            content  = "text",
+            priority = 0,
+            selector = "textarea",
+            takeover = "never"
+        }
+    }
+}
+
 vim.api.nvim_set_option("clipboard", "unnamed")

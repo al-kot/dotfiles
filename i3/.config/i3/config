@@ -41,30 +41,6 @@ bindsym $mod+8    workspace  $ws8
 bindsym $mod+9    workspace  $ws9
 bindsym $mod+0    workspace  $ws10
 
-# switch to workspace with numpad keys
-bindcode $mod+87 workspace $ws1
-bindcode $mod+88 workspace $ws2
-bindcode $mod+89 workspace $ws3
-bindcode $mod+83 workspace $ws4
-bindcode $mod+84 workspace $ws5
-bindcode $mod+85 workspace $ws6
-bindcode $mod+79 workspace $ws7
-bindcode $mod+80 workspace $ws8
-bindcode $mod+81 workspace $ws9
-bindcode $mod+90 workspace $ws10
-
-# switch to workspace with numlock numpad keys
-bindcode $mod+Mod2+87 workspace $ws1
-bindcode $mod+Mod2+88 workspace $ws2
-bindcode $mod+Mod2+89 workspace $ws3
-bindcode $mod+Mod2+83 workspace $ws4
-bindcode $mod+Mod2+84 workspace $ws5
-bindcode $mod+Mod2+85 workspace $ws6
-bindcode $mod+Mod2+79 workspace $ws7
-bindcode $mod+Mod2+80 workspace $ws8
-bindcode $mod+Mod2+81 workspace $ws9
-bindcode $mod+Mod2+90 workspace $ws10
-
 # move focused container to workspace
 bindsym $mod+Shift+1    move container to workspace  $ws1
 bindsym $mod+Shift+2    move container to workspace  $ws2
@@ -76,31 +52,6 @@ bindsym $mod+Shift+7    move container to workspace  $ws7
 bindsym $mod+Shift+8    move container to workspace  $ws8
 bindsym $mod+Shift+9    move container to workspace  $ws9
 bindsym $mod+Shift+0    move container to workspace  $ws10
-
-# move focused container to workspace with numpad keys
-bindcode $mod+Shift+Mod2+87 	move container to workspace  $ws1
-bindcode $mod+Shift+Mod2+88 	move container to workspace  $ws2
-bindcode $mod+Shift+Mod2+89 	move container to workspace  $ws3
-bindcode $mod+Shift+Mod2+83 	move container to workspace  $ws4
-bindcode $mod+Shift+Mod2+84 	move container to workspace  $ws5
-bindcode $mod+Shift+Mod2+85 	move container to workspace  $ws6
-bindcode $mod+Shift+Mod2+79 	move container to workspace  $ws7
-bindcode $mod+Shift+Mod2+80 	move container to workspace  $ws8
-bindcode $mod+Shift+Mod2+81 	move container to workspace  $ws9
-bindcode $mod+Shift+Mod2+90 	move container to workspace  $ws10
-
-# move focused container to workspace with numpad keys
-bindcode $mod+Shift+87 	 move container to workspace  $ws1
-bindcode $mod+Shift+88 	 move container to workspace  $ws2
-bindcode $mod+Shift+89 	 move container to workspace  $ws3
-bindcode $mod+Shift+83 	 move container to workspace  $ws4
-bindcode $mod+Shift+84 	 move container to workspace  $ws5
-bindcode $mod+Shift+85 	 move container to workspace  $ws6
-bindcode $mod+Shift+79 	 move container to workspace  $ws7
-bindcode $mod+Shift+80 	 move container to workspace  $ws8
-bindcode $mod+Shift+81 	 move container to workspace  $ws9
-bindcode $mod+Shift+90 	 move container to workspace  $ws10
-
 
 ######################################
 # keybindings for different actions: #
@@ -212,11 +163,11 @@ bindsym Print exec --no-startup-id scrot ~/%Y-%m-%d-%T-screenshot.png && notify-
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -228,21 +179,19 @@ workspace $ws2 output DP-3
 workspace $ws3 output DP-3
 workspace $ws4 output HDMI-0
 workspace $ws5 output HDMI-0
+workspace $ws6 output HDMI-0
+workspace $ws7 output DP-4
+workspace $ws8 output DP-4
+workspace $ws9 output DP-4
 
 # bind program to workspace and focus to them on startup:
-assign [class="kitty"] $ws1
-assign [class="(?i)firefox"] $ws4
-assign [class="Thunar"] $ws3
-assign [class="thunderbird"] $ws4
-assign [class="TelegramDesktop"] $ws5
+assign [class="kitty"] $ws4
+assign [class="(?i)firefox"] $ws1
 
 # automatic set focus new window if it opens on another workspace than the current:
 for_window [class=Xfce4-terminal] focus
 for_window [class=kitty] focus
 for_window [class=(?i)firefox] focus
-for_window [class=Thunar] focus
-for_window [class=Thunderbird] focus
-for_window [class=TelegramDesktop] focus
 
 ##############
 # compositor #
@@ -259,10 +208,8 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 exec --no-startup-id dex --autostart --environment i3
 
-exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
-# exec --no-startup-id sleep 2 && nitrogen --restore
 #exec_always --no-startup-id killall bash
 
 # set powersavings for display:
@@ -274,27 +221,14 @@ exec --no-startup-id xset s 480 dpms 600 600 600
 # https://www.jwz.org/xscreensaver
 #exec --no-startup-id xscreensaver --no-splash
 
-exec --no-startup-id /usr/bin/dunst
-
-exec --no-startup-id xrandr --output DP-3 --primary --right-of HDMI-0
-
 ##################
 # floating rules #
 ##################
 
 # set floating (nontiling) for apps needing it
-for_window [class="Yad" instance="yad"] floating enable
-for_window [class="Galculator" instance="galculator"] floating enable
-for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
-
-# set floating (nontiling) for special apps
-for_window [class="Xsane" instance="xsane"] floating enable
-for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
-for_window [class="qt5ct" instance="qt5ct"] floating enable
-for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
-for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
-for_window [class="Pamac-manager"] floating enable
-for_window [window_role="About"] floating enable
+# for_window [class="Yad" instance="yad"] floating enable
+# for_window [class="Galculator" instance="galculator"] floating enable
+# for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 
 # set border of floating window
 for_window [class="urxvt"] border pixel 1
@@ -327,7 +261,6 @@ client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-
 #####################################
 # Application menu handled by rofi: #
 #####################################
@@ -341,5 +274,6 @@ bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun \
 bindsym $mod+t exec --no-startup-id rofi -show window \
 		-config ~/.config/rofi/rofidmenu.rasi
 
-exec_always --no-startup-id kill $(ps -ef | grep back4.sh | awk 'NR==1{print $2}')
-exec_always --no-startup-id back4.sh 0.010 ~/Downloads/city2.gif
+exec_always --no-startup-id ~/.config/monitors.sh
+
+exec_always --no-startup-id nitrogen --restore

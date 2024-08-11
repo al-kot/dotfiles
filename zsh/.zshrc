@@ -33,29 +33,9 @@ alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
-alias idea='~/Downloads/idea-IU-233.14015.106/bin/idea.sh > /dev/null 2>&1 &'
 
 gccf() {
     gcc -std=c99 -pedantic -Werror -Wall -Wextra -Wvla -fsanitize=address -g -o "out" "$@"
-}
-
-mkzork() {
-    rm -rf build
-    cmake -B build
-    cmake --build build --target libzork
-    cmake --build build --target zorkxplorer
-}
-
-
-gtt() {
-    # echo "\n---add---\n"
-    # git add src/*
-    echo "\n---commit---\n"
-    git commit -m "gg"
-    echo "\n---tag---\n"
-    git tag -a "$1" -m "gg"
-    echo "\n---push---\n"
-    git push --follow-tags origin master
 }
 
 gacp() {
@@ -67,63 +47,6 @@ gacp() {
   git push
 }
 
-gccl() {
-    gccf $@
-    lik "./out"
-}
-
-mkdb() {
-    rm -rf "~/postgres_data"
-    initdb --locale "$LANG" -E UTF8
-}
-
-mntafs() {
-    diskutil unmount force "$HOME/afs"
-    rm -rf "afs"
-    mkdir -p "afs"
-    kinit -f "aleksei.kotliarov@CRI.EPITA.FR"
-    sshfs -o reconnect "aleksei.kotliarov@ssh.cri.epita.fr:/afs/cri.epita.fr/user/a/al/aleksei.kotliarov/u/" "afs"
-}
-
-export PGDATA="$HOME/postgres_data"
-export PGHOST="/tmp"
-export DB_USERNAME="$(whoami)"
-
-
-case `uname` in
-    Darwin)
-        # commands for OS X go here
-        export PATH=/usr/local/bin:$PATH
-        export MAGICK_HOME=/opt/homebrew/opt/imagemagick/
-        export PATH="/opt/homebrew/opt/imagemagick/bin:$PATH"
-        export PATH="/opt/homebrew/include:$PATH"
-        export PATH="/opt/homebrew/Cellar/ffmpeg/5.1.2_6/include:$PATH"
-        export PATH="/opt/homebrew/include:${PATH:+:${PATH}}"
-        export PATH="/opt/homebrew/opt/clang-build-analyzer/bin:$PATH"
-        export PATH="/opt/homebrew/opt/cmake/bin:$PATH"
-        export PATH="/opt/homebrew/Cellar/clang-build-analyzer/1.5.0/bin:${PATH:+:${PATH}}"
-        export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-        export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-        export CPATH="/opt/homebrew/include"
-        export LIBRARY_PATH="/opt/homebrew/lib" 
-        export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
-        ;;
-    Linux)
-        # commands for Linux go here
-        ;;
-    FreeBSD)
-        # commands for FreeBSD go here
-        ;;
-esac
-
 eval "$(starship init zsh)"
 
 [ -f "/home/asq/.ghcup/env" ] && source "/home/asq/.ghcup/env" # ghcup-env
-
-# Add JBang to environment
-alias j!=jbang
-export PATH="$HOME/.jbang/bin:$PATH"
-export PGDATA="$HOME/postgres_data"
-export PGHOST="/tmp"
-export PGDATA="$HOME/postgres_data"
-export PGHOST="/tmp"
