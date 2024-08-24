@@ -2,12 +2,14 @@ return {
     {
         "numToStr/Comment.nvim",
         opts = {
-            -- add any options here
+            toggler = {
+                line = '<leader>c',
+            },
+            opleader = {
+                line = '<leader>c',
+            },
         },
         lazy = false,
-    },
-    {
-        "norcalli/nvim-colorizer.lua",
     },
     {
         "christoomey/vim-tmux-navigator",
@@ -15,28 +17,8 @@ return {
         enabled = true,
     },
     {
-        'glacambre/firenvim',
-        build = ":call firenvim#install(0)",
+        "echasnovski/mini.pairs",
+        event = "VeryLazy",
+        opts = {},
     },
-    {
-        "kawre/leetcode.nvim",
-        build = ":TSUpdate html",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "nvim-lua/plenary.nvim", -- required by telescope
-            "MunifTanjim/nui.nvim",
-
-            -- optional
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-tree/nvim-web-devicons",
-        },
-        opts = {
-            -- configuration goes here
-            theme = {
-                [""] = {
-                    bg = "#000000"
-                },
-            },
-        },
-    }
 }

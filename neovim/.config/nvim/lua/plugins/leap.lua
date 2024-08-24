@@ -17,11 +17,4 @@ return {
             vim.keymap.del({ "x", "o" }, "X")
         end,
     },
-    {
-        "ggandor/flit.nvim",
-        enabled = true,
-        opts = {
-            labeled_modes = "nx"
-        }
-    }
 }

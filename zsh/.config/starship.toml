@@ -5,21 +5,21 @@ $directory\
 $git_branch$git_commit$git_state$git_metrics$git_status\
 $jobs\
 $line_break\
-[ ](fg:#bb9af7)\
+[❯ ](fg:#76946A)\
 """
 
 add_newline = true
 
 [os]
 format = "[$symbol]($style)[ ]()"
-style = "fg:#c0caf5"
+style = "fg:#e5ded4"
 disabled = false
 
 [os.symbols]
 Arch = ""
 EndeavourOS = "" # ""
 Linux = ""
-Macos = " "
+Macos = ""
 NixOS = ""
 Ubuntu = ""
 Unknown = ""
@@ -31,8 +31,8 @@ style = 'fg:cyan bold'
 home_symbol = '~'
 read_only = ' '
 read_only_style = 'fg:cyan'
-truncation_length = 2
-truncation_symbol = '…/'
+truncation_length = 6
+truncation_symbol = '../'
 truncate_to_repo = false
 repo_root_format = ' [](fg:cyan bold)[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[ ]()'
 repo_root_style = 'fg:cyan bold'
@@ -75,7 +75,7 @@ deleted = '[🗑${count} ](fg:orange)'
 disabled = false
 
 [jobs]
-format = '[  ](fg:blue bold)[$number$symbol]($style)'
+format = '[❯ ](fg:blue bold)[$number$symbol]($style)'
 style = 'fg:blue'
 symbol = '󰜎'
 symbol_threshold = 1

@@ -1,16 +1,24 @@
 return {
     {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        config = function()
+            local configs = require("nvim-treesitter.configs")
+
+            configs.setup({
+                ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "html", "css", "rust", "python", "apex", "soql" },
+                sync_install = false,
+                highlight = { enable = true },
+                indent = { enable = true },
+            })
+        end
+    },
+    {
         'williamboman/mason.nvim',
         lazy = false,
-        opts = {
-            ensure_installed = {
-                "pylsp",
-                "clangd",
-                "lua_ls",
-                "rust_analyzer",
-            },
-        }
+        config = true,
     },
+
     -- Autocompletion
     {
         'hrsh7th/nvim-cmp',
@@ -18,21 +26,21 @@ return {
         dependencies = {
             { 'L3MON4D3/LuaSnip' },
         },
-        config = function(_, opts)
+        config = function()
             local cmp = require('cmp')
+
             cmp.setup({
                 snippet = {
                     expand = function(args)
                         require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
                     end,
                 },
-                -- formatting = lsp_zero.cmp_format(),
                 mapping = cmp.mapping.preset.insert({
                     ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
                     ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
                     ['<C-Space>'] = cmp.mapping.complete(),
-                    ['<C-l>'] = cmp.mapping.scroll_docs(-4),
-                    ['<C-m>'] = cmp.mapping.scroll_docs(4),
+                    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-d>'] = cmp.mapping.scroll_docs(4),
                     ['<CR>'] = cmp.mapping.confirm({ select = false })
                 }),
                 window = {
@@ -44,7 +52,7 @@ return {
                     { name = 'luasnip' }, -- For luasnip users.
                 }, {
                         { name = 'buffer' },
-                })
+                    })
             })
         end
     },
@@ -53,14 +61,26 @@ return {
     {
         'neovim/nvim-lspconfig',
         cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
-        lazy = false,
         event = { 'BufReadPre', 'BufNewFile' },
+        lazy = false,
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'williamboman/mason-lspconfig.nvim' },
         },
         config = function(_, opts)
-            -- Setup language servers.
+            require('mason-lspconfig').setup({
+                ensure_installed = {
+                    "pylsp",
+                    "clangd",
+                    "jsonls",
+                    "rust_analyzer",
+                    "lua_ls",
+                    "apex_ls",
+                    "tsserver",
+                },
+                inlay_hints = { enabled = true },
+            })
+
             local lspconfig = require('lspconfig')
             lspconfig.lua_ls.setup {}
             lspconfig.rust_analyzer.setup {
@@ -73,8 +93,18 @@ return {
                     vim.lsp.inlay_hint.enable(true)
                 end,
             }
-            lspconfig.pylyzer.setup {
+            lspconfig.tsserver.setup{
+                on_attach = function()
+                    vim.lsp.inlay_hint.enable(true)
+                end,
+            }
+            lspconfig.pylsp.setup{}
+            lspconfig.apex_ls.setup{
+                filetypes = {'apex', 'apexcode', 'apexc', 'cls', 'trigger', 'soql'},
+                on_attach = function()
+                    vim.lsp.inlay_hint.enable(true)
+                end,
             }
         end,
-    },
+    }
 }

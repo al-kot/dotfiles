@@ -30,7 +30,7 @@ return {
                     ["<S-CR>"] = cmp.mapping.confirm({
                         behavior = cmp.ConfirmBehavior.Replace,
                         select = true,
-                    }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                    }),
                     ["<C-CR>"] = function(fallback)
                         cmp.abort()
                         fallback()
@@ -50,7 +50,6 @@ return {
                 sorting = defaults.sorting,
             }
         end,
-        ---@param opts cmp.ConfigSchema
         config = function(_, opts)
             for _, source in ipairs(opts.sources) do
                 source.group_index = source.group_index or 1
@@ -60,9 +59,7 @@ return {
     },
     {
         "L3MON4D3/LuaSnip",
-        build = (not jit.os:find("Windows"))
-        and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
-        or nil,
+        build = 'make install_jsregexp',
         dependencies = {
             {
                 "rafamadriz/friendly-snippets",
@@ -101,5 +98,5 @@ return {
             { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
             { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
         },
-    }
+    },
 }

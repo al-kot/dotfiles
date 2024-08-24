@@ -1,30 +1,30 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
--- Colemak
 --
+local vim = vim
 local map = vim.keymap.set
 
-map('', "k", "i")
-map('', "j", "n")
-map('', "l", "e")
-map('', "J", "N")
-map('', "L", "E")
-map('', "K", "I")
+-- ===== colemak =====
+local function swap(lhs, rhs)
+    map('', lhs, rhs, { noremap = true })
+    map('', rhs, lhs, { noremap = true })
+    map('', string.upper(lhs), string.upper(rhs), { noremap = true })
+    map('', string.upper(rhs), string.upper(lhs), { noremap = true })
+end
 
-map('', "n", "j")
-map('', "e", "k")
-map('', "i", "l")
-
-map('', "N", "J")
-map('', "E", "K")
-map('', "I", "L")
-
+swap("n", "j")
+swap("e", "k")
+swap("i", "l")
 
 map("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>")
 map("n", "<C-e>", "<cmd>TmuxNavigateUp<cr>")
 map("n", "<C-n>", "<cmd>TmuxNavigateDown<cr>")
 map("n", "<C-i>", "<cmd>TmuxNavigateRight<cr>")
+
+
+-- ===== goodies =====
+map('n', '<leader>nh', ':noh<CR>', { silent = true })
 
 map("v", "N", ":m '>+1<CR>gv=gv")
 map("v", "E", ":m '<-2<CR>gv=gv")
@@ -32,32 +32,36 @@ map("v", "E", ":m '<-2<CR>gv=gv")
 map("n", "<C-l>", "<C-u>zz")
 map("n", "<C-m>", "<C-d>zz")
 
-map("x", "<leader>p", '"_dP')
+map("x", "p", '"_dP')
 map("i", "<C-c>", "<Esc>")
-map("n", "<leader>k", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-map("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true })
+map("n", "<leader>k", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left><Left>]])
 
 map("n", "<leader>e", vim.cmd.Ex)
+map("n", "<leader>wq", ":wq<CR>")
+map("n", "<leader>vs", function()
+    vim.cmd(":vsplit<CR>")
+    require('telescope.builtin').find_files({ hidden = true })
+end)
+map("n", "<leader>hs", function()
+    vim.cmd(":split<CR>")
+    require('telescope.builtin').find_files({ hidden = true })
+end)
+map("n", "<leader>so", ":source ~/.config/nvim/init.lua<CR>", {silent = true})
 
-local builtin = require('telescope.builtin')
-map('n', '<leader>ff', builtin.find_files, {})
-map('n', '<leader>fg', builtin.live_grep, {})
-map('n', '<leader>fb', builtin.buffers, {})
-map('n', '<leader>fh', builtin.help_tags, {})
 
+
+-- ===== lsp =====
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
-        -- Enable completion triggered by <c-x><c-o>
         vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-        -- Buffer local mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf }
+        local telescope = require('telescope.builtin')
         map('n', 'gD', vim.lsp.buf.declaration, opts)
-        map('n', 'gd', vim.lsp.buf.definition, opts)
+        map('n', 'gd', function() telescope.lsp_definitions({ jump_type = "vsplit" }) end, opts)
         map('n', 'E', vim.lsp.buf.hover, opts)
-        map('n', 'gi', vim.lsp.buf.implementation, opts)
+        map('n', 'gi', telescope.lsp_implementations, opts)
         map('n', '<C-k>', vim.lsp.buf.signature_help, opts)
         map('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
         map('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
@@ -66,14 +70,53 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end, opts)
         map('n', '<space>D', vim.lsp.buf.type_definition, opts)
         map('n', '<space>rn', vim.lsp.buf.rename, opts)
-        map({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-        map('n', 'gr', vim.lsp.buf.references, opts)
+        map({ 'n', 'v' }, '<space>va', vim.lsp.buf.code_action, opts)
+        map('n', 'gr', telescope.lsp_references, opts)
         map('n', '<space>f', function()
             vim.lsp.buf.format { async = true }
         end, opts)
     end,
 })
 
+
+-- ===== telescope =====
+local builtin = require('telescope.builtin')
+map('n', '<leader>ff', function()
+    builtin.find_files({
+        hidden = true,
+        layout_config = {
+            width = 0.9,
+            height = 0.9
+        }
+    })
+end, {})
+map('n', '<leader>fg', function()
+    builtin.live_grep({
+        layout_strategy = 'vertical',
+        layout_config = {
+            mirror = true,
+            preview_cutoff = 1,
+            width = 0.8,
+            height = 0.99
+        },
+        additional_args = { '--hidden' }
+    })
+end, {})
+map('n', '<leader>fh', function()
+    builtin.help_tags({
+        layout_strategy = 'vertical',
+        layout_config = {
+            mirror = true,
+            preview_cutoff = 1,
+            width = 0.5,
+            height = 0.99
+        }
+    })
+end, {})
+map('n', '<leader>fb', builtin.buffers, {})
+
+
+-- ===== harpoon =====
 local harpoon = require('harpoon')
 harpoon:setup()
 
@@ -86,7 +129,4 @@ map("n", "<leader>2", function() harpoon:list():select(2) end)
 map("n", "<leader>3", function() harpoon:list():select(3) end)
 map("n", "<leader>4", function() harpoon:list():select(4) end)
 
--- Toggle previous & next buffers stored within Harpoon list
-
 map("n", "<C-u>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-

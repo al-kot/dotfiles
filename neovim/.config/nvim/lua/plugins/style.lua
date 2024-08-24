@@ -1,47 +1,46 @@
 return {
     {
         "rebelot/kanagawa.nvim",
-        priority = 1000,
-        opts = function(_, opts)
-            opts.transparent = true
-            opts.colors = {
-                theme = {
-                    all = {
-                        ui = {
-                            bg_gutter = "none",
-                            float = {
-                                bg = "none",
+        priority = 1001,
+        config = function()
+            require('kanagawa').setup{
+                commentStyle = { italic = false },
+                keywordStyle = { italic = false },
+                statementStyle = { bold = false },
+                undercurl = false,
+                transparent = true,
+                colors = {
+                    theme = {
+                        all = {
+                            ui = {
+                                bg_gutter = "none",
                             },
                         },
                     },
                 },
+                overrides = function(colors)
+                    local theme = colors.theme
+                    return {
+                        Boolean = { bold = false },
+                        TelescopeTitle = { fg = theme.ui.special, bold = true },
+                        TelescopePromptNormal = { bg = theme.ui.bg_p1 },
+                        TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
+                        TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
+                        TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+                        TelescopePreviewNormal = { bg = theme.ui.bg_dim },
+                        TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+                    }
+                end,
             }
-        end,
-        -- config = function()
-        --     vim.cmd([[colorscheme kanagawa]])
-        -- end
-    },
-    {
-        "neanias/everforest-nvim",
-        version = false,
-        lazy = false,
-        priority = 1000, -- make sure to load this before all the other start plugins
-        -- Optional; default configuration will be used if setup isn't called.
-        config = function()
-            require("everforest").setup({
-                -- Your config here
-                transparent_background_level = 2,
-                ui_contrast = "high"
-            })
-            vim.cmd([[colorscheme everforest]])
-        end,
+            vim.cmd('colorscheme kanagawa')
+        end
     },
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         opts = function(_, opts)
             opts.options = {
-                theme = require("lualine_themes").everforest,
+                theme = require("lualine_themes").kanagawa,
                 component_separators = { left = "", right = "" },
                 section_separators = { left = "", right = "" },
             }
@@ -53,10 +52,6 @@ return {
     {
         "fladson/vim-kitty",
         lazy = false,
-    },
-    {
-        'stevearc/dressing.nvim',
-        opts = {},
     },
     {
         "lukas-reineke/indent-blankline.nvim",
@@ -86,17 +81,13 @@ return {
     },
     {
         "echasnovski/mini.indentscope",
-        version = false, -- wait till new 0.7.0 release to put it back on semver
+        version = false,
         opts = function(_, opts)
             local indent = require("mini.indentscope")
             opts.delay = 0
             opts.symbol = "╎"
-            -- symbol = "▏"
             opts.options = { try_as_border = true }
             opts.draw = { animation = indent.gen_animation.none() }
         end,
-        -- config = function()
-        --     require('mini.indentscope').gen_animation.none()
-        -- end
     }
 }
