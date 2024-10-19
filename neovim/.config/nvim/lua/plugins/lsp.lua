@@ -75,8 +75,6 @@ return {
                     "jsonls",
                     "rust_analyzer",
                     "lua_ls",
-                    "apex_ls",
-                    "tsserver",
                 },
                 inlay_hints = { enabled = true },
             })
@@ -93,18 +91,24 @@ return {
                     vim.lsp.inlay_hint.enable(true)
                 end,
             }
-            lspconfig.tsserver.setup{
-                on_attach = function()
-                    vim.lsp.inlay_hint.enable(true)
-                end,
-            }
             lspconfig.pylsp.setup{}
-            lspconfig.apex_ls.setup{
-                filetypes = {'apex', 'apexcode', 'apexc', 'cls', 'trigger', 'soql'},
+            lspconfig.ccls.setup{
                 on_attach = function()
                     vim.lsp.inlay_hint.enable(true)
                 end,
             }
+            lspconfig.ts_ls.setup {
+                on_attach = function()
+                    vim.lsp.inlay_hint.enable(true)
+                end,
+            }
+            lspconfig.tailwindcss.setup {
+                on_attach = function()
+                    vim.lsp.inlay_hint.enable(true)
+                end,
+            }
+            lspconfig.svelte.setup{}
+            lspconfig.gopls.setup{}
         end,
     }
 }

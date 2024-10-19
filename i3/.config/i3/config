@@ -19,8 +19,8 @@ workspace_layout default
 default_border pixel 1
 
 # Set inner/outer gaps
-gaps inner 6
-gaps outer 4
+gaps inner 5
+gaps outer 2
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -30,28 +30,28 @@ bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
 # switch to workspace
-bindsym $mod+1    workspace  $ws1
+bindsym $mod+b    workspace  $ws1
 bindsym $mod+2    workspace  $ws2
 bindsym $mod+3    workspace  $ws3
-bindsym $mod+4    workspace  $ws4
+bindsym $mod+t    workspace  $ws4
 bindsym $mod+5    workspace  $ws5
 bindsym $mod+6    workspace  $ws6
-bindsym $mod+7    workspace  $ws7
+bindsym $mod+v    workspace  $ws7
 bindsym $mod+8    workspace  $ws8
 bindsym $mod+9    workspace  $ws9
 bindsym $mod+0    workspace  $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1    move container to workspace  $ws1
-bindsym $mod+Shift+2    move container to workspace  $ws2
-bindsym $mod+Shift+3    move container to workspace  $ws3
-bindsym $mod+Shift+4    move container to workspace  $ws4
-bindsym $mod+Shift+5    move container to workspace  $ws5
-bindsym $mod+Shift+6    move container to workspace  $ws6
-bindsym $mod+Shift+7    move container to workspace  $ws7
-bindsym $mod+Shift+8    move container to workspace  $ws8
-bindsym $mod+Shift+9    move container to workspace  $ws9
-bindsym $mod+Shift+0    move container to workspace  $ws10
+bindsym $mod+Shift+b    move container to workspace $ws1 workspace  $ws1
+bindsym $mod+Shift+2    move container to workspace $ws2 workspace  $ws2
+bindsym $mod+Shift+3    move container to workspace $ws3 workspace  $ws3
+bindsym $mod+Shift+t    move container to workspace $ws4 workspace  $ws4
+bindsym $mod+Shift+5    move container to workspace $ws5 workspace  $ws5
+bindsym $mod+Shift+6    move container to workspace $ws6 workspace  $ws6
+bindsym $mod+Shift+v    move container to workspace $ws7 workspace  $ws7
+bindsym $mod+Shift+8    move container to workspace $ws8 workspace  $ws8
+bindsym $mod+Shift+9    move container to workspace $ws9 workspace  $ws9
+bindsym $mod+Shift+0    move container to workspace $ws10 workspace  $ws10
 
 ######################################
 # keybindings for different actions: #
@@ -174,12 +174,12 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-workspace $ws1 output DP-3
-workspace $ws2 output DP-3
-workspace $ws3 output DP-3
-workspace $ws4 output HDMI-0
-workspace $ws5 output HDMI-0
-workspace $ws6 output HDMI-0
+workspace $ws1 output HDMI-0
+workspace $ws2 output HDMI-0
+workspace $ws3 output HDMI-0
+workspace $ws4 output DP-3
+workspace $ws5 output DP-3
+workspace $ws6 output DP-3
 workspace $ws7 output DP-4
 workspace $ws8 output DP-4
 workspace $ws9 output DP-4
@@ -271,8 +271,8 @@ bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun \
 		-config ~/.config/rofi/rofidmenu.rasi
 
 
-bindsym $mod+t exec --no-startup-id rofi -show window \
-		-config ~/.config/rofi/rofidmenu.rasi
+# bindsym $mod+t exec --no-startup-id rofi -show window \
+# 		-config ~/.config/rofi/rofidmenu.rasi
 
 exec_always --no-startup-id ~/.config/monitors.sh
 
