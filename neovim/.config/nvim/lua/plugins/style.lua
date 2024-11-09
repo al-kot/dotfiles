@@ -55,6 +55,9 @@ return {
     },
     {
         "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        ---@module "ibl"
+        ---@type ibl.config
         opts = {
             indent = {
                 char = "╎",
@@ -77,7 +80,6 @@ return {
                 },
             },
         },
-        main = "ibl",
     },
     {
         "echasnovski/mini.indentscope",

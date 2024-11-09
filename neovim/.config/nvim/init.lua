@@ -13,6 +13,8 @@ vim.cmd('hi! CursorLine guibg=#3c474d')
 -- Enable LazyVim auto format
 vim.g.autoformat = true
 
+vim.filetype.add({ extension = { templ = "templ" } })
+
 -- LazyVim root dir detection
 -- Each entry can be:
 -- * the name of a detector function like `lsp` or `cwd`
@@ -75,6 +77,13 @@ opt.fillchars = {
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
+
+require('cmp').setup.filetype({"sql"}, {
+    sources = {
+        { name = 'vim-dadbod-completion' },
+        { name = 'buffer' },
+    }
+})
 
 require('config.keymaps')
 require('sf.sf')

@@ -46,7 +46,7 @@ map("n", "<leader>hs", function()
     vim.cmd(":split<CR>")
     require('telescope.builtin').find_files({ hidden = true })
 end)
-map("n", "<leader>so", ":source ~/.config/nvim/init.lua<CR>", {silent = true})
+map("n", "<leader>so", ":source ~/.config/nvim/init.lua<CR>", { silent = true })
 
 
 
@@ -81,7 +81,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- ===== telescope =====
 local builtin = require('telescope.builtin')
-map('n', '<leader>ff', function()
+map('n', '<C-f>', function()
     builtin.find_files({
         hidden = true,
         layout_config = {

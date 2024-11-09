@@ -92,3 +92,5 @@ eval
 SF_AC_ZSH_SETUP_PATH=/home/asq/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
 
 source ~/qmk/util/qmk_tab_complete.sh
+
+export PATH=$PATH:$HOME/go/bin
