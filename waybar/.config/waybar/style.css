@@ -1,0 +1,64 @@
+@import url('../colors/colors.css');
+
+* {
+    border: none;
+    border-radius: 5px;
+    font-family: MononokiNerdFont, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: none;
+    color: @fg_base;
+}
+
+
+#workspaces button {
+    background-color: alpha(@bg_base, 0.8);
+    color: @fg_base;
+    margin-left: 10px;
+    transition: all;
+    transition-duration: 100ms;
+    min-width: 20px;
+}
+
+#workspaces button.active {
+    color: @fg_base;
+    opacity: 1;
+    background-color: alpha(@blue_dark, 0.8);
+    min-width: 30px;
+}
+
+#cpu,
+#memory,
+#disk,
+#network.speed,
+#pulseaudio,
+#clock,
+#custom-pacman {
+    padding: 5px 10px;
+    color: @fg_base;
+    background-color: alpha(@bg_base, 0.8);
+    transition: all;
+}
+
+#clock {
+    background-color: alpha(@cyan_dark, 0.9);
+    color: @black_dark;
+}
+
+#custom-pacman {
+    background-color: alpha(@yellow_dark, 0.9);
+    color: @black_dark;
+}
+
+#network {
+    background-color: alpha(@green_dark, 0.9);
+    color: @black_dark;
+}
+
+#disk {
+    background-color: alpha(@red_dark, 0.9);
+    color: @black_dark;
+}

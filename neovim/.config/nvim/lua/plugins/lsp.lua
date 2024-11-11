@@ -70,16 +70,19 @@ return {
         config = function(_, opts)
             local servers = {
                 { name = "pylsp",         custom = false },
-                { name = "clangd",        custom = false },
-                { name = "jsonls",        custom = false },
-                { name = "rust_analyzer", custom = false },
+                -- { name = "clangd",        custom = false },
+                -- { name = "jsonls",        custom = false },
+                -- { name = "rust_analyzer", custom = false },
                 { name = "lua_ls",        custom = false },
-                { name = "templ",         custom = false },
-                { name = "tailwindcss",   custom = true },
-                { name = "ts_ls",         custom = false },
+                -- { name = "templ",         custom = false },
+                -- { name = "tailwindcss",   custom = true },
+                -- { name = "ts_ls",         custom = false },
                 { name = "html",          custom = true },
-                { name = "htmx",          custom = true },
-                { name = "gopls",         custom = true },
+                -- { name = "htmx",          custom = true },
+                -- { name = "gopls",         custom = true },
+                { name = "bashls", custom = false },
+                { name = "hyprls", custom = false },
+                { name = "yamlls", custom = false },
             }
             local names = {}
             for i, s in pairs(servers) do
@@ -160,7 +163,9 @@ return {
             lspconfig.htmx.setup {
                 filetypes = { "html", "templ" }
             }
-            lspconfig.ccls.setup{}
+            lspconfig.cssls.setup{
+                capabilities = caps,
+            }
         end,
     }
 }

@@ -1,9 +1,23 @@
+local vim = vim
+
 return {
+    {
+        'sainnhe/everforest',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            -- Optionally configure and load the colorscheme
+            -- directly inside the plugin declaration.
+            vim.g.everforest_transparent_background = 1
+            vim.g.everforest_background = 'hard'
+            vim.cmd.colorscheme('everforest')
+        end
+    },
     {
         "rebelot/kanagawa.nvim",
         priority = 1001,
         config = function()
-            require('kanagawa').setup{
+            require('kanagawa').setup {
                 commentStyle = { italic = false },
                 keywordStyle = { italic = false },
                 statementStyle = { bold = false },
@@ -40,7 +54,7 @@ return {
         event = "VeryLazy",
         opts = function(_, opts)
             opts.options = {
-                theme = require("lualine_themes").kanagawa,
+                theme = require("lualine_themes").everforest,
                 component_separators = { left = "", right = "" },
                 section_separators = { left = "", right = "" },
             }

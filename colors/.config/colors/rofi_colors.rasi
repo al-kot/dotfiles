@@ -1,0 +1,24 @@
+* {
+    bg-base: #1F1F28;
+    fg-base: #d3c6aa;
+    bg-select: #503946;
+    fg-select: #9da9a0;
+    black-dark: #374247;
+    red-dark: #e67e80;
+    green-dark: #98BC6D;
+    yellow-dark: #dbbc7f;
+    blue-dark: #7fbbb3;
+    magenta-dark: #d699b6;
+    cyan-dark: #83c092;
+    white-dark: #859289;
+    white-light: #859289;
+    cyan-light: #83c092;
+    magenta-light: #d699b6;
+    blue-light: #7fbbb3;
+    yellow-light: #dbbc7f;
+    green-light: #9EC967;
+    black-light: #404c51;
+    red-light: #e67e80;
+    cursor: #d3c6aa;
+    cursor-txt: #323c41;
+}

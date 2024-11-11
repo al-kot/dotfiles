@@ -1,0 +1,28 @@
+colors:
+  base:
+    bg:     "1F1F28"
+    fg:     "d3c6aa"
+  select:
+    bg:     "503946"
+    fg:     "9da9a0"
+  dark:
+    black:      "374247"
+    red:        "e67e80"
+    green:      "98BC6D"
+    yellow:     "dbbc7f"
+    blue:       "7fbbb3"
+    magenta:    "d699b6"
+    cyan:       "83c092"
+    white:      "859289"
+  light:
+    white:     "859289"
+    cyan:      "83c092"
+    magenta:   "d699b6"
+    blue:      "7fbbb3"
+    yellow:    "dbbc7f"
+    green:     "9EC967"
+    black:     "404c51"
+    red:       "e67e80"
+  extra:
+    cursor:     "d3c6aa"
+    cursor_txt: "323c41"

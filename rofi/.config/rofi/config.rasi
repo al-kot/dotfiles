@@ -1,0 +1,14 @@
+configuration {
+  show-icons: false;
+  drun-display-format: "{name}";
+  icon-theme: "Papirus-Dark";
+  location: 5;
+}
+
+* {
+  background-color: transparent;
+  text-color: white;
+  color: black;
+  transparency: "screenshot";
+}
+

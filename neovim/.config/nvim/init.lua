@@ -85,5 +85,12 @@ require('cmp').setup.filetype({"sql"}, {
     }
 })
 
+vim.filetype.add({
+  pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+})
+
+vim.filetype.add({
+  pattern = { [".*.rasi"] = "rasi" },
+})
 require('config.keymaps')
 require('sf.sf')

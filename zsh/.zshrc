@@ -1,9 +1,5 @@
-export ZSH="$HOME/.oh-my-zsh"
 
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
-
-source $ZSH/oh-my-zsh.sh
-
 
 bindkey -e
 
@@ -27,12 +23,10 @@ alias cim="nvim"
 
 alias vf="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
 
-alias ls='lsd'
-
-alias l='ls -l'
-alias la='ls -a'
-alias lla='ls -la'
-alias lt='ls --tree'
+alias l='lsd -l'
+alias la='lsd -a'
+alias lla='lsd -la'
+alias lt='lsd --tree'
 
 # === fzf ===
 fg="#D8CAAC"
@@ -89,8 +83,10 @@ eval "$(fzf --zsh)"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 eval 
-SF_AC_ZSH_SETUP_PATH=/home/asq/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
-
-source ~/qmk/util/qmk_tab_complete.sh
 
 export PATH=$PATH:$HOME/go/bin
+export test_col="#ffffff"
+
+source ~/.zsh/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/nvm/init-nvm.sh
