@@ -2,8 +2,25 @@
     "layer": "top",
     "output": "DP-2",
     "margin-top": 5,
-    "spacing": 10,
-    "modules-center": ["hyprland/workspaces", "memory", "disk", "cpu", "network", "network#speed", "custom/pacman", "pulseaudio", "clock"],
+    "margin-right": 5,
+    "margin-left": 5,
+    "spacing": 0,
+    "modules-left": ["hyprland/workspaces"],
+    "modules-right": [
+        "custom/memory-icon",
+        "memory",
+        "custom/disk-icon",
+        "disk",
+        "custom/cpu-icon",
+        "cpu",
+        "network#icon",
+        "network",
+        "custom/pacman-icon",
+        "custom/pacman",
+        "pulseaudio#icon",
+        "pulseaudio",
+        "clock"
+    ],
     "hyprland/workspaces": {
         "format": "{icon}",
         "active-only": false,
@@ -26,29 +43,35 @@
             "10": "10"
         }
     },
+
     "clock": {
         "format": "{:%a, %d. %b  %H:%M}"
     },
+
+    "custom/cpu-icon": {"format":" "},
     "cpu": {
-        "format": "  {usage}%",
+        "format": "{usage}%",
         "tooltip": false,
         "interval": 5,
-        "max-length": 8,
-        "min-length": 8
+        "min-length": 4
     },
+
+    "custom/memory-icon": {"format":" "},
     "memory": {
-        "format": "  {used:0.2f} GiB",
+        "format": "{used:0.2f} GiB",
         "interval": 5,
-        "max-length": 12,
-        "min-length": 12
+        "min-length": 9
     },
+
+    "custom/disk-icon": {"format":" "},
     "disk": {
+        "format": "{specific_free:0.2f} GB",
         "interval": 30,
-        "format": "  {specific_free:0.2f} GB",
         "unit": "GB"
     },
-    "custom/pacman": {
-        "format": "{icon} {0}",
+
+    "custom/pacman-icon": {
+        "format": "{icon}",
         "return-type": "json",
         "format-icons": {
             "update-needed": " ",
@@ -56,22 +79,26 @@
         },
         "exec": "$HOME/.config/waybar/scripts/yay-updates.sh"
     },
+    "custom/pacman": {
+        "format": " {0}",
+        "return-type": "json",
+        "exec": "$HOME/.config/waybar/scripts/yay-updates.sh"
+    },
+
+    "network#icon": {
+        "interface": "enp4s0",
+        "format-ethernet": "󰈁",
+        "format-disconnected": "󰈂"
+    },
     "network": {
         "interface": "enp4s0",
-        "format-ethernet": "󰈁 {ifname} {ipaddr}",
-        "format-disconnected": "󰈂 disconected"
+        "format-ethernet": "{ifname} {ipaddr}",
+        "format-disconnected": "disconected"
     },
-    "network#speed": {
-        "interface": "enp4s0",
-        "format-ethernet": " {bandwidthUpBytes} |  {bandwidthDownBytes}",
-        "format-disconnected": "",
-        "interval": 5,
-        "max-length": 22,
-        "min-length": 22
-    },
-    "pulseaudio": {
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
+
+    "pulseaudio#icon": {
+        "format": "{icon}",
+        "format-bluetooth": "{icon}",
         "format-muted": "",
         "format-icons": {
             "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
@@ -85,10 +112,16 @@
             "car": "",
             "default": ["", ""]
         },
+        "ignored-sinks": ["Easy Effects Sink"],
+        "min-length": 2
+    },
+    "pulseaudio": {
+        "format": "{volume}%",
+        "format-bluetooth": "{volume}%",
+        "format-muted": "",
         "scroll-step": 1,
         "on-click": "pavucontrol",
         "ignored-sinks": ["Easy Effects Sink"],
-        "max-length": 8,
-        "min-length": 8
+        "min-length": 4
     }
 }

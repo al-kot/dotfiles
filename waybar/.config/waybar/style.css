@@ -2,7 +2,6 @@
 
 * {
     border: none;
-    border-radius: 5px;
     font-family: MononokiNerdFont, Roboto, Helvetica, Arial, sans-serif;
     font-size: 15px;
     min-height: 0;
@@ -10,55 +9,105 @@
 
 window#waybar {
     background: none;
-    color: @fg_base;
+    color: @fg;
 }
 
 
 #workspaces button {
-    background-color: alpha(@bg_base, 0.8);
-    color: @fg_base;
-    margin-left: 10px;
+    background-color: alpha(@bg, 0.8);
+    color: @fg;
+    margin-left: 5px;
     transition: all;
     transition-duration: 100ms;
     min-width: 20px;
 }
 
 #workspaces button.active {
-    color: @fg_base;
+    color: @bg;
     opacity: 1;
-    background-color: alpha(@blue_dark, 0.8);
-    min-width: 30px;
+    background-color: alpha(@fg, 0.8);
+    min-width: 15px;
 }
 
 #cpu,
 #memory,
 #disk,
-#network.speed,
+#network,
 #pulseaudio,
 #clock,
 #custom-pacman {
-    padding: 5px 10px;
-    color: @fg_base;
-    background-color: alpha(@bg_base, 0.8);
-    transition: all;
+    border-radius: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 5px 5px;
+    color: @fg;
+    background-color: alpha(@bg, 0.8);
 }
 
 #clock {
-    background-color: alpha(@cyan_dark, 0.9);
-    color: @black_dark;
+    margin-right: 0px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding-left: 10px;
+    margin-left: 5px;
 }
-
-#custom-pacman {
-    background-color: alpha(@yellow_dark, 0.9);
-    color: @black_dark;
+#custom-cpu-icon {
+    color: @red;
+    background-color: alpha(@bg, 0.8);
+    margin-right: 0px;
+    border-radius: 0px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding-left: 10px;
+    margin-left: 5px;
 }
-
-#network {
-    background-color: alpha(@green_dark, 0.9);
-    color: @black_dark;
+#custom-pacman-icon {
+    color: @green;
+    background-color: alpha(@bg, 0.8);
+    margin-right: 0px;
+    border-radius: 0px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding-left: 10px;
+    margin-left: 5px;
 }
-
-#disk {
-    background-color: alpha(@red_dark, 0.9);
-    color: @black_dark;
+#pulseaudio.icon {
+    color: @orange_light;
+    background-color: alpha(@bg, 0.8);
+    margin-right: 0px;
+    border-radius: 0px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding-left: 10px;
+    margin-left: 5px;
+}
+#network.icon {
+    color: @cyan;
+    background-color: alpha(@bg, 0.8);
+    margin-right: 0px;
+    border-radius: 0px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding-left: 10px;
+    margin-left: 5px;
+}
+#custom-disk-icon {
+    color: @orange;
+    background-color: alpha(@bg, 0.8);
+    margin-right: 0px;
+    border-radius: 0px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding-left: 10px;
+    margin-left: 5px;
+}
+#custom-memory-icon {
+    color: @magenta;
+    background-color: alpha(@bg, 0.8);
+    margin-right: 0px;
+    border-radius: 0px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding-left: 10px;
+    margin-left: 5px;
 }

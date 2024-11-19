@@ -1,0 +1,24 @@
+[colorgen]
+name = 'test'
+reload = true
+dir = '~/.config/colors/'
+
+[config.hypr]
+path = 'hypr.conf'
+format = '${name} = {value}'
+
+[config.rofi]
+path = 'rofi.rasi'
+format = '  {name}: #{value};'
+nounder = true
+before = '* {'
+after = '}'
+
+[config.css]
+path = 'colors.css'
+format = '@define-color {name} #{value};'
+
+[config.wezterm]
+path = 'wezterm.yaml'
+format = '{name}: {value}'
+base16 = true

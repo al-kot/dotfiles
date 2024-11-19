@@ -10,33 +10,7 @@ configuration {
     font: "MononokiNerdFontMono 12";
 }
 
-@import "../colors/rofi_colors.rasi"
-
-* {
-    border-colour:               var(bg-select);
-    handle-colour:               var(bg-select);
-    background-colour:           transparent;
-    foreground-colour:           var(fg-base);
-    alternate-background:        var(black-dark);
-    normal-background:           transparent;
-    normal-foreground:           var(fg-base);
-    urgent-background:           transparent;
-    urgent-foreground:           var(bg-base);
-    active-background:           transparent;
-    active-foreground:           var(bg-base);
-    selected-normal-background:  transparent;
-    selected-normal-foreground:  var(bg-select);
-    selected-urgent-background:  transparent;
-    selected-urgent-foreground:  var(bg-base);
-    selected-active-background:  transparent;
-    selected-active-foreground:  var(bg-base);
-    alternate-normal-background: transparent;
-    alternate-normal-foreground: var(fg-base);
-    alternate-urgent-background: var(red-dark);
-    alternate-urgent-foreground: var(bg-base);
-    alternate-active-background: var(blue-dark);
-    alternate-active-foreground: var(bg-base);
-}
+@import "../colors/rofi.rasi"
 
 /*****----- Main Window -----*****/
 window {
@@ -56,9 +30,9 @@ window {
     padding:                     0px;
     border:                      0px solid;
     border-radius:               0px;
-    border-color:                @border-colour;
+    border-color:                transparent;
     cursor:                      "default";
-    background-color:            @background-colour;
+    background-color:            transparent;
 }
 
 /*****----- Main Box -----*****/
@@ -69,7 +43,7 @@ mainbox {
     padding:                     40%;
     border:                      0px solid;
     border-radius:               0px 0px 0px 0px;
-    border-color:                @border-colour;
+    border-color:                transparent;
     background-color:            transparent;
     children:                    [ "inputbar", "listview" ];
 }
@@ -82,9 +56,9 @@ inputbar {
     padding:                     0px;
     border:                      0px;
     border-radius:               0px;
-    border-color:                @border-colour;
-    background-color:            @background-colour;
-    text-color:                  @foreground-colour;
+    border-color:                transparent;
+    background-color:            transparent;
+    text-color:                  @fg;
     children:                    [ "prompt", "entry" ];
 }
 
@@ -127,16 +101,16 @@ listview {
     padding:                     0px;
     border:                      0px solid;
     border-radius:               0px;
-    border-color:                @border-colour;
+    border-color:                transparent;
     background-color:            transparent;
-    text-color:                  @foreground-colour;
+    text-color:                  @fg;
     cursor:                      "default";
 }
 scrollbar {
     handle-width:                5px ;
-    handle-color:                @handle-colour;
+    handle-color:                @fg;
     border-radius:               0px;
-    background-color:            @alternate-background;
+    background-color:            transparent;
 }
 
 /*****----- Elements -----*****/
@@ -147,46 +121,46 @@ element {
     padding:                     10px;
     border:                      0px solid;
     border-radius:               5px;
-    border-color:                @border-colour;
-    background-color:            transparent;
-    text-color:                  @foreground-colour;
+    border-color:                transparent;
+    background-color:            @bg-light;
+    text-color:                  @fg;
     cursor:                      pointer;
 }
 element normal.normal {
-    background-color:            var(normal-background);
-    text-color:                  var(normal-foreground);
+    background-color:            transparent;
+    text-color:                  @fg;
 }
 element normal.urgent {
-    background-color:            var(urgent-background);
-    text-color:                  var(urgent-foreground);
+    background-color:            transparent;
+    text-color:                  @fg;
 }
 element normal.active {
-    background-color:            var(active-background);
-    text-color:                  var(active-foreground);
+    background-color:            transparent;
+    text-color:                  @fg;
 }
 element selected.normal {
-    background-color:            @alternate-background;
-    text-color:                  var(foreground-colour);
+    background-color:            @bg;
+    text-color:                  @fg;
 }
 element selected.urgent {
-    background-color:            var(selected-urgent-background);
-    text-color:                  var(selected-urgent-foreground);
+    background-color:            @bg;
+    text-color:                  @fg;
 }
 element selected.active {
-    background-color:            var(selected-active-background);
-    text-color:                  var(selected-active-foreground);
+    background-color:            @bg;
+    text-color:                  @fg;
 }
 element alternate.normal {
-    background-color:            var(alternate-normal-background);
-    text-color:                  var(alternate-normal-foreground);
+    background-color:            transparent;
+    text-color:                  @fg;
 }
 element alternate.urgent {
-    background-color:            var(alternate-urgent-background);
-    text-color:                  var(alternate-urgent-foreground);
+    background-color:            transparent;
+    text-color:                  @fg;
 }
 element alternate.active {
-    background-color:            var(alternate-active-background);
-    text-color:                  var(alternate-active-foreground);
+    background-color:            transparent;
+    text-color:                  @fg;
 }
 element-icon {
     background-color:            transparent;
@@ -211,22 +185,22 @@ mode-switcher{
     padding:                     0px;
     border:                      0px solid;
     border-radius:               0px;
-    border-color:                @border-colour;
+    border-color:                transparent;
     background-color:            transparent;
-    text-color:                  @foreground-colour;
+    text-color:                  @fg;
 }
 button {
     padding:                     10px;
     border:                      0px solid;
     border-radius:               0px;
-    border-color:                @border-colour;
-    background-color:            @alternate-background;
+    border-color:                transparent;
+    background-color:            var(red);
     text-color:                  inherit;
     cursor:                      pointer;
 }
 button selected {
-    background-color:            var(selected-normal-background);
-    text-color:                  var(selected-normal-foreground);
+    background-color:            var(red);
+    text-color:                  var(red);
 }
 
 /*****----- Message -----*****/
@@ -236,21 +210,21 @@ message {
     padding:                     0px;
     border:                      0px solid;
     border-radius:               0px 0px 0px 0px;
-    border-color:                @border-colour;
+    border-color:                transparent;
     background-color:            transparent;
-    text-color:                  @foreground-colour;
+    text-color:                  @fg;
 }
 textbox {
     padding:                     100px;
     border:                      0px solid;
     border-radius:               0px;
-    border-color:                @border-colour;
-    background-color:            @alternate-background;
-    text-color:                  @foreground-colour;
+    border-color:                transparent;
+    background-color:            transparent;
+    text-color:                  @fg;
     vertical-align:              0.5;
     horizontal-align:            0.0;
     highlight:                   none;
-    placeholder-color:           @foreground-colour;
+    placeholder-color:           @fg;
     blink:                       true;
     markup:                      true;
 }
@@ -258,7 +232,7 @@ error-message {
     padding:                     0px;
     border:                      0px solid;
     border-radius:               0px;
-    border-color:                @border-colour;
-    background-color:            @background-colour;
-    text-color:                  @foreground-colour;
+    border-color:                transparent;
+    background-color:            transparent;
+    text-color:                  @fg;
 }

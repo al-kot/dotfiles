@@ -8,6 +8,6 @@ while true; do
     else
         echo "{\"text\":\"$n\",\"alt\":\"update-needed\",\"tooltip\":\"System is up to date\",\"class\":\"update-needed\"}"
     fi
-    sleep 60
+    sleep 120
 done
 

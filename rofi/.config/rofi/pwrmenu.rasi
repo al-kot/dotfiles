@@ -14,7 +14,7 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import "../colors/rofi_colors.rasi"
+@import "../colors/rofi.rasi"
 
 /*****----- Main Window -----*****/
 window {
@@ -62,7 +62,7 @@ inputbar {
     border-radius:               0px;
     border-color:                transparent;
     background-color:            transparent;
-    text-color:                  @fg-base;
+    text-color:                  @fg;
     children:                    [ "textbox-prompt-colon", "prompt"];
 }
 
@@ -90,9 +90,9 @@ message {
     padding:                     10px;
     border:                      0px solid;
     border-radius:               10px;
-    border-color:                @red-dark;
+    border-color:                @red;
     background-color:            transparent;
-    text-color:                  @fg-base;
+    text-color:                  @fg;
 }
 textbox {
     background-color:            inherit;
@@ -107,9 +107,9 @@ error-message {
     padding:                     10px;
     border:                      0px solid;
     border-radius:               0px;
-    border-color:                @red-dark;
+    border-color:                @red;
     background-color:            transparent;
-    text-color:                  @fg-base;
+    text-color:                  @fg;
 }
 
 /*****----- Listview -----*****/
@@ -132,7 +132,7 @@ listview {
     border-radius:               0px;
     border-color:                transparent;
     background-color:            transparent;
-    text-color:                  @fg-base;
+    text-color:                  @fg;
     cursor:                      "default";
 }
 
@@ -145,8 +145,8 @@ element {
     border:                      0px solid;
     border-radius:               5px;
     border-color:                transparent;
-    background-color:            @red-dark;
-    text-color:                  @fg-base;
+    background-color:            @red;
+    text-color:                  @fg;
     cursor:                      pointer;
 }
 element-text {
@@ -158,17 +158,17 @@ element-text {
 }
 element alternate.normal {
     background-color:            transparent;
-    text-color:                  var(fg-base);
+    text-color:                  var(fg);
 }
 element alternate.urgent {
     background-color:            transparent;
-    text-color:                  var(fg-base);
+    text-color:                  var(fg);
 }
 element normal.normal {
     background-color:            transparent;
-    text-color:                  var(fg-base);
+    text-color:                  var(fg);
 }
 element selected.normal {
-    background-color:            @black-dark;
-    text-color:                  var(fg-base);
+    background-color:            @black;
+    text-color:                  var(fg);
 }
