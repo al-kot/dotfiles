@@ -16,7 +16,6 @@
         "network#icon",
         "network",
         "custom/pacman-icon",
-        "custom/pacman",
         "pulseaudio#icon",
         "pulseaudio",
         "clock"
@@ -77,11 +76,6 @@
             "update-needed": " ",
             "updated": " "
         },
-        "exec": "$HOME/.config/waybar/scripts/yay-updates.sh"
-    },
-    "custom/pacman": {
-        "format": " {0}",
-        "return-type": "json",
         "exec": "$HOME/.config/waybar/scripts/yay-updates.sh"
     },
 

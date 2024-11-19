@@ -35,23 +35,23 @@ window#waybar {
 #network,
 #pulseaudio,
 #clock,
+#custom-pacman-icon,
 #custom-pacman {
     border-radius: 0px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 5px 5px;
+    padding-right: 10px;
     color: @fg;
     background-color: alpha(@bg, 0.8);
 }
 
-#clock {
-    margin-right: 0px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    padding-left: 10px;
-    margin-left: 5px;
-}
-#custom-cpu-icon {
+#clock,
+#custom-cpu-icon,
+#pulseaudio.icon,
+#network.icon,
+#custom-disk-icon,
+#custom-memory-icon {
     color: @red;
     background-color: alpha(@bg, 0.8);
     margin-right: 0px;
@@ -63,51 +63,24 @@ window#waybar {
 }
 #custom-pacman-icon {
     color: @green;
-    background-color: alpha(@bg, 0.8);
-    margin-right: 0px;
-    border-radius: 0px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     padding-left: 10px;
-    margin-left: 5px;
 }
 #pulseaudio.icon {
     color: @orange_light;
-    background-color: alpha(@bg, 0.8);
-    margin-right: 0px;
-    border-radius: 0px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    padding-left: 10px;
-    margin-left: 5px;
 }
 #network.icon {
     color: @cyan;
-    background-color: alpha(@bg, 0.8);
-    margin-right: 0px;
-    border-radius: 0px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    padding-left: 10px;
-    margin-left: 5px;
 }
 #custom-disk-icon {
     color: @orange;
-    background-color: alpha(@bg, 0.8);
-    margin-right: 0px;
-    border-radius: 0px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    padding-left: 10px;
-    margin-left: 5px;
 }
 #custom-memory-icon {
     color: @magenta;
-    background-color: alpha(@bg, 0.8);
-    margin-right: 0px;
-    border-radius: 0px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    padding-left: 10px;
-    margin-left: 5px;
+}
+#clock {
+    color: @fg;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
