@@ -113,20 +113,64 @@ map('n', '<leader>fh', function()
         }
     })
 end, {})
-map('n', '<leader>fb', builtin.buffers, {})
 
-
--- ===== harpoon =====
 local harpoon = require('harpoon')
-harpoon:setup()
-
+harpoon:setup({})
 map("n", "<leader>a", function() harpoon:list():add() end)
+map("n", "<leader>d", function() harpoon:list():clear() end)
 
-map("n", "<S-h>", function() harpoon:list():prev() end)
-map("n", "<S-i>", function() harpoon:list():next() end)
-map("n", "<leader>1", function() harpoon:list():select(1) end)
-map("n", "<leader>2", function() harpoon:list():select(2) end)
-map("n", "<leader>3", function() harpoon:list():select(3) end)
-map("n", "<leader>4", function() harpoon:list():select(4) end)
+local get_paths = function()
+    local files = harpoon:list()
+    local paths = {}
+    for _, item in ipairs(files.items) do
+        table.insert(paths, item.value)
+    end
+    return paths
+end
 
-map("n", "<C-u>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+map("n", "<C-t>", function()
+    local Menu = require("snipe.menu")
+    local menu = Menu:new {
+        position = "center",
+        open_win_override = {
+            title = "",
+        },
+    }
+    local items = get_paths()
+    if #items == 0 then
+        print('no tabs saved')
+        return
+    end
+    menu:add_new_buffer_callback(function(m)
+        map("n", "<esc>", function()
+            m:close()
+        end, { nowait = true, buffer = m.buf })
+
+        map("n", "q", function()
+            m:close()
+        end, { nowait = true, buffer = m.buf })
+
+        map("n", "<C-d>", function()
+            harpoon:list():remove_at(m:hovered())
+            m.items = get_paths()
+            m:reopen()
+        end, { nowait = true, buffer = m.buf })
+    end)
+
+
+    local _, cur = harpoon:list():get_by_value(vim.fn.expand("%"))
+    print(cur)
+    menu:open(items, function(m, i)
+        m:close()
+        harpoon:list():select(i)
+    end, function(item)
+        local path = item
+
+        local file_name = ""
+        for part in path:gmatch("([^/]+)") do
+            file_name = part
+        end
+        return file_name
+    end, cur or 1
+    )
+end)

@@ -7,8 +7,6 @@ require("config.lazy")
 require("config.autocmds")
 
 -- vim.cmd('hi! LineNr guibg=bg')
-vim.cmd('hi! CursorLineNr guibg=bg ')
-vim.cmd('hi! CursorLine guibg=#3c474d')
 
 -- Enable LazyVim auto format
 vim.g.autoformat = true
@@ -78,7 +76,7 @@ opt.fillchars = {
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
 
-require('cmp').setup.filetype({"sql"}, {
+require('cmp').setup.filetype({ "sql" }, {
     sources = {
         { name = 'vim-dadbod-completion' },
         { name = 'buffer' },
@@ -86,11 +84,13 @@ require('cmp').setup.filetype({"sql"}, {
 })
 
 vim.filetype.add({
-  pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+    pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
 })
 
 vim.filetype.add({
-  pattern = { [".*.rasi"] = "rasi" },
+    pattern = { [".*.rasi"] = "rasi" },
 })
+
+vim.cmd.colorscheme('everforest')
 require('config.keymaps')
 require('sf.sf')

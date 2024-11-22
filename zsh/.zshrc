@@ -1,6 +1,3 @@
-
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
-
 bindkey -e
 
 alias zshconfig="mate ~/.zshrc"
@@ -27,6 +24,8 @@ alias l='lsd -l'
 alias la='lsd -a'
 alias lla='lsd -la'
 alias lt='lsd --tree'
+
+alias colorgen='~/colorgen/gen_colors.py'
 
 # === fzf ===
 fg="#D8CAAC"
@@ -80,13 +79,8 @@ eval "$(fzf --zsh)"
 
 [ -f "/home/asq/.ghcup/env" ] && source "/home/asq/.ghcup/env" # ghcup-env
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-eval 
 
 export PATH=$PATH:$HOME/go/bin
-export test_col="#ffffff"
 
-source ~/.zsh/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/nvm/init-nvm.sh

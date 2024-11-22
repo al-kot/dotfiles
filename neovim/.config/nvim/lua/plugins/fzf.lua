@@ -24,6 +24,10 @@ return {
                             ["<C-e>"] = actions.move_selection_previous,
                             ["<Tab>"] = actions.toggle_selection,
                         }
+                    },
+                    file_ignore_patterns = {
+                        "node_modules",
+                        ".git"
                     }
                 },
                 extensions = {

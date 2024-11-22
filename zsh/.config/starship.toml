@@ -1,87 +1,76 @@
 format = """
-$os\
-[](fg:#c0caf5 bg:#ffffff)\
 $directory\
 $git_branch$git_commit$git_state$git_metrics$git_status\
 $jobs\
 $line_break\
-[❯ ](fg:#76946A)\
+$character\
 """
 
 add_newline = true
 
 [os]
-format = "[$symbol]($style)[ ]()"
-style = "fg:#e5ded4"
+format = "[$symbol]($style)[]()"
+style = "fg:white"
 disabled = false
 
 [os.symbols]
 Arch = ""
-EndeavourOS = "" # ""
-Linux = ""
-Macos = ""
-NixOS = ""
-Ubuntu = ""
-Unknown = ""
 
+[character]
+success_symbol = '[](bold cyan)'
+error_symbol = '[](bold red)'
 
 [directory]
-format = '[ ](fg:cyan bold)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)[ ]()'
-style = 'fg:cyan bold'
+format = ' [](fg:blue bold)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)[ ]()'
+style = 'fg:blue bold'
 home_symbol = '~'
 read_only = ' '
-read_only_style = 'fg:cyan'
-truncation_length = 6
+read_only_style = 'fg:orange'
+truncation_length = 4
 truncation_symbol = '../'
 truncate_to_repo = false
-repo_root_format = ' [](fg:cyan bold)[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[ ]()'
-repo_root_style = 'fg:cyan bold'
+repo_root_format = ' [](fg:blue bold)[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[ ]()'
+repo_root_style = 'fg:blue bold'
 use_os_path_sep = true
 disabled = false
 
 [git_branch]
 format = '[❯ $symbol $branch(:$remote_branch)]($style)[ ]()'
-style = 'fg:#E04D27'
+style = 'fg:cyan'
 symbol = ''
 
 [git_commit]
 format = '[\($hash$tag\)]($style)[ ]()'
-style = 'fg:#E04D27'
+style = 'fg:yellow'
 commit_hash_length = 8
 tag_symbol = ' '
 disabled = false
 
 [git_metrics]
 format = '[\[+$added/]($added_style)[-$deleted\]]($deleted_style)[ ]()'
-added_style = 'fg:#E04D27'
-deleted_style = 'fg:#E04D27'
+added_style = 'fg:green'
+deleted_style = 'fg:red'
 disabled = false
 
 [git_status]
-# place symbols before '$count'
 format = '([$all_status$ahead_behind]($style))'
-style = 'fg:#E04D27'
-conflicted = '[ ${count} ](fg:red)'
+style = 'fg:orange'
+conflicted = '[${count} ](fg:red)'
 ahead = '[⇡${count} ](fg:yellow)'
 behind = '[⇣${count} ](fg:yellow)'
 diverged = '[⇕${ahead_count}⇡${behind_count}⇣ ](fg:yellow)'
-up_to_date = '[✓ ](fg:green)'
-untracked = '[ ${count} ](fg:red)'
-stashed = '[ ${count} ](fg:#A52A2A)'
-modified = '[ ${count} ](fg:#C8AC00)'
-staged = '[ ${count} ](fg:green)'
-renamed = '[ ${count} ](fg:yellow)'
-deleted = '[🗑${count} ](fg:orange)'
+untracked = '[${count} ](fg:purple)'
+stashed = '[${count} ](fg:blue)'
+modified = '[${count} ](fg:yellow)'
+staged = '[${count} ](fg:green)'
+renamed = '[${count} ](fg:orange)'
+deleted = '[${count} ](fg:red)'
 disabled = false
 
 [jobs]
-format = '[❯ ](fg:blue bold)[$number$symbol]($style)'
-style = 'fg:blue'
+format = '[ ❯ ](fg:cyan bold)[$number$symbol]($style)'
+style = 'fg:cyan'
 symbol = '󰜎'
 symbol_threshold = 1
 number_threshold = 4
 disabled = false
-
-[fill]
-style = 'fg:#938AA9'
-symbol = ' '

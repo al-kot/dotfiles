@@ -10,8 +10,38 @@ return {
             -- directly inside the plugin declaration.
             vim.g.everforest_transparent_background = 1
             vim.g.everforest_background = 'hard'
-            vim.cmd.colorscheme('everforest')
         end
+    },
+    {
+        'AlexvZyl/nordic.nvim',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            local nordic = require('nordic')
+            nordic.setup({
+                italic_comments = false,
+                transparent = {
+                    bg = true,
+                    float = false,
+                }
+            })
+        end
+    },
+    {
+        "gbprod/nord.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require("nord").setup({
+                transparent = true,
+                styles = {
+                    comments = { italic = false },
+                    keywords = { bold = true },
+                    functions = { bold = true },
+                    variables = {},
+                }
+            })
+        end,
     },
     {
         "rebelot/kanagawa.nvim",
@@ -53,8 +83,31 @@ return {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         opts = function(_, opts)
+            local colors = dofile(os.getenv('HOME') .. '/.config/colors/colors.lua')
+
+            local theme = {
+                normal = {
+                    a = { fg = colors.cyan, bg = "none", gui = "bold" },
+                    b = { fg = colors.green, bg = "none" }, --colors.kanagawa.menu_grey },
+                    c = { fg = colors.cyan, bg = "none" },    --colors.kanagawa.black },
+                },
+                insert = {
+                    a = { fg = colors.red, bg = "none", gui = "bold" },
+                },
+                visual = {
+                    a = { fg = colors.magenta, bg = "none", gui = "bold" },
+                },
+                replace = {
+                    a = { fg = colors.blue, bg = "none", gui = "bold" },
+                },
+                inactive = {
+                    a = { fg = colors.white, bg = "none", gui = "bold" },
+                    b = { fg = colors.black, bg = "none" }, --colors.kanagawa.menu_grey },
+                    c = { fg = colors.black, bg = "none" }, --colors.kanagawa.menu_grey },
+                },
+            }
             opts.options = {
-                theme = require("lualine_themes").everforest,
+                theme = theme,
                 component_separators = { left = "", right = "" },
                 section_separators = { left = "", right = "" },
             }
@@ -62,10 +115,6 @@ return {
                 lualine_z = { "location" },
             }
         end,
-    },
-    {
-        "fladson/vim-kitty",
-        lazy = false,
     },
     {
         "lukas-reineke/indent-blankline.nvim",
