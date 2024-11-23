@@ -1,6 +1,6 @@
 * {
   bg: #272e33;
-  bg_light: #414b50;
+  bg-light: #414b50;
   fg: #d3c6aa;
   black: #191D24;
   red: #e67e80;
