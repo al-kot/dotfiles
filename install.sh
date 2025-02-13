@@ -10,18 +10,11 @@ install() {
 
 {
 
-dot_list="gitconfig gitignore jnewsrc mozilla msmtprc muttrc signature slrnrc ssh Xdefaults"
-
-for f in "$dot_list"; do
-	rm -rf "$HOME/.$f"
-	ln -s "$AFS_DIR/.confs/$f" "$HOME/.$f"
-done
-
 install stow wezterm zsh nerd-fonts.mononoki starship tmux polybar lsd rufi
 
 rm -rf "$HOME/.tmux" "$HOME/.tmux.conf" "$HOME/.zsh" "$HOME/.zshrc"
 
-stow wezterm zsh tmux polybar picom lsd rufi i3 neovim
+stow -t "$HOME" wezterm zsh tmux polybar picom lsd rufi i3 neovim
 
 git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME"/.zsh/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME"/.zsh/syntax-highlighting 
