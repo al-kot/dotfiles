@@ -4,12 +4,9 @@ echo "" > $HOME/logs.txt
 
 install() {
 	for p in "$@"; do
-		echo "installing $p" >> $HOME/logs.txt
-		# nix profile install nixpkgs#$p
+		nix profile install nixpkgs\#"$p"
 	done
 }
-
-
 
 {
 
