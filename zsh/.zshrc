@@ -24,6 +24,8 @@ alias lt='ls --tree'
 alias tmn="SHELL=$(which zsh) tmux new -s pipi"
 export SCHOOL=true
 
+alias lg='lazygit'
+
 gccf() {
     gcc -std=c99 -pedantic -Werror -Wall -Wextra -Wvla -fsanitize=address -g -o "out" "$@"
 }
