@@ -10,7 +10,7 @@ install() {
 
 {
 
-install stow wezterm zsh starship tmux polybar lsd rofi
+install stow wezterm zsh starship tmux polybar lsd rofi neovim
 
 nix profile install --impure --expr 'with (builtins.getFlake "nixpkgs").legacyPackages.${builtins.currentSystem};
     nerdfonts.override {
@@ -19,9 +19,9 @@ nix profile install --impure --expr 'with (builtins.getFlake "nixpkgs").legacyPa
     ];
   }'
 
-rm -rf "$HOME/.tmux" "$HOME/.tmux.conf" "$HOME/.zsh" "$HOME/.zshrc"
+rm -rf "$HOME/.tmux" "$HOME/.tmux.conf" "$HOME/.zsh" "$HOME/.zshrc" "$HOME/.config/i3"
 
-stow wezterm zsh tmux polybar picom lsd rufi i3 neovim
+stow -d "$HOME/dotfiles" -t "$HOME" wezterm zsh tmux polybar picom lsd rofi i3 neovim
 
 git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME"/.zsh/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME"/.zsh/syntax-highlighting 
