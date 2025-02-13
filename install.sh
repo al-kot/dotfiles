@@ -10,7 +10,7 @@ install() {
 
 {
 
-install stow wezterm zsh starship tmux polybar lsd rofi neovim lua-language-server bash-language-server lazygit
+install stow wezterm zsh starship tmux lsd rofi neovim lua-language-server bash-language-server lazygit
 
 nix profile install --impure --expr 'with (builtins.getFlake "nixpkgs").legacyPackages.${builtins.currentSystem};
     nerdfonts.override {
@@ -18,6 +18,9 @@ nix profile install --impure --expr 'with (builtins.getFlake "nixpkgs").legacyPa
         "Mononoki"
     ];
   }'
+
+nix profile install --impure --expr 'with (builtins.getFlake "nixpkgs").legacyPackages.${builtins.currentSystem}; polybar.override { i3Support = true; pulseSupport = true; }'
+
 
 rm -rf "$HOME/.tmux" "$HOME/.tmux.conf" "$HOME/.zsh" "$HOME/.zshrc" "$HOME/.config/i3"
 
