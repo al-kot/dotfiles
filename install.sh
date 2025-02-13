@@ -10,7 +10,7 @@ install() {
 
 {
 
-install stow wezterm zsh starship tmux polybar lsd rofi neovim
+install stow wezterm zsh starship tmux polybar lsd rofi neovim lua-language-server bash-language-server
 
 nix profile install --impure --expr 'with (builtins.getFlake "nixpkgs").legacyPackages.${builtins.currentSystem};
     nerdfonts.override {
