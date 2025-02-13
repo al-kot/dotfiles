@@ -10,7 +10,7 @@ install() {
 
 {
 
-install stow wezterm zsh starship tmux polybar lsd rufi
+install stow wezterm zsh starship tmux polybar lsd rofi
 
 nix profile install --impure --expr 'with (builtins.getFlake "nixpkgs").legacyPackages.${builtins.currentSystem};
     nerdfonts.override {
