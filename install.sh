@@ -24,7 +24,8 @@ rm -rf "$HOME/.tmux" "$HOME/.tmux.conf" "$HOME/.zsh" "$HOME/.zshrc" "$HOME/.conf
 stow -d "$HOME/dotfiles" -t "$HOME" wezterm zsh tmux polybar picom lsd rofi i3 neovim
 
 git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME"/.zsh/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME"/.zsh/syntax-highlighting 
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME"/.zsh/zsh-syntax-highlighting
+git clone https://github.com/tmux-plugins/tpm ~/.tpm
 
 } >> "$HOME/logs.txt" 2>&1
 

@@ -14,7 +14,8 @@ config = {
         right = 40,
         top = 40,
         bottom = 20,
-    }
+    },
+    default_prog = { 'zsh' },
 }
 
 return config
