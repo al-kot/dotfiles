@@ -1,13 +1,5 @@
-if [ $HOME = "/home/pipa" ]; then 
-    export HOME="/mnt/psf/Home"
-    cd
-fi
-
-export ZSH="$HOME/.oh-my-zsh"
-
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
-
-source $ZSH/oh-my-zsh.sh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 bindkey -e
 
