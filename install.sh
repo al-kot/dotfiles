@@ -10,7 +10,7 @@ install() {
 
 {
 
-    install stow wezterm zsh starship tmux lsd rofi neovim lua-language-server bash-language-server lazygit
+    install stow wezterm zsh starship tmux lsd rofi neovim lua-language-server bash-language-server lazygit fzf
 
     nix profile install --impure --expr '
     with (builtins.getFlake "nixpkgs").legacyPackages.${builtins.currentSystem};
