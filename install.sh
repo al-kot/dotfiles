@@ -37,6 +37,8 @@ install() {
     rm -rf ~/.tpm
     git clone https://github.com/tmux-plugins/tpm ~/.tpm
 
+    i3-msg restart
+
 } >> "$HOME/logs.txt" 2>&1
 
 
