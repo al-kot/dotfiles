@@ -34,6 +34,7 @@ install() {
 
     git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME"/.zsh/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME"/.zsh/zsh-syntax-highlighting
+    rm -rf ~/.tpm
     git clone https://github.com/tmux-plugins/tpm ~/.tpm
 
 } >> "$HOME/logs.txt" 2>&1

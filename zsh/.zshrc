@@ -47,8 +47,6 @@ _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
 
-source "$HOME/fzf-git.sh"
-
 
 alias ls='lsd'
 
@@ -57,7 +55,10 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 
-alias tmn="SHELL=$(which zsh) tmux new -s pipi"
+tmn() {
+    SHELL=$(which zsh) tmux new -s "$1"
+}
+
 export SCHOOL=true
 
 alias lg='lazygit'
