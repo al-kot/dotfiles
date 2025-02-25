@@ -77,10 +77,12 @@ gacp() {
 eval "$(starship init zsh)"
 eval "$(fzf --zsh)"
 
-[ -f "/home/asq/.ghcup/env" ] && source "/home/asq/.ghcup/env" # ghcup-env
 
 
 export PATH=$PATH:$HOME/go/bin
 
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+[ -f "/home/asq/.ghcup/env" ] && . "/home/asq/.ghcup/env" # ghcup-env
