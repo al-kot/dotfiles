@@ -1,9 +1,11 @@
-@import url('../colors/colors.css');
+@define-color bg #282828;
+@define-color fg #ebdbb2;
 
 * {
     border: none;
     font-family: MononokiNerdFont, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: bold;
     min-height: 0;
 }
 
@@ -14,19 +16,13 @@ window#waybar {
 
 
 #workspaces button {
-    background-color: alpha(@bg, 0.9);
-    color: @fg;
     margin-left: 5px;
-    transition: all;
-    transition-duration: 100ms;
-    min-width: 20px;
 }
 
 #workspaces button.active {
     color: @bg;
     opacity: 1;
-    background-color: alpha(@fg, 0.9);
-    min-width: 15px;
+    background-color: #d65d0e;
 }
 
 #cpu,
@@ -35,53 +31,11 @@ window#waybar {
 #network,
 #pulseaudio,
 #clock,
-#custom-pacman-icon,
-#custom-pacman {
-    border-radius: 0px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    padding: 5px 5px;
-    padding-right: 10px;
+#workspaces button {
+    border-radius: 6px;
+    padding: 5px 10px;
     color: @fg;
-    background-color: alpha(@bg, 0.9);
-}
-
-#clock,
-#custom-cpu-icon,
-#pulseaudio.icon,
-#network.icon,
-#custom-disk-icon,
-#custom-memory-icon {
-    color: @red;
-    background-color: alpha(@bg, 0.9);
-    margin-right: 0px;
-    border-radius: 0px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    padding-left: 10px;
-    margin-left: 5px;
-}
-#custom-pacman-icon {
-    margin-left: 5px;
-    color: @green;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    padding-left: 10px;
-}
-#pulseaudio.icon {
-    color: @aqua;
-}
-#network.icon {
-    color: @cyan;
-}
-#custom-disk-icon {
-    color: @orange;
-}
-#custom-memory-icon {
-    color: @magenta;
-}
-#clock {
-    color: @fg;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    background-color: @bg;
+    margin: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.56);
 }

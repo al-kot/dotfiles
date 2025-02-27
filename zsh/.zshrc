@@ -1,7 +1,6 @@
 bindkey -e
 
-alias zshconfig="mate ~/.zshrc"
-alias ohmyzsh="mate ~/.oh-my-zsh"
+setopt share_history
 
 alias gc="git commit -m"
 alias ga="git add *"
@@ -28,18 +27,26 @@ alias lt='lsd --tree'
 alias colorgen='~/colorgen/gen_colors.py'
 
 # === fzf ===
-fg="#D8CAAC"
-bg="#1F1F28"
-bg_highlight="#505A60"
-purple="#D39BB6"
-blue="#83B6AF"
-cyan="#87C095"
-grey="#868D80"
+color00='#32302f'
+color01='#3c3836'
+color02='#504945'
+color03='#665c54'
+color04='#bdae93'
+color05='#d5c4a1'
+color06='#ebdbb2'
+color07='#fbf1c7'
+color08='#fb4934'
+color09='#fe8019'
+color0A='#fabd2f'
+color0B='#b8bb26'
+color0C='#8ec07c'
+color0D='#83a598'
+color0E='#d3869b'
+color0F='#d65d0e'
 
-export FZF_DEFAULT_OPTS="--color=fg:-1,bg:-1,hl:${purple},fg+:${fg} \
-                        --color=bg+:${bg_highlight},hl+:${purple},info:${blue} \
-                        --color=prompt:${cyan},pointer:${cyan},marker:${cyan} \
-                        --color=spinner:${cyan},header:${cyan},gutter:${bg} \
+export FZF_DEFAULT_OPTS="--color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D \
+                        --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C \
+                        --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D \
                         --padding=\"1\" \
                         --prompt=\"> \" \
                         --marker=\">\" \
@@ -47,7 +54,9 @@ export FZF_DEFAULT_OPTS="--color=fg:-1,bg:-1,hl:${purple},fg+:${fg} \
                         --separator=\"-\" \
                         --scrollbar=\"│\" \
                         --layout=\"reverse\" \
-                        --info=\"right\""
+                        --info=\"right\" \
+                        --border \
+                        --height 50% --tmux center,50%"
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -81,8 +90,14 @@ eval "$(fzf --zsh)"
 
 export PATH=$PATH:$HOME/go/bin
 
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+plug="$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+if [ ! -f "$plug" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git "$HOME/.zsh/zsh-autosuggestions"
+fi
+source "$plug"
 
-
-[ -f "/home/asq/.ghcup/env" ] && . "/home/asq/.ghcup/env" # ghcup-env
+plug="$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [ ! -f "$plug" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting"
+fi
+source "$plug"
