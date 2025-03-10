@@ -2,6 +2,8 @@ bindkey -e
 
 setopt share_history
 
+alias lg="lazygit"
+
 alias gc="git commit -m"
 alias ga="git add *"
 alias gp="git push"
