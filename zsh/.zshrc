@@ -20,6 +20,9 @@ alias vi="nvim"
 alias cim="nvim"
 
 alias vf="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
+cdz() {
+    cd "$(fd --type d --hidden --exclude .git | fzf-tmux -p --reverse)"
+}
 
 alias l='lsd -l'
 alias la='lsd -a'
@@ -103,3 +106,22 @@ if [ ! -f "$plug" ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting"
 fi
 source "$plug"
+
+plug="$HOME/.zsh/zsh-completions"
+if [ ! -d "$plug" ]; then
+    git clone https://github.com/zsh-users/zsh-completions.git "$HOME/.zsh/zsh-completions"
+fi
+fpath=($HOME/.zsh/zsh-completions $fpath)
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+eval "$(pyenv virtualenv-init -)"
+
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/asq/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall

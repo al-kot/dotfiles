@@ -14,7 +14,21 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import "../colors/rofi.rasi"
+// @import "../colors/rofi.rasi"
+* {
+    bg: #404040;
+    bg-light: #32302f;
+    grey: #928374;
+    fg: #fbf1c7;
+    red: #fb4934;
+    green: #b8bb26;
+    yellow: #fabd2f;
+    blue: #83a598;
+    purple: #d3869b;
+    magenta: #d3869b;
+    cyan: #8ec07c;
+    orange: #fe8019;
+}
 
 /*****----- Main Window -----*****/
 window {
@@ -169,6 +183,6 @@ element normal.normal {
     text-color:                  var(fg);
 }
 element selected.normal {
-    background-color:            @black;
+    background-color:            @bg;
     text-color:                  var(fg);
 }
