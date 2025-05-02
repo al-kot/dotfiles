@@ -1,0 +1,120 @@
+after-login-command = []
+
+after-startup-command = [
+    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
+    'exec-and-forget sketchybar'
+]
+
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
+start-at-login = true
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 30
+
+default-root-container-layout = 'tiles'
+
+default-root-container-orientation = 'auto'
+
+key-mapping.preset = 'qwerty'
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = "move-mouse window-lazy-center"
+
+[gaps]
+inner.horizontal = 3
+inner.vertical =   3
+outer.left =       3
+outer.bottom =     3
+outer.top =        27
+outer.right =      3
+
+[mode.main.binding]
+alt-u = 'layout tiles horizontal vertical'
+
+alt-h = 'focus left'
+alt-n = 'focus down'
+alt-e = 'focus up'
+alt-i = 'focus right'
+
+alt-shift-h = 'move left'
+alt-shift-n = 'move down'
+alt-shift-e = 'move up'
+alt-shift-i = 'move right'
+
+alt-minus = 'resize smart -50'
+alt-equal = 'resize smart +50'
+
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-a = 'workspace A'
+alt-t = 'workspace T'
+alt-s = 'workspace S'
+alt-v = 'workspace V'
+alt-f = 'workspace T'
+alt-d = 'workspace S'
+
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-a = 'move-node-to-workspace A'
+alt-shift-t = 'move-node-to-workspace T'
+alt-shift-s = 'move-node-to-workspace S'
+alt-shift-v = 'move-node-to-workspace V'
+alt-shift-f = 'move-node-to-workspace T'
+alt-shift-d = 'move-node-to-workspace S'
+
+alt-m = 'fullscreen'
+alt-tab = 'workspace-back-and-forth'
+alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+alt-shift-semicolon = ['mode service', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=on']
+
+[workspace-to-monitor-force-assignment]
+S = ['secondary', 'main']
+
+[mode.service.binding]
+esc = ['reload-config',  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=off', 'mode main']
+r = ['flatten-workspace-tree',  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=off', 'mode main'] # reset layout
+s = ['exec-and-forget sketchybar --reload',  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=off', 'mode main']
+f = ['layout floating tiling',  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=off', 'mode main'] # Toggle between floating and tiling layout
+backspace = ['close-all-windows-but-current',  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=off', 'mode main']
+
+alt-shift-h = ['join-with left', 'mode main']
+alt-shift-j = ['join-with down', 'mode main']
+alt-shift-k = ['join-with up', 'mode main']
+alt-shift-l = ['join-with right', 'mode main']
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+run = 'move-node-to-workspace S'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iCal'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'app.zen-browser.zen'
+if.window-title-regex-substring = 'Picture-in-Picture'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'app.zen-browser.zen'
+run = 'move-node-to-workspace S'
+
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = 'move-node-to-workspace T'
+
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace 3'

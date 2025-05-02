@@ -1,0 +1,182 @@
+#!/bin/bash
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+source "$HOME/.config/colors/sketchybar.sh"
+
+apw='ddc7a1'
+h=20
+
+bar=(
+    height=25
+    # blur_radius=80
+    position=top
+    sticky=off
+    y_offset=0
+    margin=-17
+    color=0x001d2021
+    topmost=window
+    corner_radius=0
+    shadow=on
+    font_smoothing=on
+)
+
+sketchybar --bar "${bar[@]}"
+
+default=(
+    icon.font="Mononoki Nerd Font:Bold:11.0"
+    icon.color=0xE0${apw}
+    label.font="Mononoki Nerd Font:Bold:11.0"
+    label.color=0xE0${apw}
+    # label.width=30
+    background.color=0xff1d2021
+    background.height=${h}
+    background.corner_radius=5
+    padding_left=2
+    padding_right=2
+    label.padding_right=8
+    label.align=right
+    icon.align=center
+    icon.padding_left=8
+    icon.padding_right=5
+    # icon.width=25
+)
+
+sketchybar --default "${default[@]}"
+
+SPACE_ICONS=("t" "s" "v" "1" "2" "3")
+sketchybar --add event aerospace_workspace_change
+sketchybar --add event aerospace_mode_change
+
+workspace=(
+    padding_left=2
+    icon.padding_right=0
+    label.padding_left=0
+    icon.padding_left=10
+    label.padding_right=10
+    label.width=16
+    icon.width=dynamic
+)
+
+service=(
+    background.color=0xffd65d0e
+    label.align=center
+    icon.width=8
+    label.color=0xe01d2021
+    label=""
+)
+
+for sid in $(aerospace list-workspaces --all); do
+    sketchybar --add item space.$sid left \
+        --subscribe space.$sid aerospace_workspace_change \
+        --set space.$sid \
+        label="$sid" \
+        ${workspace[@]} \
+        click_script="aerospace workspace $sid" \
+        script="$CONFIG_DIR/plugins/aerospace.sh $sid"
+done
+
+sketchybar --add item service_mode left \
+    --set service_mode script="$PLUGIN_DIR/service_mode.sh off" \
+    ${service[@]} \
+    --subscribe service_mode aerospace_mode_change
+
+clock=(
+    update_freq=60
+    icon=
+    script="$PLUGIN_DIR/clock.sh"
+    label.width=dynamic
+    icon.drawing=off
+    label.padding_right=8
+    label.padding_left=8
+)
+
+volume=(
+    script="$PLUGIN_DIR/volume.sh"
+    icon.color=0xff${apw}
+)
+
+battery=(
+    script="$PLUGIN_DIR/battery.sh"
+    icon.color=0xff${apw}
+    update_freq=60
+)
+
+disk=(
+    script="$PLUGIN_DIR/disk.sh"
+    icon.color=0xff${apw}
+    label.width=dynamic
+    label.align=right
+    update_freq=10
+)
+
+cpu=(
+    script="$PLUGIN_DIR/cpu.sh"
+    update_freq=5
+    icon.color=0xff${apw}
+)
+
+mem=(
+    script="$PLUGIN_DIR/mem.sh"
+    icon.color=0xff${apw}
+    update_freq=5
+)
+
+wifi=(
+    script="$PLUGIN_DIR/wifi.sh"
+    icon.color=0xff${apw}
+    update_freq=120
+    label.width=dynamic
+)
+
+layout=(
+    script="$PLUGIN_DIR/layout.sh"
+    icon.width=0
+    label.width=dynamic
+    icon.drawing=off
+    label.padding_left=8
+    label.padding_right=8
+)
+
+separator=(
+    icon.drawing=off
+    label='|'
+    padding_left=0
+    padding_right=0
+    label.padding_right=0
+    icon.padding_left=0
+    label.align=center
+    icon.align=center
+    label.width=15
+    icon.padding_right=0
+)
+
+sketchybar \
+    --add event layout_change AppleSelectedInputSourcesChangedNotification \
+    \
+    --add item clock center \
+    --set clock ${clock[@]} \
+    \
+    --add item volume right \
+    --set volume ${volume[@]} \
+    --subscribe volume volume_change \
+    \
+    --add item battery right \
+    --set battery ${battery[@]} \
+    \
+    --add item disk right \
+    --set disk ${disk[@]} \
+    \
+    --add item cpu right \
+    --set cpu ${cpu[@]} \
+    \
+    --add item mem right \
+    --set mem ${mem[@]} \
+    \
+    --add item wifi right \
+    --set wifi ${wifi[@]} \
+    \
+    --add item layout right \
+    --set layout ${layout[@]} \
+    --subscribe layout layout_change
+
+sketchybar --update

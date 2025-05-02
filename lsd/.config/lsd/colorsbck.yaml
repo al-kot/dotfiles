@@ -1,0 +1,26 @@
+group: 229      # Comment
+permission:
+  read: 1    # Purple
+  write: 2   # Pink
+  exec: 3    # Cyan
+  exec-sticky: 4  # Foreground
+  no-access: 9    # Red
+  octal: 10    # Green
+  acl: 6       # Current Line
+  context: 7  # Comment
+date:
+  hour-old: 5 # Comment - 40% lighter
+  day-old: 7  # Comment - 20% lighter
+  older: 8    # Comment
+size:
+  none: 7      # Current Line
+  small: 2    # Green
+  medium: 3   # Orange
+  large: 1    # Red
+inode:
+  valid: 159    # Cyan
+  invalid: 210  # Red
+links:
+  valid: 12    # Cyan
+  invalid: 8  # Red
+tree-edge: 6   # Current Line
