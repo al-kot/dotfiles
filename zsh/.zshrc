@@ -125,3 +125,4 @@ zstyle :compinstall filename '/home/asq/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+fastfetch
