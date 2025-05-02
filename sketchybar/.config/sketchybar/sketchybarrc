@@ -1,7 +1,6 @@
 #!/bin/bash
 
 PLUGIN_DIR="$CONFIG_DIR/plugins"
-source "$HOME/.config/colors/sketchybar.sh"
 
 apw='ddc7a1'
 h=20
