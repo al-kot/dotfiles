@@ -6,8 +6,6 @@ config = {
     font = wezterm.font('Mononoki Nerd Font Mono', { italic = false }),
     color_scheme = 'Gruvbox dark, hard (base16)',
     window_background_opacity = 0.70,
-    macos_window_background_blur = 25,
-    window_decorations = 'RESIZE',
     enable_tab_bar = true,
     use_fancy_tab_bar = false,
     tab_bar_at_bottom = true,
@@ -33,6 +31,10 @@ config = {
     },
 }
 
+if wezterm.target_triple == 'aarch64-apple-darwin' then
+    config.macos_window_background_blur = 25
+    config.window_decorations = 'RESIZE'
+end
 
 require('keymaps').apply_to_config(config)
 require('plugins').apply_to_config(config)

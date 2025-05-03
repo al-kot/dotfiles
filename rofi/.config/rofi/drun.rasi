@@ -1,0 +1,84 @@
+configuration {
+    modi:                       "drun";
+    show-icons:                 true;
+    display-drun:               "";
+    display-run:                "";
+    display-filebrowser:        "";
+    display-window:             "";
+    drun-display-format:        "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+    window-format:              "{w} · {c} · {t}";
+    font: "MononokiNerdFontMono 12";
+}
+
+* {
+    bg: #404040;
+    bg-light: #32302f;
+    grey: #928374;
+    fg: #fbf1c7;
+    red: #fb4934;
+    green: #b8bb26;
+    yellow: #fabd2f;
+    blue: #83a598;
+    purple: #d3869b;
+    magenta: #d3869b;
+    cyan: #8ec07c;
+    orange: #fe8019;
+}
+window {
+    width: 300px;
+    height: 200px;
+    background-color: @bg;
+    border: none;
+    margin:                      2px;
+    padding:                     2px;
+    border:                      0px solid;
+}
+inputbar {
+    color: @fg;
+    background-color: transparent;
+    children: [ prompt,entry ];
+}
+textbox-prompt-colon {
+    text-color: transparent;
+}
+prompt,case-indicator {
+    text-color: @fg;
+    background-color: transparent;
+}
+listview {
+    spacing:                     5px;
+    background-color: transparent;
+    scrollbar:                   false;
+}
+entry, prompt {
+    background-color: transparent;
+    text-color: @fg;
+    font: "MononokiNerdFontMono 12";
+    placeholder:                 "";
+    margin:                      0px;
+    padding:                     0px;
+}
+element {
+    text-color: @fg;
+    orientation: horizontal;
+    children: [ element-icon, element-text ];
+    spacing: 5px;
+}
+element {
+    background-color: transparent;
+    orientation: horizontal;
+    children: [ element-icon, element-text ];
+    spacing: 10px;
+}
+element selected.normal {
+    text-color: @bg;
+    background-color: @fg;
+}
+element normal.normal {
+    text-color: @fg;
+    background-color: transparent;
+}
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg;
+}

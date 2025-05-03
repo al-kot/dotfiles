@@ -1,0 +1,41 @@
+@define-color bg #282828;
+@define-color fg #ebdbb2;
+
+* {
+    border: none;
+    font-family: MononokiNerdFont, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    min-height: 0;
+}
+
+window#waybar {
+    background: none;
+    color: @fg;
+}
+
+
+#workspaces button {
+    margin-left: 5px;
+}
+
+#workspaces button.active {
+    color: @bg;
+    opacity: 1;
+    background-color: #d65d0e;
+}
+
+#cpu,
+#memory,
+#disk,
+#network,
+#pulseaudio,
+#clock,
+#workspaces button {
+    border-radius: 6px;
+    padding: 5px 10px;
+    color: @fg;
+    background-color: @bg;
+    margin: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.56);
+}

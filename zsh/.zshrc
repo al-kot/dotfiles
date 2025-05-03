@@ -69,25 +69,32 @@ mkkern() {
 }
 
 # === env vars ===
-export PATH=/usr/local/bin:$PATH
-export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-export LIBRARY_PATH="/opt/homebrew/lib" 
-export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+case `uname` in
+    Darwin)
+        export PATH=/usr/local/bin:$PATH
+        export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+        export LIBRARY_PATH="/opt/homebrew/lib" 
+        export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+        ;;
+    Linux)
+        ;;
+esac
+
 export PATH="$HOME/go/bin:$PATH"
 
 # === plugins ===
 
-plug="/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+plug="$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 if [ ! -f "$plug" ]; then
-    brew install zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git "$HOME/.zsh/zsh-autosuggestions"
 fi
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "$plug"
 
-plug="/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+plug="$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 if [ ! -f "$plug" ]; then
-    brew install zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.zsh/zsh-syntax-highlighting"
 fi
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$plug"
 
 plug="$HOME/.zsh/zsh-completions"
 if [ ! -d "$plug" ]; then
@@ -118,7 +125,9 @@ alias rtfm="tldr --list | fzf --reverse | xargs tldr"
 
 export BAT_THEME='gruvbox-dark'
 
-fpath=(/Users/alekseikotliarov/.docker/completions $fpath)
+zstyle :compinstall filename "$HOME/.zshrc"
+
+fpath=($HOME/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 
