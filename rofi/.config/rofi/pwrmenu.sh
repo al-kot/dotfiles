@@ -12,7 +12,7 @@
 
 # CMDs
 uptime="`uptime -p | sed -e 's/up //g'`"
-host='host'
+host=''
 
 # Options
 shutdown=' Shutdown'

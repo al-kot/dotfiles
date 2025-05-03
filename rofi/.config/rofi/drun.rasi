@@ -46,6 +46,8 @@ prompt,case-indicator {
     background-color: transparent;
 }
 listview {
+    border:                      0px solid;
+    border-radius:               0px;
     spacing:                     5px;
     background-color: transparent;
     scrollbar:                   false;
