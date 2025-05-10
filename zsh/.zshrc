@@ -55,17 +55,31 @@ gcb() {
     _fzf_git_branches | xargs git checkout
 }
 mkenv() {
-    if [ -d "venv" ]; then
-        echo "venv already exists"
-    else
-        python3 -m venv venv
-    fi
-    source venv/bin/activate
+    [ "$1" = "" ] && { echo 'provide a name'; return }
+    [ -d "$HOME/.virtualenvs" ] || mkdir "$HOME/.virtualenvs"
+    python3 -m venv "$HOME/.virtualenvs/$1"
+    # source venv/bin/activate
 }
 
 mkkern() {
     pip install ipykernel
     sudo python -m ipykernel install --name="$1"
+}
+
+vnv() {
+    [ -d "$HOME/.virtualenvs" ] || mkdir "$HOME/.virtualenvs"
+    name="$(ls "$HOME/.virtualenvs" | fzf --print-query | tail -1)"
+    [ "$name" = "" ] && return
+    [ -d "$HOME/.virtualenvs/$name" ] || python3 -m venv "$HOME/.virtualenvs/$name"
+}
+
+vnva() {
+    [ -d "$HOME/.virtualenvs" ] || mkdir "$HOME/.virtualenvs"
+    name="$(ls "$HOME/.virtualenvs" | fzf --print-query | tail -1)"
+    [ "$name" = "" ] && return
+    [ -d "$HOME/.virtualenvs/$name" ] || python3 -m venv "$HOME/.virtualenvs/$name"
+    source "$HOME/.virtualenvs/$name/bin/activate"
+
 }
 
 # === env vars ===

@@ -108,3 +108,66 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map('n', 'gr', telescope.lsp_references, opt)
     end,
 })
+
+-- molten
+map("n", "<leader>mi", ":MoltenInit<CR>")
+map("n", "<leader>me", ":MoltenEvaluateOperator<CR>")
+map("n", "<leader>rr", ":MoltenReevaluateCell<CR>")
+map("v", "<leader>mr", ":<C-u>MoltenEvaluateVisual<CR>gv")
+map("n", "<leader>os", ":noautocmd MoltenEnterOutput<CR>")
+map("n", "<leader>oh", ":MoltenHideOutput<CR>")
+map("n", "<leader>md", ":MoltenDelete<CR>")
+map("n", "<leader>rl", ':MoltenEvaluateLine<CR>')
+
+-- quarto
+local runner = require('quarto.runner')
+map("n", "<leader>br", runner.run_cell, { desc = "run cell", silent = true })
+map("n", "<leader>ba", runner.run_all, { desc = "run all cells", silent = true })
+map("n", "<leader>bl", runner.run_line, { desc = "run line", silent = true })
+map("v", "<leader>b", runner.run_range, { desc = "run visual range", silent = true })
+
+
+vim.keymap.set("n", "<leader>bn", function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    local row, col = cursor[1] - 1, cursor[2]
+
+    local parser = vim.treesitter.get_parser(bufnr, "markdown")
+    local tree = parser:parse()[1]
+    local root = tree:root()
+
+    local fenced_node = nil
+
+    -- Check every fenced_code_block in the buffer
+    local function contains_cursor(node)
+        local start_row, start_col, end_row, end_col = node:range()
+        if row < start_row or row > end_row then return false end
+        if row == start_row and col < start_col then return false end
+        if row == end_row and col > end_col then return false end
+        return true
+    end
+
+    local function find_fenced_node(node)
+        if node:type() == "fenced_code_block" and contains_cursor(node) then
+            return node
+        end
+        for child in node:iter_children() do
+            local found = find_fenced_node(child)
+            if found then return found end
+        end
+        return nil
+    end
+
+    fenced_node = find_fenced_node(root)
+
+    local insert_line
+    if fenced_node then
+        insert_line = fenced_node:end_() + 1
+    else
+        insert_line = row + 1
+    end
+
+    local lines = { "```python", "", "```" }
+    vim.api.nvim_buf_set_lines(bufnr, insert_line, insert_line, true, lines)
+    vim.api.nvim_win_set_cursor(0, { insert_line + 1, 0 })
+end, { desc = "Smart insert markdown code block (Tree-sitter)" })

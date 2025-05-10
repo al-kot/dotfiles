@@ -13,6 +13,7 @@ end
 
 require("config.lazy")
 require("config.autocmds")
+require("config.commands")
 
 local opts = {
     tabstop = 4,
@@ -20,7 +21,7 @@ local opts = {
     smartindent = true,
     clipboard = "unnamedplus",
     completeopt = "menu,menuone,noselect",
-    conceallevel = 2,
+    conceallevel = 3,
     confirm = true,
     cursorline = true,
     expandtab = true,
@@ -51,7 +52,7 @@ local opts = {
     virtualedit = "block",
     wildmode = "longest:full,full",
     winminwidth = 5,
-    wrap = false,
+    wrap = true,
     fillchars = {
         foldopen = "",
         foldclose = "",
@@ -87,9 +88,10 @@ vim.diagnostic.config({
 vim.filetype.add({
     pattern = {
         [".*/hypr/.*%.conf"] = "hyprlang",
-        [".*.rasi"] = "rasi"
+        [".*.rasi"] = "rasi",
     },
 })
+
 
 vim.cmd.colorscheme('gruvbox')
 require('config.keymaps')

@@ -5,6 +5,9 @@ local config = wezterm.config_builder()
 config = {
     font = wezterm.font('Mononoki Nerd Font Mono', { italic = false }),
     color_scheme = 'Gruvbox dark, hard (base16)',
+    warn_about_missing_glyphs = false,
+    term = 'xterm-kitty',
+    enable_kitty_graphics = true,
     window_background_opacity = 0.70,
     enable_tab_bar = true,
     use_fancy_tab_bar = false,
