@@ -110,21 +110,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- molten
-map("n", "<leader>mi", ":MoltenInit<CR>")
 map("n", "<leader>me", ":MoltenEvaluateOperator<CR>")
 map("n", "<leader>rr", ":MoltenReevaluateCell<CR>")
 map("v", "<leader>mr", ":<C-u>MoltenEvaluateVisual<CR>gv")
 map("n", "<leader>os", ":noautocmd MoltenEnterOutput<CR>")
 map("n", "<leader>oh", ":MoltenHideOutput<CR>")
 map("n", "<leader>md", ":MoltenDelete<CR>")
-map("n", "<leader>rl", ':MoltenEvaluateLine<CR>')
 
 -- quarto
 local runner = require('quarto.runner')
-map("n", "<leader>br", runner.run_cell, { desc = "run cell", silent = true })
-map("n", "<leader>ba", runner.run_all, { desc = "run all cells", silent = true })
-map("n", "<leader>bl", runner.run_line, { desc = "run line", silent = true })
-map("v", "<leader>b", runner.run_range, { desc = "run visual range", silent = true })
+map("n", "<leader>r", runner.run_cell, { desc = "run cell", silent = true })
+map("n", "<leader>ra", runner.run_all, { desc = "run all cells", silent = true })
+map("n", "<leader>rl", runner.run_line, { desc = "run line", silent = true })
+map("v", "<leader>r", runner.run_range, { desc = "run visual range", silent = true })
 
 
 vim.keymap.set("n", "<leader>bn", function()

@@ -8,7 +8,14 @@ return {
     },
     {
         "GCBallesteros/jupytext.nvim",
-        config = true,
+        config = function()
+            local jupy = require('jupytext')
+            jupy.setup {
+                style = "markdown",
+                output_extension = "md",
+                force_ft = "markdown",
+            }
+        end,
     },
     {
         "quarto-dev/quarto-nvim",
@@ -114,7 +121,7 @@ return {
         build = ":UpdateRemotePlugins",
         init = function()
             local gs = {
-                python3_host_prog = vim.fn.expand("~/.virtualenvs/test/bin/python3"),
+                python3_host_prog = vim.fn.expand("~/.virtualenvs/nvim/bin/python3"),
                 molten_image_provider = "wezterm",
                 molten_use_border_highlights = true,
                 molten_wrap_output = true,
@@ -128,6 +135,8 @@ return {
             for key, value in pairs(gs) do
                 vim.g[key] = value
             end
+
+            vim.api.nvim_set_hl(0, 'MoltenCell', { bg = 'NONE' })
         end,
     },
 }
