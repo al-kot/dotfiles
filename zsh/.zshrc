@@ -79,7 +79,18 @@ vnva() {
     [ "$name" = "" ] && return
     [ -d "$HOME/.virtualenvs/$name" ] || python3 -m venv "$HOME/.virtualenvs/$name"
     source "$HOME/.virtualenvs/$name/bin/activate"
+}
 
+vnva311() {
+    [ -d "$HOME/.virtualenvs" ] || mkdir "$HOME/.virtualenvs"
+    name="$(ls "$HOME/.virtualenvs" | fzf --print-query | tail -1)"
+    [ "$name" = "" ] && return
+    [ -d "$HOME/.virtualenvs/$name" ] || python3.11 -m venv "$HOME/.virtualenvs/$name"
+    source "$HOME/.virtualenvs/$name/bin/activate"
+}
+
+jupyinit() {
+    pip install pynvim jupyter_client cairosvg plotly kaleido pnglatex pyperclip
 }
 
 # === env vars ===

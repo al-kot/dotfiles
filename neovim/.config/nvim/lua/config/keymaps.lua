@@ -165,7 +165,12 @@ vim.keymap.set("n", "<leader>bn", function()
         insert_line = row + 1
     end
 
-    local lines = { "```python", "", "```" }
+    local lines = { "```python", "", "```", "" }
+    local buf_line_count = vim.api.nvim_buf_line_count(bufnr)
+    if insert_line > buf_line_count then
+        insert_line = buf_line_count
+        lines = { "", "```python", "", "```", "" }
+    end
     vim.api.nvim_buf_set_lines(bufnr, insert_line, insert_line, true, lines)
-    vim.api.nvim_win_set_cursor(0, { insert_line + 1, 0 })
+    vim.api.nvim_win_set_cursor(0, { insert_line + 2, 0 })
 end, { desc = "Smart insert markdown code block (Tree-sitter)" })

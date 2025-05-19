@@ -22,6 +22,6 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     pattern = "*.ipynb",
     callback = function()
         require('quarto').activate()
-        vim.cmd([[MoltenInit nvim]])
+        -- vim.cmd([[MoltenInit nvim311]])
     end
 })
