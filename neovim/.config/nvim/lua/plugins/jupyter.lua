@@ -110,7 +110,7 @@ return {
         end
     },
     {
-        "benlubas/molten-nvim",
+        "aleshasuqa/molten-nvim",
         dependencies = {
             -- 'willothy/wezterm.nvim',
             "3rd/image.nvim",
