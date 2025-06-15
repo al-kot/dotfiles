@@ -1,5 +1,6 @@
 local vim = vim
 local map = vim.keymap.set
+local del = vim.keymap.del
 
 map('n', '<leader>h', ':noh<CR>', { silent = true })
 
@@ -19,6 +20,10 @@ map('n', '<C-h>', require('smart-splits').move_cursor_left)
 map('n', '<C-n>', require('smart-splits').move_cursor_down)
 map('n', '<C-e>', require('smart-splits').move_cursor_up)
 map('n', '<C-i>', require('smart-splits').move_cursor_right)
+map('n', '<C-S-h>', require('smart-splits').resize_left)
+map('n', '<C-S-n>', require('smart-splits').resize_down)
+map('n', '<C-S-e>', require('smart-splits').resize_up)
+map('n', '<C-S-i>', require('smart-splits').resize_right)
 
 -- telescope
 local telescope_builtin = require('telescope.builtin')
@@ -71,18 +76,32 @@ map('n', '<leader>q', telescope_builtin.quickfix)
 
 -- harpoon
 local harpoon = require('harpoon')
+harpoon:setup()
 map('n', '<leader>a', function() harpoon:list():add() end)
-map('n', 't', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "harpoon" },
-    callback = function()
-        map('n', 'n', function() harpoon:list():select(1) end, { buffer = true })
-        map('n', 's', function() harpoon:list():select(2) end, { buffer = true })
-        map('n', 'i', function() harpoon:list():select(3) end, { buffer = true })
-        map('n', 'd', 'dd', { buffer = true })
-        map('n', 'q', ':wq<CR>', { buffer = true })
+map('n', '<M-T>', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+map('n', '<M-t>', function() harpoon:list():select(1) end)
+map('n', '<M-s>', function() harpoon:list():select(2) end)
+map('n', '<M-r>', function() harpoon:list():select(3) end)
+
+local conf = require("telescope.config").values
+local function toggle_telescope(harpoon_files)
+    local file_paths = {}
+    for _, item in ipairs(harpoon_files.items) do
+        table.insert(file_paths, item.value)
     end
-})
+
+    require("telescope.pickers").new({}, {
+        prompt_title = "Harpoon",
+        finder = require("telescope.finders").new_table({
+            results = file_paths,
+        }),
+        previewer = conf.file_previewer({}),
+        sorter = conf.generic_sorter({}),
+    }):find()
+end
+
+vim.keymap.set("n", "<leader>t", function() toggle_telescope(harpoon:list()) end,
+    { desc = "Open harpoon window" })
 
 -- lsp
 vim.api.nvim_create_autocmd('LspAttach', {

@@ -45,16 +45,7 @@ return {
     {
         'ThePrimeagen/harpoon',
         branch = 'harpoon2',
-        lazy = false,
         dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            local harpoon = require('harpoon')
-            local map = vim.keymap.set
-
-            harpoon:setup()
-        end,
-        keys = {
-        }
     },
     {
         "ggandor/leap.nvim",
@@ -84,5 +75,10 @@ return {
         dependencies = { { "echasnovski/mini.icons", opts = {} } },
         lazy = false,
     },
-    { 'mrjones2014/smart-splits.nvim' },
+    {
+        'mrjones2014/smart-splits.nvim',
+        opts = {
+            default_amount = 3,
+        }
+    },
 }

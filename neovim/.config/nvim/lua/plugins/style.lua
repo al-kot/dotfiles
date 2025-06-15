@@ -49,6 +49,13 @@ return {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         opts = function(_, opts)
+
+            local base_statusline_highlights = { 'StatusLine', 'StatusLineNC', 'Tabline', 'TabLineFill', 'TabLineSel',
+                'Winbar', 'WinbarNC' }
+            for _, hl_group in pairs(base_statusline_highlights) do
+                vim.api.nvim_set_hl(0, hl_group, { bg = 'none' })
+            end
+
             opts.options = {
                 theme = make_theme(require 'lualine.themes.gruvbox'),
                 component_separators = { left = "", right = "" },

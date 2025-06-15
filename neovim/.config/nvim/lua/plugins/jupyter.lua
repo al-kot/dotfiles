@@ -100,8 +100,8 @@ return {
                 processor = "magick_cli",
                 backend = "kitty",          -- Kitty will provide the best experience, but you need a compatible terminal
                 integrations = {},          -- do whatever you want with image.nvim's integrations
-                max_width = 100,            -- tweak to preference
-                max_height = 50,            -- ^
+                max_width = 200,            -- tweak to preference
+                max_height = 200,            -- ^
                 max_height_window_percentage = math.huge, -- this is necessary for a good experience
                 max_width_window_percentage = math.huge,
                 window_overlap_clear_enabled = true,
@@ -121,7 +121,7 @@ return {
         build = ":UpdateRemotePlugins",
         init = function()
             local gs = {
-                python3_host_prog = vim.fn.expand("~/.virtualenvs/nvim311/bin/python3"),
+                python3_host_prog = vim.fn.expand("~/.virtualenvs/nvim/bin/python3"),
                 molten_image_provider = "image.nvim",
                 molten_wrap_output = true,
                 molten_output_virt_lines = true,
