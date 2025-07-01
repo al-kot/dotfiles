@@ -13,6 +13,14 @@ wezterm.on('user-var-changed', function(window, pane, name, value)
     end
 end)
 
+wezterm.on("gui-startup", function(cmd)
+    local tab, build_pane, window = wezterm.mux.spawn_window({
+        workspace = "dotfiles",
+        cwd = "~/dotfiles",
+    })
+    wezterm.mux.set_active_workspace("dotfiles")
+end)
+
 wezterm.on('update-status', function(window, pane)
     local workspace = wezterm.mux.get_active_workspace() or "default"
     local color = {
