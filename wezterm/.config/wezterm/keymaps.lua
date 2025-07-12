@@ -32,7 +32,7 @@ function M.apply_to_config(config)
             end),
         }),
         map('CTRL', 'L', wezterm.action.ShowDebugOverlay),
-        map("SUPER", "e", act.SplitVertical { domain = 'CurrentPaneDomain' }),
+        map("SUPER", "v", act.SplitVertical { domain = 'CurrentPaneDomain' }),
         map("SUPER", "h", act.SplitHorizontal { domain = 'CurrentPaneDomain' }),
 
         map('CTRL', 'h', act.ActivatePaneDirection 'Left'),
