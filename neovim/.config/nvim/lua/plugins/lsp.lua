@@ -3,7 +3,6 @@ local map = vim.keymap.set
 
 local function lsp_servers()
     local servers = {
-        { name = "pyright" },
         { name = "clangd" },
         { name = "jsonls" },
         { name = "rust_analyzer" },
@@ -13,6 +12,38 @@ local function lsp_servers()
         { name = "bashls" },
         { name = "yamlls" },
         { name = "ts_ls" },
+        {
+            name = "pyright",
+            setup = {
+                settings = {
+                    python = {
+                        analysis = {
+                            diagnosticMode = "openFilesOnly",
+                            diagnosticSeverityOverrides = {
+                                reportUnusedExpression = "none",
+                                reportUnusedImport = "none",
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        {
+            name = "pylsp",
+            setup = {
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            pyflakes = { enabled = false },
+                            flake8 = { enabled = false },
+                            pylint = { enabled = false },
+                            pylance = { enabled = false },
+                            pycodestyle = { enabled = false },
+                        },
+                    },
+                },
+            }
+        },
         {
             name = "tailwindcss",
             setup = {
@@ -109,6 +140,9 @@ return {
             require('mason-lspconfig').setup({
                 ensure_installed = names,
                 capabilities = caps,
+                automatic_enable = {
+                    exclude = names,
+                }
             })
 
             local lspconfig = require('lspconfig')
@@ -119,7 +153,6 @@ return {
                     lspconfig[lsp.name].setup {}
                 end
             end
-
         end,
     },
     {
@@ -134,6 +167,34 @@ return {
         },
 
         config = function(_, opts)
+            require('conform').formatters.injected = {
+                -- Set the options field
+                options = {
+                    -- Set to true to ignore errors
+                    ignore_errors = false,
+                    -- Map of treesitter language to file extension
+                    -- A temporary file name with this extension will be generated during formatting
+                    -- because some formatters care about the filename.
+                    lang_to_ext = {
+                        bash = 'sh',
+                        c_sharp = 'cs',
+                        elixir = 'exs',
+                        javascript = 'js',
+                        julia = 'jl',
+                        latex = 'tex',
+                        markdown = 'md',
+                        python = 'py',
+                        ruby = 'rb',
+                        rust = 'rs',
+                        teal = 'tl',
+                        r = 'r',
+                        typescript = 'ts',
+                    },
+                    -- Map of treesitter language to formatters to use
+                    -- (defaults to the value from formatters_by_ft)
+                    lang_to_formatters = {},
+                },
+            }
             vim.api.nvim_create_user_command("Format", function(args)
                 local range = nil
                 if args.count ~= -1 then

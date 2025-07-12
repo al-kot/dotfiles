@@ -31,7 +31,7 @@ return {
                     languages = { "r", "python", "rust" },
                     chunks = "all",
                     diagnostics = {
-                        enabled = true,
+                        enabled = false,
                         triggers = { "BufWritePost" },
                     },
                     completion = {
@@ -78,6 +78,7 @@ return {
                     icons = false,
                     min_width = 30,
                 },
+                completions = { blink = { enabled = true } },
             }
 
             sethl(0, 'RenderMarkdownCode', { bg = '#282828' })
@@ -112,7 +113,7 @@ return {
     {
         "aleshasuqa/molten-nvim",
         dependencies = {
-            -- 'willothy/wezterm.nvim',
+            'willothy/wezterm.nvim',
             "3rd/image.nvim",
             "GCBallesteros/jupytext.nvim",
             "quarto-dev/quarto-nvim",
@@ -122,11 +123,12 @@ return {
         init = function()
             local gs = {
                 python3_host_prog = vim.fn.expand("~/.virtualenvs/nvim/bin/python3"),
-                molten_image_provider = "image.nvim",
+                molten_image_provider = "wezterm",
                 molten_wrap_output = true,
+                molten_virt_text_output = true,
                 molten_output_virt_lines = true,
                 molten_virt_lines_off_by_1 = true,
-                molten_auto_open_output = true,
+                molten_auto_open_output = false,
                 molten_output_win_hide_on_leave = false,
 
             }

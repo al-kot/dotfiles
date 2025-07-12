@@ -132,8 +132,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 map("n", "<leader>me", ":MoltenEvaluateOperator<CR>")
 map("n", "<leader>rr", ":MoltenReevaluateCell<CR>")
 map("v", "<leader>mr", ":<C-u>MoltenEvaluateVisual<CR>gv")
-map("n", "<leader>os", ":noautocmd MoltenEnterOutput<CR>")
+map("n", "<leader>os", ":noautocmd MoltenEnterOutput<CR>:noautocmd MoltenEnterOutput<CR>")
 map("n", "<leader>oh", ":MoltenHideOutput<CR>")
+map("n", "<leader>ob", ":MoltenOpenInBrowser<CR>")
 map("n", "<leader>md", ":MoltenDelete<CR>")
 
 -- quarto
