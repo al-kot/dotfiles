@@ -18,37 +18,22 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     end
 })
 
--- automatically import output chunks from a jupyter notebook
--- tries to find a kernel that matches the kernel in the jupyter notebook
--- falls back to a kernel that matches the name of the active venv (if any)
-local imb = function(e) -- init molten buffer
+local imb = function()
     vim.schedule(function()
         local kernels = vim.fn.MoltenAvailableKernels()
-        local try_kernel_name = function()
-            local metadata = vim.json.decode(io.open(e.file, "r"):read("a"))["metadata"]
-            return metadata.kernelspec.name
+        if vim.tbl_contains(kernels, 'venv') then
+            vim.cmd('MoltenInit venv')
+            vim.cmd("MoltenImportOutput")
         end
-        local ok, kernel_name = pcall(try_kernel_name)
-        if not ok or not vim.tbl_contains(kernels, kernel_name) then
-            kernel_name = nil
-            local venv = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX")
-            if venv ~= nil then
-                kernel_name = string.match(venv, "/.+/(.+)")
-            end
-        end
-        if kernel_name ~= nil and vim.tbl_contains(kernels, kernel_name) then
-            vim.cmd(("MoltenInit %s"):format(kernel_name))
-        end
-        vim.cmd("MoltenImportOutput")
     end)
 end
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
     pattern = "*.ipynb",
-    callback = function(e)
+    callback = function()
         require('quarto').activate()
         if vim.api.nvim_get_vvar("vim_did_enter") ~= 1 then
-            imb(e)
+            imb()
         end
     end
 })

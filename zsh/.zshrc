@@ -63,7 +63,7 @@ mkenv() {
 
 mkkern() {
     pip install ipykernel
-    sudo python -m ipykernel install --name="$1"
+    python3 -m ipykernel install --user --name="$1"
 }
 
 vnv() {

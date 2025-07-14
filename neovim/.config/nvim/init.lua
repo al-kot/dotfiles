@@ -1,11 +1,13 @@
 local vim = vim
 
+print(io.popen('which python3'):read('*a'):gsub('[\n\r]', ''))
 local gs = {
     mapleader = " ",
     maplocalleader = "\\",
     autoformat = true,
     markdown_recommended_style = 0,
     root_spec = { "lsp", { ".git", "lua" }, "cwd" },
+    python3_host_prog = io.popen('which python3'):read('*a'):gsub('[\n\r]', ''),
 }
 for key, value in pairs(gs) do
     vim.g[key] = value

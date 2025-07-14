@@ -122,9 +122,9 @@ return {
         build = ":UpdateRemotePlugins",
         init = function()
             local gs = {
-                python3_host_prog = vim.fn.expand("~/.virtualenvs/nvim/bin/python3"),
                 molten_image_provider = "wezterm",
                 molten_wrap_output = true,
+                molten_virt_text_max_lines = 999,
                 molten_virt_text_output = true,
                 molten_output_virt_lines = true,
                 molten_virt_lines_off_by_1 = true,
