@@ -1,6 +1,6 @@
 format = """
 $directory\
-$git_branch$git_commit$git_state$git_metrics$git_status\
+$git_branch$git_commit$git_state$git_metrics$git_status$python\
 $jobs\
 $line_break\
 $character\
@@ -74,3 +74,7 @@ symbol = '󰜎'
 symbol_threshold = 1
 number_threshold = 4
 disabled = false
+
+[python]
+format = '[(\($virtualenv\) )]($style)'
+
