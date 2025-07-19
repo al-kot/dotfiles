@@ -31,7 +31,7 @@ return {
                     languages = { "r", "python", "rust" },
                     chunks = "all",
                     diagnostics = {
-                        enabled = false,
+                        enabled = true,
                         triggers = { "BufWritePost" },
                     },
                     completion = {
@@ -78,7 +78,6 @@ return {
                     icons = false,
                     min_width = 30,
                 },
-                completions = { blink = { enabled = true } },
             }
 
             sethl(0, 'RenderMarkdownCode', { bg = '#282828' })
@@ -92,29 +91,24 @@ return {
         end
     },
     {
-        "3rd/image.nvim",
-        enabled = true,
-        build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
-        config = function()
-            local image = require('image')
-            image.setup {
-                processor = "magick_cli",
-                backend = "kitty",          -- Kitty will provide the best experience, but you need a compatible terminal
-                integrations = {},          -- do whatever you want with image.nvim's integrations
-                max_width = 200,            -- tweak to preference
-                max_height = 200,            -- ^
-                max_height_window_percentage = math.huge, -- this is necessary for a good experience
-                max_width_window_percentage = math.huge,
-                window_overlap_clear_enabled = true,
-                window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
-            }
-        end
+        "folke/snacks.nvim",
+        opts = {
+            image = {
+                enabled = true,
+                doc = {
+                    enabled = true,
+                    inline = false,
+                    max_width = 150,
+                    max_height = 150,
+                },
+            },
+        },
     },
     {
         "aleshasuqa/molten-nvim",
         dependencies = {
+            "folke/snacks.nvim",
             'willothy/wezterm.nvim',
-            "3rd/image.nvim",
             "GCBallesteros/jupytext.nvim",
             "quarto-dev/quarto-nvim",
             'MeanderingProgrammer/render-markdown.nvim',
@@ -122,11 +116,11 @@ return {
         build = ":UpdateRemotePlugins",
         init = function()
             local gs = {
-                molten_image_provider = "wezterm",
+                molten_image_provider = "snacks.nvim",
                 molten_wrap_output = true,
                 molten_virt_text_max_lines = 999,
                 molten_virt_text_output = true,
-                molten_output_virt_lines = true,
+                molten_output_virt_lines = false,
                 molten_virt_lines_off_by_1 = true,
                 molten_auto_open_output = false,
                 molten_output_win_hide_on_leave = false,

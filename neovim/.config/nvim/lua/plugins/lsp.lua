@@ -1,79 +1,68 @@
-local vim = vim
-local map = vim.keymap.set
-
 local function lsp_servers()
     local servers = {
-        { name = "clangd" },
-        { name = "jsonls" },
-        { name = "rust_analyzer" },
-        { name = "lua_ls" },
-        { name = "templ" },
-        { name = "gopls" },
-        { name = "bashls" },
-        { name = "yamlls" },
-        { name = "ts_ls" },
-        {
-            name = "pyright",
-            setup = {
-                settings = {
-                    python = {
-                        analysis = {
-                            diagnosticMode = "openFilesOnly",
-                            diagnosticSeverityOverrides = {
-                                reportUnusedExpression = "none",
-                                reportUnusedImport = "none",
-                            },
+        clangd = {},
+        jsonls = {},
+        rust_analyzer = {},
+        templ = {},
+        gopls = {},
+        bashls = {},
+        yamlls = {},
+        ts_ls = {},
+        lua_ls = {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                },
+            },
+        },
+        pyright = {
+            settings = {
+                python = {
+                    analysis = {
+                        diagnosticMode = "openFilesOnly",
+                        diagnosticSeverityOverrides = {
+                            reportUnusedExpression = "none",
                         },
                     },
                 },
             },
         },
-        {
-            name = "pylsp",
-            setup = {
-                settings = {
-                    pylsp = {
-                        plugins = {
-                            pyflakes = { enabled = false },
-                            flake8 = { enabled = false },
-                            pylint = { enabled = false },
-                            pylance = { enabled = false },
-                            pycodestyle = { enabled = false },
-                        },
+        -- pylsp = {
+        --     settings = {
+        --         pylsp = {
+        --             plugins = {
+        --                 pyflakes = { enabled = false },
+        --                 flake8 = { enabled = false },
+        --                 pylint = { enabled = false },
+        --                 pylance = { enabled = false },
+        --                 pycodestyle = { enabled = false },
+        --             },
+        --         },
+        --     },
+        -- },
+        tailwindcss = {
+            filetypes = { "templ", "astro", "javascript", "typescript", "react", "typescriptreact" },
+            settings = {
+                tailwindCSS = {
+                    includeLanguages = {
+                        templ = "html",
                     },
                 },
-            }
+            },
         },
-        {
-            name = "tailwindcss",
-            setup = {
-                filetypes = { "templ", "astro", "javascript", "typescript", "react", "typescriptreact" },
-                settings = {
-                    tailwindCSS = {
-                        includeLanguages = {
-                            templ = "html",
-                        },
-                    },
-                },
-            }
+        html = {
+            filetypes = { "html", "templ" }
         },
-        {
-            name = "html",
-            setup = {
-                filetypes = { "html", "templ" }
-            }
-        },
-        {
-            name = "htmx",
-            setup = {
-                filetypes = { "html", "templ" }
-            }
+        htmx = {
+            filetypes = { "html", "templ" }
         },
     }
 
     local names = {}
-    for i, s in pairs(servers) do
-        names[i] = s.name
+    for name, _ in pairs(servers) do
+        table.insert(names, name)
     end
     return servers, names
 end
@@ -145,13 +134,11 @@ return {
                 }
             })
 
-            local lspconfig = require('lspconfig')
-            for _, lsp in ipairs(servers) do
-                if lsp.setup then
-                    lspconfig[lsp.name].setup(lsp.setup)
-                else
-                    lspconfig[lsp.name].setup {}
+            for name, config in pairs(servers) do
+                if config then
+                    vim.lsp.config(name, config)
                 end
+                vim.lsp.enable(name)
             end
         end,
     },

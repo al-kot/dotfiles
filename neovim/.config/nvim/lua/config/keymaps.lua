@@ -139,7 +139,7 @@ map("n", "<leader>md", ":MoltenDelete<CR>")
 
 -- quarto
 local runner = require('quarto.runner')
-map("n", "<leader>r", runner.run_cell, { desc = "run cell", silent = true })
+map("n", "<leader><cr>", runner.run_cell, { desc = "run cell", silent = true })
 map("n", "<leader>ra", runner.run_all, { desc = "run all cells", silent = true })
 map("n", "<leader>rl", runner.run_line, { desc = "run line", silent = true })
 map("v", "<leader>r", runner.run_range, { desc = "run visual range", silent = true })

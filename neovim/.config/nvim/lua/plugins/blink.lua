@@ -23,6 +23,10 @@ return {
                 default = { 'lsp', 'path', 'snippets', 'buffer' },
             },
 
+            cmdline = {
+                enabled = true,
+            },
+
             fuzzy = { implementation = "prefer_rust_with_warning" }
         },
         opts_extend = { "sources.default" }

@@ -22,7 +22,7 @@ color0F="#d65d0e"
 
 export FZF_DEFAULT_OPTS="--color=bg+:$color01,bg:-1,spinner:$color0C,hl:$color0D \
                         --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C \
-                        --color=fg+:$color06,prompt:$color0A,hl+:$color0D \
+                        --color=fg+:$color06,prompt:$color0A,hl+:$color0D,gutter:-1 \
                         --padding=\"1\" \
                         --prompt=\"> \" \
                         --marker=\">\" \
@@ -30,7 +30,7 @@ export FZF_DEFAULT_OPTS="--color=bg+:$color01,bg:-1,spinner:$color0C,hl:$color0D
                         --scrollbar=\"│\" \
                         --layout=\"reverse\" \
                         --info=\"right\" \
-                        --border \
+                        --border=none \
                         --height 50%"
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
