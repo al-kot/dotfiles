@@ -94,6 +94,9 @@ jupyinit() {
 }
 
 # === env vars ===
+export PATH=$HOME/.local/bin:$PATH
+reset_cursor.sh
+
 case `uname` in
     Darwin)
         export PATH=/usr/local/bin:$PATH
@@ -134,7 +137,17 @@ eval "$(fzf --zsh)"
 
 # === aliases ===
 
-alias vim="nvim"
+# alias vim="nvim; reset_cursor.sh"
+#
+
+if alias vim >/dev/null 2>&1; then
+    unalias vim
+fi
+vim() {
+    nvim "$@"
+    reset_cursor.sh
+}
+
 alias vi="nvim"
 alias cim="nvim"
 

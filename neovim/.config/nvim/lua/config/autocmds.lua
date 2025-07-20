@@ -53,3 +53,10 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         end
     end,
 })
+
+-- vim.api.nvim_create_autocmd("VimLeave", {
+--     pattern = { "*" },
+--     callback = function ()
+--         vim.cmd("!reset_cursor.sh")
+--     end
+-- })
