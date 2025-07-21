@@ -86,7 +86,7 @@ return {
                     move = {
                         enable = true,
                         set_jumps = false, -- you can change this if you want.
-                        goto_next_start = {
+                        goto_next_end = {
                             --- ... other keymaps
                             [")"] = { query = "@code_cell.inner", desc = "next code block" },
                         },
