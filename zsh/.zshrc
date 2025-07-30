@@ -137,17 +137,7 @@ eval "$(fzf --zsh)"
 
 # === aliases ===
 
-# alias vim="nvim; reset_cursor.sh"
-#
-
-if alias vim >/dev/null 2>&1; then
-    unalias vim
-fi
-vim() {
-    nvim "$@"
-    reset_cursor.sh
-}
-
+alias vim="nvim"
 alias vi="nvim"
 alias cim="nvim"
 

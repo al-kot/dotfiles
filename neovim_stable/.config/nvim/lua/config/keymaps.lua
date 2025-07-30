@@ -2,6 +2,7 @@ local vim = vim
 local map = vim.keymap.set
 local del = vim.keymap.del
 
+
 map('n', '<leader>h', ':noh<CR>', { silent = true })
 
 map("v", "N", ":m '>+1<CR>gv=gv")
@@ -16,14 +17,14 @@ map("n", "<leader>so", ":source ~/.config/nvim/init.lua<CR>", { silent = true })
 
 map('n', '<leader>d', vim.diagnostic.open_float)
 
-map('n', '<C-h>', require('smart-splits').move_cursor_left)
-map('n', '<C-n>', require('smart-splits').move_cursor_down)
-map('n', '<C-e>', require('smart-splits').move_cursor_up)
-map('n', '<C-i>', require('smart-splits').move_cursor_right)
-map('n', '<C-S-h>', require('smart-splits').resize_left)
-map('n', '<C-S-n>', require('smart-splits').resize_down)
-map('n', '<C-S-e>', require('smart-splits').resize_up)
-map('n', '<C-S-i>', require('smart-splits').resize_right)
+map('n', '<M-h>', require('smart-splits').move_cursor_left)
+map('n', '<M-n>', require('smart-splits').move_cursor_down)
+map('n', '<M-e>', require('smart-splits').move_cursor_up)
+map('n', '<M-i>', require('smart-splits').move_cursor_right)
+map('n', '<C-h>', require('smart-splits').resize_left)
+map('n', '<C-n>', require('smart-splits').resize_down)
+map('n', '<C-e>', require('smart-splits').resize_up)
+map('n', '<C-i>', require('smart-splits').resize_right)
 
 -- telescope
 local telescope_builtin = require('telescope.builtin')
@@ -132,14 +133,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 map("n", "<leader>me", ":MoltenEvaluateOperator<CR>")
 map("n", "<leader>rr", ":MoltenReevaluateCell<CR>")
 map("v", "<leader>mr", ":<C-u>MoltenEvaluateVisual<CR>gv")
-map("n", "<leader>os", ":noautocmd MoltenEnterOutput<CR>:noautocmd MoltenEnterOutput<CR>")
+map("n", "<leader>os", ":noautocmd MoltenEnterOutput<CR>")
 map("n", "<leader>oh", ":MoltenHideOutput<CR>")
 map("n", "<leader>ob", ":MoltenOpenInBrowser<CR>")
 map("n", "<leader>md", ":MoltenDelete<CR>")
 
 -- quarto
 local runner = require('quarto.runner')
-map("n", "<leader><cr>", runner.run_cell, { desc = "run cell", silent = true })
+map("n", "<leader>r", runner.run_cell, { desc = "run cell", silent = true })
 map("n", "<leader>ra", runner.run_all, { desc = "run all cells", silent = true })
 map("n", "<leader>rl", runner.run_line, { desc = "run line", silent = true })
 map("v", "<leader>r", runner.run_range, { desc = "run visual range", silent = true })
@@ -194,3 +195,6 @@ vim.keymap.set("n", "<leader>bn", function()
     vim.api.nvim_buf_set_lines(bufnr, insert_line, insert_line, true, lines)
     vim.api.nvim_win_set_cursor(0, { insert_line + 2, 0 })
 end, { desc = "Smart insert markdown code block (Tree-sitter)" })
+
+-- kulala
+map({ 'n', 'v' }, "<leader>rs", function() require("kulala").run() end)

@@ -1,99 +1,49 @@
-local vim = vim
+local utils = require('utils')
 
-print(io.popen('which python3'):read('*a'):gsub('[\n\r]', ''))
 local gs = {
-    mapleader = " ",
-    maplocalleader = "\\",
-    autoformat = true,
-    markdown_recommended_style = 0,
-    root_spec = { "lsp", { ".git", "lua" }, "cwd" },
+    mapleader = ' ',
     python3_host_prog = io.popen('which python3'):read('*a'):gsub('[\n\r]', ''),
 }
-for key, value in pairs(gs) do
-    vim.g[key] = value
-end
-
-require("config.lazy")
-require("config.autocmds")
-require("config.commands")
+utils.fill_table(vim.g, gs)
 
 local opts = {
-    tabstop = 4,
-    shiftwidth = 4,
-    smartindent = true,
-    clipboard = "unnamedplus",
-    completeopt = "menu,menuone,noselect",
-    conceallevel = 3,
-    confirm = true,
-    cursorline = true,
-    expandtab = true,
-    formatoptions = "jcroqlnt",
-    grepformat = "%f:%l:%c:%m",
-    grepprg = "rg --vimgrep",
-    ignorecase = true,
-    inccommand = "nosplit",
-    laststatus = 3,
-    list = true,
-    mouse = "a",
     number = true,
     relativenumber = true,
-    scrolloff = 2,
-    shiftround = true,
-    showmode = false,
-    sidescrolloff = 8,
-    signcolumn = "no",
-    smartcase = true,
-    spelllang = { "en" },
-    splitbelow = true,
-    splitright = true,
+    tabstop = 4,
+    shiftwidth = 4,
+    swapfile = false,
+    mouse = 'a',
+    expandtab = true,
+    autoindent = true,
+    background = 'dark',
+    cursorline = true,
+    wrap = false,
+    signcolumn = 'yes',
+    winborder = 'rounded',
+    pumblend = 10,
+    autoread = true,
+    completeopt = 'noselect,menuone,popup,fuzzy,preview',
     termguicolors = true,
-    timeoutlen = 300,
     undofile = true,
-    undolevels = 10000,
-    updatetime = 200,
-    virtualedit = "block",
-    wildmode = "longest:full,full",
-    winminwidth = 5,
-    wrap = true,
-    fillchars = {
-        foldopen = "",
-        foldclose = "",
-        fold = "⸱",
-        foldsep = " ",
-        diff = "╱",
-        eob = " ",
-    }
 }
-vim.opt.shortmess:append({ a = true, I = true, c = true, C = true })
-for key, value in pairs(opts) do
-    vim.opt[key] = value
-end
+utils.fill_table(vim.o, opts)
+vim.opt.path:append('**')
+vim.opt.clipboard:append('unnamedplus')
 
-vim.diagnostic.config({
-    virtual_text = {
-        source = "if_many",
-        prefix = '',
-    },
-    update_in_insert = true,
-    underline = true,
-    severity_sort = true,
-    float = {
-        focusable = false,
-        style = 'minimal',
-        border = 'rounded',
-        source = 'if_many',
-        header = '',
-        prefix = '',
-    },
-})
-
-vim.filetype.add({
-    pattern = {
-        [".*/hypr/.*%.conf"] = "hyprlang",
-        [".*.rasi"] = "rasi",
-    },
+utils.add_keybinds({
+    { 'n', '<leader>o', ':update<CR>:so<CR>',                           { silent = true } },
+    { "v", "N",         ":m '>+1<CR>gv=gv" },
+    { "v", "E",         ":m '<-2<CR>gv=gv" },
+    { "n", "<C-d>",     '<C-d>zz' },
+    { "n", "<C-u>",     '<C-u>zz' },
+    { "x", "p",         '"_dP' },
+    { "i", "<C-c>",     "<Esc>" },
+    { "n", "<leader>k", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>]] },
+    { 'n', '<leader>d', vim.diagnostic.open_float },
 })
 
 
-vim.cmd.colorscheme('gruvbox')
-require('config.keymaps')
+require('plugins')
+require('lsp')
+require('statusline')
+require('autocmds')

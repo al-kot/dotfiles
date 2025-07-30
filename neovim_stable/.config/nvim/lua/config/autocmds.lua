@@ -1,8 +1,3 @@
--- Autocmds are automatically loaded on the VeryLazy event
--- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
--- Add any additional autocmds here
-local vim = vim
-
 vim.api.nvim_create_autocmd('TextYankPost', {
     group = vim.api.nvim_create_augroup('highlight_yank', {}),
     pattern = '*',
@@ -38,6 +33,19 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     end
 })
 
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+    callback = function()
+        vim.cmd([[:set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50]])
+        -- print('hello')
+    end
+})
+vim.keymap.set('n', '<C-z>', ':set guicursor=a:ver25<CR><C-z>:set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50<CR>')
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+    callback = function()
+        vim.cmd([[:set guicursor=a:ver25]])
+        -- print('hello')
+    end
+})
 -- automatically import output chunks from a jupyter notebook
 vim.api.nvim_create_autocmd("BufAdd", {
     pattern = { "*.ipynb" },
@@ -53,10 +61,3 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         end
     end,
 })
-
--- vim.api.nvim_create_autocmd("VimLeave", {
---     pattern = { "*" },
---     callback = function ()
---         vim.cmd("!reset_cursor.sh")
---     end
--- })
