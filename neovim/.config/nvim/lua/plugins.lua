@@ -144,10 +144,10 @@ require('leap').opts.safe_labels = 'nehmluotsdfw'
 
 local splits = require('smart-splits')
 utils.add_keybinds({
-    { 'n', '<M-h>', splits.move_cursor_left },
-    { 'n', '<M-n>', splits.move_cursor_down },
-    { 'n', '<M-e>', splits.move_cursor_up },
-    { 'n', '<M-i>', splits.move_cursor_right },
+    { 'n', '<A-h>', splits.move_cursor_left },
+    { 'n', '<A-n>', splits.move_cursor_down },
+    { 'n', '<A-e>', splits.move_cursor_up },
+    { 'n', '<A-i>', splits.move_cursor_right },
     { 'n', '<C-h>', splits.resize_left },
     { 'n', '<C-n>', splits.resize_down },
     { 'n', '<C-e>', splits.resize_up },
