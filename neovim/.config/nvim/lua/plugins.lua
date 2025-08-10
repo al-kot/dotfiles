@@ -12,6 +12,7 @@ vim.pack.add({
     'https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git',
     'https://github.com/rafamadriz/friendly-snippets.git',
     { src = 'https://github.com/Saghen/blink.cmp.git', version = vim.version.range('1.*') },
+
     -- jupyter
     'https://github.com/GCBallesteros/jupytext.nvim.git',
     'https://github.com/jmbuhr/otter.nvim.git',
@@ -33,6 +34,7 @@ require('gruvbox').setup({
 })
 vim.cmd("colorscheme gruvbox")
 vim.cmd(":hi statusline guibg=NONE")
+
 
 
 require('oil').setup({
@@ -59,6 +61,9 @@ require('snacks').setup({
             inline = false,
             max_width = 150,
             max_height = 150,
+        },
+        math = {
+            enabled = false,
         },
     },
     picker = {
