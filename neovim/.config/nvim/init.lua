@@ -29,6 +29,7 @@ local opts = {
 }
 utils.fill_table(vim.o, opts)
 vim.opt.path:append('**')
+vim.opt.fillchars = { eob = ' ' }
 vim.opt.clipboard:append('unnamedplus')
 
 utils.add_keybinds({
@@ -48,8 +49,4 @@ require('plugins')
 require('lsp')
 require('statusline')
 require('autocmds')
-require('typst-preview')
 
-utils.add_keybinds({
-    { 'n', '<leader>s', require('typst-preview').compile_and_render },
-})
