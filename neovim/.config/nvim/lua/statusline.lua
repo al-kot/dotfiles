@@ -4,6 +4,7 @@ utils.set_hl({
     { "StatusLineNormalMode", { bold = true, fg = '#83a598', bg = 'none' } },
     { "StatusLineVisualMode", { bold = true, fg = '#d3869b', bg = 'none' } },
     { "StatusLineInsertMode", { bold = true, fg = '#8ec07c', bg = 'none' } },
+    { "StatusLineNC", { bold = true, fg = '#83a598', bg = 'none' } },
 
     { "StatusLineGitBranch",  { fg = '#83a598', bg = 'none' } },
     { "StatusLineFileName",   { fg = '#fe8019', bg = 'none' } },

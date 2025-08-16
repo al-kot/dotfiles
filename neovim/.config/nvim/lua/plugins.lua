@@ -19,6 +19,8 @@ vim.pack.add({
     'https://github.com/quarto-dev/quarto-nvim.git',
     'https://github.com/MeanderingProgrammer/render-markdown.nvim.git',
     'https://github.com/aleshasuqa/molten-nvim.git',
+
+    'https://github.com/3rd/image.nvim.git',
 })
 
 
