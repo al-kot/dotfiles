@@ -97,3 +97,69 @@ vim.filetype.add({
 
 vim.cmd.colorscheme('gruvbox')
 require('config.keymaps')
+
+local function add_keybinds(binds)
+    for _, bind in ipairs(binds) do
+        if #bind == 4 then
+            vim.keymap.set(bind[1], bind[2], bind[3], bind[4])
+        else
+            vim.keymap.set(bind[1], bind[2], bind[3])
+        end
+    end
+end
+
+local typst = require('typst-preview')
+add_keybinds({
+    {
+        "n",
+        "<leader>tn",
+        function()
+            typst.next_page()
+        end,
+    },
+    {
+        "n",
+        "<leader>te",
+        function()
+            typst.prev_page()
+        end,
+    },
+    {
+        "n",
+        "<leader>tgg",
+        function()
+            typst.first_page()
+        end,
+    },
+    {
+        "n",
+        "<leader>tG",
+        function()
+            typst.last_page()
+        end,
+    },
+    -- { 'n', '<leader>tr',  compile_and_render },
+    -- { 'n', '<leader>tc',  clear_preview },
+    {
+        "n",
+        "<leader>td",
+        function()
+            typst.stop()
+        end,
+    },
+    {
+        "n",
+        "<leader>to",
+        function()
+            typst.start()
+        end,
+    },
+    {
+        "n",
+        "<leader>tr",
+        function()
+            typst.refresh()
+        end,
+    },
+})
+

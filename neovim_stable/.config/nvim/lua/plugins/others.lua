@@ -73,4 +73,12 @@ return {
             }
         },
     },
+    {
+        'aleshasuqa/typst-preview.nvim',
+        opts = {
+            preview = {
+                position = 'left'
+            }
+        }
+    },
 }

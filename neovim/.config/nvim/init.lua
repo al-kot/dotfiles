@@ -1,8 +1,8 @@
-local utils = require('utils')
+local utils = require("utils")
 
 local gs = {
-    mapleader = ' ',
-    python3_host_prog = io.popen('which python3'):read('*a'):gsub('[\n\r]', ''),
+    mapleader = " ",
+    python3_host_prog = io.popen("which python3"):read("*a"):gsub("[\n\r]", ""),
 }
 utils.fill_table(vim.g, gs)
 
@@ -12,63 +12,104 @@ local opts = {
     tabstop = 4,
     shiftwidth = 4,
     swapfile = false,
-    mouse = 'a',
+    mouse = "a",
     expandtab = true,
     autoindent = true,
-    background = 'dark',
+    background = "dark",
     cursorline = true,
     wrap = false,
-    signcolumn = 'yes',
-    winborder = 'rounded',
+    signcolumn = "yes",
+    winborder = "rounded",
     pumblend = 10,
     autoread = true,
-    completeopt = 'noselect,menuone,popup,fuzzy,preview',
+    completeopt = "noselect,menuone,popup,fuzzy,preview",
     termguicolors = true,
     undofile = true,
     splitright = true,
 }
 utils.fill_table(vim.o, opts)
-vim.opt.path:append('**')
-vim.opt.fillchars = { eob = ' ' }
-vim.opt.clipboard:append('unnamedplus')
+vim.opt.path:append("**")
+vim.opt.fillchars = { eob = " " }
+vim.opt.clipboard:append("unnamedplus")
 
 utils.add_keybinds({
-    { 'n', '<leader>o', ':update<CR>:so<CR>',                           { silent = true } },
-    { "v", "N",         ":m '>+1<CR>gv=gv" },
-    { "v", "E",         ":m '<-2<CR>gv=gv" },
-    { "n", "<C-d>",     '<C-d>zz' },
-    { "n", "<C-u>",     '<C-u>zz' },
-    { "x", "p",         '"_dP' },
-    { "i", "<C-c>",     "<Esc>" },
+    { "n", "<leader>o", ":update<CR>:so<CR>", { silent = true } },
+    { "v", "N", ":m '>+1<CR>gv=gv" },
+    { "v", "E", ":m '<-2<CR>gv=gv" },
+    { "n", "<C-d>", "<C-d>zz" },
+    { "n", "<C-u>", "<C-u>zz" },
+    { "x", "p", '"_dP' },
+    { "i", "<C-c>", "<Esc>" },
     { "n", "<leader>k", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>]] },
-    { 'n', '<leader>d', vim.diagnostic.open_float },
+    { "n", "<leader>d", vim.diagnostic.open_float },
 })
 
-
-require('plugins')
-require('lsp')
-require('statusline')
-require('autocmds')
+require("plugins")
+require("lsp")
+require("statusline")
+require("autocmds")
 
 vim.pack.add({
-    'https://github.com/aleshasuqa/typst-preview.nvim.git',
+    "https://github.com/al-kot/typst-preview.nvim.git",
 })
 
-local typst = require('typst-preview')
+local typst = require("typst-preview")
 typst.setup({
     preview = {
-        position = 'right',
-        ppi = 120,
-    }
+        position = "right",
+        ppi = 196,
+    },
 })
 utils.add_keybinds({
-    { 'n', '<leader>tn',  function() typst.next_page() end },
-    { 'n', '<leader>te',  function() typst.prev_page() end },
-    { 'n', '<leader>tgg', function() typst.first_page() end },
-    { 'n', '<leader>tG',  function() typst.last_page() end },
+    {
+        "n",
+        "<leader>tn",
+        function()
+            typst.next_page()
+        end,
+    },
+    {
+        "n",
+        "<leader>te",
+        function()
+            typst.prev_page()
+        end,
+    },
+    {
+        "n",
+        "<leader>tgg",
+        function()
+            typst.first_page()
+        end,
+    },
+    {
+        "n",
+        "<leader>tG",
+        function()
+            typst.last_page()
+        end,
+    },
     -- { 'n', '<leader>tr',  compile_and_render },
     -- { 'n', '<leader>tc',  clear_preview },
-    { 'n', '<leader>td', function() typst.stop() end },
-    { 'n', '<leader>to', function() typst.start() end },
-    { 'n', '<leader>tr', function() typst.refresh() end },
+    {
+        "n",
+        "<leader>td",
+        function()
+            typst.stop()
+        end,
+    },
+    {
+        "n",
+        "<leader>to",
+        function()
+            typst.start()
+        end,
+    },
+    {
+        "n",
+        "<leader>tr",
+        function()
+            typst.refresh()
+        end,
+    },
 })
