@@ -89,6 +89,14 @@ vnva311() {
     source "$HOME/.virtualenvs/$name/bin/activate"
 }
 
+m() {
+    make DIR=$1
+    ./$1/a.out
+}
+mc() {
+    make clean DIR=$1
+}
+
 jupyinit() {
     pip install pynvim jupyter_client cairosvg plotly kaleido pnglatex pyperclip
 }

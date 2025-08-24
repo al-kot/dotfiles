@@ -10,6 +10,7 @@ require("conform").setup({
         python = { "isort", "black" },
         rust = { "rustfmt", lsp_format = "fallback" },
         javascript = { "prettierd", "prettier", stop_after_first = true },
+        c = { "clangd" },
     },
 })
 
@@ -80,6 +81,27 @@ local servers = {
                     useLibraryCodeForTypes = true,
                 },
             },
+        },
+    },
+    ["clangd"] = {
+        cmd = { "clangd" },
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+        root_markers = {
+            ".clangd",
+            ".clang-tidy",
+            ".clang-format",
+            "compile_commands.json",
+            "compile_flags.txt",
+            "configure.ac", -- AutoTools
+            ".git",
+        },
+        capabilities = {
+            textDocument = {
+                completion = {
+                    editsNearCursor = true,
+                },
+            },
+            offsetEncoding = { "utf-8", "utf-16" },
         },
     },
 }

@@ -124,6 +124,7 @@ require("blink.cmp").setup({
 require("nvim-treesitter.configs").setup({
     ensure_installed = {
         "c",
+        "cpp",
         "lua",
         "vim",
         "vimdoc",
@@ -227,6 +228,34 @@ utils.add_keybinds({
 
 require("render-markdown").setup({
     render_modes = true,
+    overrides = {
+        buftype = {
+            nofile = {
+                enabled = true,
+                heading = {
+                    -- enabled = false,
+                    width = "block",
+                    border = false,
+                    border_virtual = false,
+                    left_pad = 0,
+                    right_pad = 0,
+                    left_margin = 0,
+                    position = "inline",
+                    icons = { "" },
+                    sign = false,
+                    min_width = 0,
+                    backgrounds = false,
+                },
+                code = {
+                    disable_background = true,
+                    highlight_inline = "RenderMarkdownCodeInlineNoFile",
+                    language = false,
+                    style = "normal",
+                    border = "hide",
+                },
+            },
+        },
+    },
     code = {
         style = "normal",
         border = "thick",
@@ -245,6 +274,7 @@ require("render-markdown").setup({
 })
 utils.set_hl({
     { "RenderMarkdownCode", { bg = "#282828" } },
+    { "RenderMarkdownCodeInLineNoFile", { bg = "none", fg = "#d65d0e" } },
     { "RenderMarkdownH1Bg", { bg = "#458588", fg = "#282828" } },
     { "RenderMarkdownH2Bg", { bg = "#689d6a", fg = "#282828" } },
     { "RenderMarkdownH3Bg", { bg = "#98971a", fg = "#282828" } },
