@@ -100,24 +100,22 @@ utils.add_keybinds({
 
 require("blink.cmp").setup({
     keymap = { preset = "default" },
-
     appearance = {
         nerd_font_variant = "mono",
     },
-
     completion = {
         menu = { border = "rounded", winhighlight = "Pmenu:BlinkCmpMenu" },
         documentation = { auto_show = true, window = { border = "rounded" } },
     },
-
     sources = {
         default = { "lsp", "path", "snippets", "buffer" },
     },
-
     cmdline = {
         enabled = true,
     },
-
+    signature = {
+        enabled = true,
+    },
     fuzzy = { implementation = "prefer_rust" },
 })
 
@@ -223,6 +221,7 @@ utils.add_keybinds({
     { "n", "<leader><CR>", runner.run_cell, { desc = "run cell", silent = true } },
     { "n", "<leader>ra", runner.run_all, { desc = "run all cells", silent = true } },
     { "n", "<leader>rl", runner.run_line, { desc = "run line", silent = true } },
+    { "n", "<leader>r", runner.run_cell, { desc = "run visual range", silent = true } },
     { "v", "<leader>r", runner.run_range, { desc = "run visual range", silent = true } },
 })
 
@@ -300,8 +299,8 @@ utils.set_hl({
 local imb = function()
     vim.schedule(function()
         local kernels = vim.fn.MoltenAvailableKernels()
-        if vim.tbl_contains(kernels, "venv") then
-            vim.cmd("MoltenInit venv")
+        if vim.tbl_contains(kernels, "python311") then
+            vim.cmd("MoltenInit python311")
             vim.cmd("MoltenImportOutput")
         end
     end)
@@ -326,3 +325,42 @@ vim.api.nvim_create_autocmd("BufWritePost", {
         if require("molten.status").initialized() == "Molten" then vim.cmd("MoltenExportOutput!") end
     end,
 })
+
+vim.pack.add({ "https://github.com/al-kot/typst-preview.nvim.git" })
+local typst = require("typst-preview")
+typst.setup({
+    preview = {
+        position = "right",
+        ppi = 196,
+    },
+})
+-- stylua: ignore
+utils.add_keybinds({
+    { "n", "<leader>tn", function() typst.next_page() end, },
+    { "n", "<leader>te", function() typst.prev_page() end, },
+    { "n", "<leader>tgg", function() typst.first_page() end, },
+    { "n", "<leader>tG", function() typst.last_page() end, },
+    { "n", "<leader>td", function() typst.stop() end, },
+    { "n", "<leader>to", function() typst.start() end, },
+    { "n", "<leader>tr", function() typst.refresh() end, },
+})
+
+vim.pack.add({
+    "https://github.com/nvim-lua/plenary.nvim.git",
+    { src = "https://github.com/ThePrimeagen/harpoon.git", version = "harpoon2" }
+})
+local harpoon = require("harpoon")
+harpoon:setup()
+-- stylua: ignore
+utils.add_keybinds({
+    {"n", "<leader>a", function() harpoon:list():add() end},
+    {"n", "<leader>m", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end},
+    {"n", "<leader>mn", function() harpoon:list():prev() end},
+    {"n", "<leader>mp", function() harpoon:list():next() end},
+})
+-- stylua: ignore
+for i = 1, 9 do
+    utils.add_keybinds({
+        {"n", "<leader>" .. i, function() harpoon:list():select(i) end},
+    })
+end

@@ -11,6 +11,7 @@ require("conform").setup({
         rust = { "rustfmt", lsp_format = "fallback" },
         javascript = { "prettierd", "prettier", stop_after_first = true },
         c = { "clangd" },
+        typst = { "typstyle" },
     },
 })
 
@@ -104,6 +105,12 @@ local servers = {
             offsetEncoding = { "utf-8", "utf-16" },
         },
     },
+    ["tinymist"] = {
+        cmd = { "tinymist" },
+        filetypes = { "typst" },
+        -- settings = {
+        -- },
+    },
 }
 
 for name, config in pairs(servers) do
@@ -136,7 +143,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             },
             { { "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opt },
             { "n", "<leader>D", vim.lsp.buf.type_definition, opt },
-            { "n", "<leader>rn", vim.lsp.buf.rename, opt },
+            -- { "n", "<leader>rn", vim.lsp.buf.rename, opt },
             -- { 'n',          '<leader>f',  vim.lsp.buf.format,                                 opt },
             { { "n", "v" }, "<space>va", vim.lsp.buf.code_action, opt },
             {
