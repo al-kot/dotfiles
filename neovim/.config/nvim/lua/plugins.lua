@@ -54,12 +54,12 @@ require("snacks").setup({
         enabled = true,
         doc = {
             enabled = true,
-            inline = false,
-            max_width = 150,
-            max_height = 150,
+            inline = true,
+            max_width = 100,
+            max_height = 100,
         },
         math = {
-            enabled = false,
+            enabled = true,
         },
     },
     picker = {
@@ -132,8 +132,7 @@ require("nvim-treesitter.configs").setup({
         "css",
         "rust",
         "python",
-        "apex",
-        "soql",
+        "latex",
     },
     sync_install = false,
     highlight = { enable = true },
@@ -347,7 +346,7 @@ utils.add_keybinds({
 
 vim.pack.add({
     "https://github.com/nvim-lua/plenary.nvim.git",
-    { src = "https://github.com/ThePrimeagen/harpoon.git", version = "harpoon2" }
+    { src = "https://github.com/ThePrimeagen/harpoon.git", version = "harpoon2" },
 })
 local harpoon = require("harpoon")
 harpoon:setup()

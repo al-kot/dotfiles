@@ -85,7 +85,7 @@ local servers = {
         },
     },
     ["clangd"] = {
-        cmd = { "clangd" },
+        cmd = { "clangd", "--background-index", "--clang-tidy", "--log=verbose", "--enable-config" },
         filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
         root_markers = {
             ".clangd",

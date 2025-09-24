@@ -108,9 +108,12 @@ reset_cursor.sh
 case `uname` in
     Darwin)
         export PATH=/usr/local/bin:$PATH
-        export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+        export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+        export LDLIBS="-L/opt/homebrew/lib"
         export LIBRARY_PATH="/opt/homebrew/lib" 
-        export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+        export CPPFLAGS="-I/opt/homebrew/opt/llvm/include -I/opt/homebrew/include"
+        # export CFLAGS="-I/opt/homebrew/include"
+        export CPATH="/opt/homebrew/include"
         ;;
     Linux)
         ;;

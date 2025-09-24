@@ -102,6 +102,9 @@ return {
                     max_height = 150,
                 },
             },
+            math = {
+                enabled = true,
+            },
         },
     },
     {
