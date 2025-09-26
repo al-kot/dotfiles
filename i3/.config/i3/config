@@ -1,0 +1,213 @@
+font pango: Mononoki Nerd Font Regular 10
+
+# set the mod key to the winkey:
+set $mod Mod1
+
+#####################
+# workspace layout: #
+#####################
+
+# default i3 tiling mode:
+workspace_layout default
+
+##############################
+# extra options for windows: #
+##############################
+
+#border indicator on windows:
+new_window pixel 1
+
+# Set inner/outer gaps
+gaps inner 2
+gaps outer 2
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# switch/iterate between workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# switch to workspace
+bindsym $mod+1    workspace  $ws1
+bindsym $mod+2    workspace  $ws2
+bindsym $mod+3    workspace  $ws3
+bindsym $mod+f    workspace  $ws4
+bindsym $mod+d    workspace  $ws5
+bindsym $mod+s    workspace  $ws6
+
+# move focused container to workspace
+bindsym $mod+Shift+1    move container to workspace  $ws1
+bindsym $mod+Shift+2    move container to workspace  $ws2
+bindsym $mod+Shift+3    move container to workspace  $ws3
+bindsym $mod+Shift+f    move container to workspace  $ws4
+bindsym $mod+Shift+d    move container to workspace  $ws5
+bindsym $mod+Shift+s    move container to workspace  $ws6
+
+# resize window (you can also use the mouse for that):
+mode "resize" {
+       bindsym h resize shrink width 10 px or 10 ppt
+       bindsym j resize grow height 10 px or 10 ppt
+       bindsym k resize shrink height 10 px or 10 ppt
+       bindsym l resize grow width 10 px or 10 ppt
+       bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+######################################
+# keybindings for different actions: #
+######################################
+
+# start a terminal
+bindsym $mod+Return exec --no-startup-id wezterm
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# exit-menu
+bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/powermenu
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to update i3)
+bindsym $mod+Shift+r restart
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# enter fullscreen mode for the focused container
+bindsym $mod+m fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+g layout tabbed
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# open new empty workspace
+bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/scripts/empty_workspace
+
+# gradular volume control
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
+# Redirect sound to headphones
+bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
+
+## App shortcuts
+bindsym $mod+w exec --no-startup-id /usr/bin/firefox
+bindsym $mod+n exec --no-startup-id /usr/bin/thunar
+bindsym Print exec --no-startup-id scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
+
+##########################################
+# configuration for workspace behaviour: #
+##########################################
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4:f"
+set $ws5 "5:d"
+set $ws6 "6:s"
+
+# bind program to workspace and focus to them on startup:
+assign [class="Xfce4-terminal"] $ws1
+assign [class="(?i)firefox"] $ws2
+assign [class="Thunar"] $ws3
+assign [class="thunderbird"] $ws4
+assign [class="TelegramDesktop"] $ws5
+
+# automatic set focus new window if it opens on another workspace than the current:
+for_window [class=Xfce4-terminal] focus
+for_window [class=kitty] focus
+for_window [class=(?i)firefox] focus
+for_window [class=Thunar] focus
+for_window [class=Thunderbird] focus
+for_window [class=TelegramDesktop] focus
+
+##############
+# compositor #
+##############
+
+exec_always --no-startup-id picom -b
+
+#############################################
+# autostart applications/services on login: #
+#############################################
+exec --no-startup-id dex --autostart --environment i3
+
+exec_always --no-startup-id sleep 1 && feh --bg-fill $HOME/dotfiles/wallpaper/green.jpg
+
+exec --no-startup-id xset s 480 dpms 600 600 600
+
+##################
+# floating rules #
+##################
+
+# set floating (nontiling) for apps needing it
+# for_window [class="Yad" instance="yad"] floating enable
+
+######################################
+# color settings for bar and windows #
+######################################
+
+set $color0 #0d0c0c
+set $color1 #c4746e
+set $color2 #8a9a7b
+set $color3 #c4b28a
+set $color4 #8ba4b0
+set $color5 #a292a3
+set $color6 #8ea4a2
+set $color7 #C8C093
+set $background #181616
+
+# class                 border  bground text    indicator child_border
+client.focused          $color4 $color4 #FFFFFF $color4   $color4
+client.focused_inactive $00000000 $color5 #FFFFFF $background   $background
+client.unfocused        $00000000 $color5 #FFFFFF $00000000   $backgrounda
+client.urgent           #2F343A #900000 #FFFFFF #900000   #900000
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+
+############################################
+# bar settings (input comes from i3blocks) #
+############################################
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+#####################################
+# Application menu handled by rofi: #
+#####################################
+
+bindsym $mod+e exec --no-startup-id rofi -modi drun -show drun \
+        -config ~/.config/rofi/rofidmenu.rasi
+
+exec i3lock
