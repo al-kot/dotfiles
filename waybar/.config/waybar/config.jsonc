@@ -8,6 +8,7 @@
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
     "modules-right": [
+        "network",
         "memory",
         "disk",
         "cpu",
@@ -34,20 +35,23 @@
     },
 
     "cpu": {
-        "format": "  {usage}%",
+        // "format": "  {usage}%",
+        "format": "{usage}%",
         "tooltip": false,
-        "interval": 5,
-        "min-length": 6
+        "interval": 5
+        // "min-length": 6
     },
 
     "memory": {
-        "format": "  {used:0.2f} GiB",
-        "interval": 5,
-        "min-length": 10
+        // "format": "  {used:0.2f} GiB",
+        "format": "{used:0.2f} GiB",
+        "interval": 5
+        // "min-length": 10
     },
 
     "disk": {
-        "format": "  {specific_free:0.2f} GB",
+        // "format": "  {specific_free:0.2f} GB",
+        "format": "{specific_free:0.2f} GB",
         "interval": 5,
         "unit": "GB"
     },
@@ -55,17 +59,20 @@
     "network": {
         "interface": "enp4s0",
         "family": "ipv4",
-        "format-ethernet": "󰈁 {ifname} {ipaddr}",
-        "format-disconnected": "󰈂  disconected"
+        "format-ethernet": "{ifname} {ipaddr}",
+        "format-disconnected": "disconected"
+        // "format-ethernet": "󰈁 {ifname} {ipaddr}",
+        // "format-disconnected": "󰈂  disconected"
     },
 
     "pulseaudio": {
-        "format": "  {volume}%",
+        // "format": "  {volume}%",
+        "format": "{volume}",
         "format-bluetooth": "  {volume}%",
         "format-muted": "",
         "scroll-step": 1,
         "on-click": "pavucontrol",
-        "ignored-sinks": ["Easy Effects Sink"],
-        "min-length": 7
+        "ignored-sinks": ["Easy Effects Sink"]
+        // "min-length": 7
     }
 }
