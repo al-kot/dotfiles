@@ -22,3 +22,26 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
         -- print('hello')
     end,
 })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*.ipynb",
+    callback = function()
+        local ju_file = vim.fn.expand("%:r") .. ".ju.py"
+        local cmd = { "ipynb2jupytext", vim.fn.expand("%p"), ju_file }
+        vim.system(cmd, function(obj)
+            if obj.code == 0 then
+                vim.schedule(function()
+                    vim.cmd("e " .. ju_file)
+                end)
+            else
+                print("conversion failed")
+            end
+        end)
+    end,
+})
+vim.api.nvim_create_autocmd("VimLeave", {
+    pattern = "*.ju.py",
+    callback = function()
+        vim.system({ "mv", vim.fn.expand("%p"), "/tmp/ju.py.bck" })
+    end,
+})

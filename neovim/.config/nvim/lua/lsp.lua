@@ -80,6 +80,9 @@ local servers = {
                     autoSearchPaths = true,
                     diagnosticMode = "openFilesOnly",
                     useLibraryCodeForTypes = true,
+                    diagnosticSeverityOverrides = {
+                        reportUnusedExpression = "none",
+                    },
                 },
             },
         },
