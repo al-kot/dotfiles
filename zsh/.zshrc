@@ -77,7 +77,7 @@ vnva() {
     [ -d "$HOME/.virtualenvs" ] || mkdir "$HOME/.virtualenvs"
     name="$(ls "$HOME/.virtualenvs" | fzf --print-query | tail -1)"
     [ "$name" = "" ] && return
-    [ -d "$HOME/.virtualenvs/$name" ] || python3 -m venv "$HOME/.virtualenvs/$name"
+    [ -d "$HOME/.virtualenvs/$name" ] || $1 -m venv "$HOME/.virtualenvs/$name"
     source "$HOME/.virtualenvs/$name/bin/activate"
 }
 

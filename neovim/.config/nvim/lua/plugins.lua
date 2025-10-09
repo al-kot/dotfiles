@@ -12,7 +12,6 @@ vim.pack.add({
     "https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git",
     "https://github.com/rafamadriz/friendly-snippets.git",
     { src = "https://github.com/Saghen/blink.cmp.git", version = vim.version.range("1.*") },
-
     "https://github.com/kiyoon/jupynium.nvim.git",
     -- "https://github.com/MeanderingProgrammer/render-markdown.nvim.git",
 })
@@ -20,7 +19,9 @@ vim.pack.add({
 require("jupynium").setup({
     default_notebook_URL = "localhost:8888",
     firefox_profile_name = "default-release",
-    firefox_profiles_ini_path = "~/Library/Application Support/Firefox/profiles.ini",
+    -- firefox_profiles_ini_path = vim.fn.has('macunix') and "~/Library/Application Support/Firefox/profiles.ini" or
+    -- '~/.mozilla/firefox/profiles.ini',
+    firefox_profiles_ini_path = '~/.mozilla/firefox/profiles.ini',
     use_default_keybindings = false,
     textobjects = {
         use_default_keybindings = false,
@@ -81,7 +82,7 @@ utils.add_keybinds({
         "<leader>nr",
         ":JupyniumExecuteSelectedCells<CR>:lua require('jupynium.textobj').goto_next_cell_separator()<CR>",
     },
-    { "n", "<leader>r", ":JupyniumExecuteSelectedCells<CR>" },
+    { "n", "<leader>r",  ":JupyniumExecuteSelectedCells<CR>" },
     { "n", "<leader>na", ":JupyniumStartAndAttachToServer<CR>" },
     { "n", "<leader>ns", ":JupyniumStartSync " },
     { "n", "<leader>nc", "o<CR># %%<CR>" },
@@ -428,13 +429,13 @@ typst.setup({
 })
 -- stylua: ignore
 utils.add_keybinds({
-    { "n", "<leader>tn", function() typst.next_page() end, },
-    { "n", "<leader>te", function() typst.prev_page() end, },
+    { "n", "<leader>tn",  function() typst.next_page() end, },
+    { "n", "<leader>te",  function() typst.prev_page() end, },
     { "n", "<leader>tgg", function() typst.first_page() end, },
-    { "n", "<leader>tG", function() typst.last_page() end, },
-    { "n", "<leader>td", function() typst.stop() end, },
-    { "n", "<leader>to", function() typst.start() end, },
-    { "n", "<leader>tr", function() typst.refresh() end, },
+    { "n", "<leader>tG",  function() typst.last_page() end, },
+    { "n", "<leader>td",  function() typst.stop() end, },
+    { "n", "<leader>to",  function() typst.start() end, },
+    { "n", "<leader>tr",  function() typst.refresh() end, },
 })
 
 vim.pack.add({
@@ -445,12 +446,12 @@ local harpoon = require("harpoon")
 harpoon:setup()
 -- stylua: ignore
 utils.add_keybinds({
-    {"n", "<leader>a", function() harpoon:list():add() end},
-    {"n", "<leader>m", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end},
+    { "n", "<leader>a", function() harpoon:list():add() end },
+    { "n", "<leader>m", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end },
 })
 -- stylua: ignore
 for i = 1, 9 do
     utils.add_keybinds({
-        {"n", "<leader>" .. i, function() harpoon:list():select(i) end},
+        { "n", "<leader>" .. i, function() harpoon:list():select(i) end },
     })
 end
