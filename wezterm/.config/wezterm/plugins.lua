@@ -5,10 +5,10 @@ local M = {}
 
 function M.apply_to_config(config)
     smart_splits.apply_to_config(config, {
-        direction_keys = { 'h', 'n', 'e', 'i' },
+        direction_keys = { 'h', 'j', 'k', 'l' },
         modifiers = {
-            move = 'CTRL',     -- modifier to use for pane movement, e.g. CTRL+h to move left
-            resize = 'SHIFT|CTRL', -- modifier to use for pane resize, e.g. META+h to resize to the left
+            move = 'ALT',     -- modifier to use for pane movement, e.g. CTRL+h to move left
+            resize = 'CTRL', -- modifier to use for pane resize, e.g. META+h to resize to the left
         },
     })
 end

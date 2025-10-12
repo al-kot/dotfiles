@@ -32,20 +32,21 @@ function M.apply_to_config(config)
             end),
         }),
         map('CTRL', 'L', wezterm.action.ShowDebugOverlay),
-        map("SUPER", "v", act.SplitVertical { domain = 'CurrentPaneDomain' }),
-        map("SUPER", "h", act.SplitHorizontal { domain = 'CurrentPaneDomain' }),
+        map("SUPER", "-", act.SplitVertical { domain = 'CurrentPaneDomain' }),
+        map("SUPER", "|", act.SplitHorizontal { domain = 'CurrentPaneDomain' }),
+        map('CTRL|SHIFT', 'c', act.ActivateCopyMode),
 
-        map('CTRL', 'h', act.ActivatePaneDirection 'Left'),
-        map('CTRL', 'i', act.ActivatePaneDirection 'Right'),
-        map('CTRL', 'e', act.ActivatePaneDirection 'Up'),
-        map('CTRL', 'n', act.ActivatePaneDirection 'Down'),
-        map('SHIFT|CTRL', 'h', act.AdjustPaneSize { 'Left', 5 }),
-        map('SHIFT|CTRL', 'i', act.AdjustPaneSize { 'Right', 5 }),
-        map('SHIFT|CTRL', 'e', act.AdjustPaneSize { 'Up', 5 }),
-        map('SHIFT|CTRL', 'n', act.AdjustPaneSize { 'Down', 5 }),
+        map('ALT', 'h', act.ActivatePaneDirection 'Left'),
+        map('ALT', 'l', act.ActivatePaneDirection 'Right'),
+        map('ALT', 'k', act.ActivatePaneDirection 'Up'),
+        map('ALT', 'j', act.ActivatePaneDirection 'Down'),
+        map('CTRL', 'h', act.AdjustPaneSize { 'Left', 5 }),
+        map('CTRL', 'l', act.AdjustPaneSize { 'Right', 5 }),
+        map('CTRL', 'k', act.AdjustPaneSize { 'Up', 5 }),
+        map('CTRL', 'j', act.AdjustPaneSize { 'Down', 5 }),
 
         map('SUPER', 'm', act.TogglePaneZoomState),
-        map('SUPER', 'x', wezterm.action.CloseCurrentPane { confirm = false }),
+        map('SUPER', 'x', act.CloseCurrentPane { confirm = false }),
         map('SUPER', 's', wezterm.action_callback(function(win, pane)
             local workspaces = wezterm.mux.get_workspace_names()
             local choices = {}
@@ -76,7 +77,10 @@ function M.apply_to_config(config)
                 },
                 pane
             )
+
         end)),
+        map('SUPER', 'u', act.ScrollByPage(-0.5)),
+        map('SUPER', 'd', act.ScrollByPage(0.5)),
     }
 end
 
