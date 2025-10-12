@@ -13,15 +13,14 @@ vim.pack.add({
     "https://github.com/rafamadriz/friendly-snippets.git",
     { src = "https://github.com/Saghen/blink.cmp.git", version = vim.version.range("1.*") },
     "https://github.com/kiyoon/jupynium.nvim.git",
-    -- "https://github.com/MeanderingProgrammer/render-markdown.nvim.git",
 })
 
 require("jupynium").setup({
     default_notebook_URL = "localhost:8888",
     firefox_profile_name = "default-release",
-    -- firefox_profiles_ini_path = vim.fn.has('macunix') and "~/Library/Application Support/Firefox/profiles.ini" or
-    -- '~/.mozilla/firefox/profiles.ini',
-    firefox_profiles_ini_path = '~/.mozilla/firefox/profiles.ini',
+    firefox_profiles_ini_path = vim.fn.has('macunix') and "~/Library/Application Support/Firefox/profiles.ini" or
+    '~/.mozilla/firefox/profiles.ini',
+    -- firefox_profiles_ini_path = '~/.mozilla/firefox/profiles.ini',
     use_default_keybindings = false,
     textobjects = {
         use_default_keybindings = false,
@@ -90,18 +89,6 @@ utils.add_keybinds({
 utils.set_hl({
     { "JupyniumMarkdownCellContent", { bg = "none" } },
 })
--- hi! link JupyniumCodeCellSeparator CursorLine
--- hi! link JupyniumMarkdownCellSeparator CursorLine
--- hi! link JupyniumMarkdownCellContent CursorLine
--- hi! link JupyniumMagicCommand Keyword
--- utils.set_hl({
---     { "RenderMarkdownCode", { bg = "#282828" } },
---     { "RenderMarkdownCodeInLineNoFile", { bg = "none", fg = "#d65d0e" } },
---     { "RenderMarkdownH1Bg", { bg = "#458588", fg = "#282828" } },
---     { "RenderMarkdownH2Bg", { bg = "#689d6a", fg = "#282828" } },
---     { "RenderMarkdownH3Bg", { bg = "#98971a", fg = "#282828" } },
---     { "RenderMarkdownH4Bg", { bg = "#b16286", fg = "#282828" } },
---     { "RenderMarkdownH5Bg", { bg = "#458588", fg = "#282828" } },
 
 require("gruvbox").setup({
     transparent_mode = true,
@@ -190,7 +177,6 @@ require("blink.cmp").setup({
         documentation = { auto_show = true, window = { border = "rounded" } },
     },
     sources = {
-        -- default = { "lsp", "path", "snippets", "buffer", "jupynium" },
         default = { "lsp", "path", "snippets", "buffer" },
         providers = {
             jupynium = {
@@ -199,7 +185,6 @@ require("blink.cmp").setup({
                 -- Consider higher priority than LSP
                 score_offset = 100,
             },
-            -- ...
         },
     },
     cmdline = {
@@ -229,27 +214,6 @@ require("nvim-treesitter.configs").setup({
     sync_install = false,
     highlight = { enable = true },
     indent = { enable = true },
-    -- textobjects = {
-    --     move = {
-    --         enable = true,
-    --         set_jumps = false,
-    --         goto_next_end = {
-    --             [")"] = { query = "@code_cell.inner", desc = "next code block" },
-    --         },
-    --         goto_previous_start = {
-    --             ["("] = { query = "@code_cell.inner", desc = "previous code block" },
-    --         },
-    --     },
-    --     select = {
-    --         enable = true,
-    --         lookahead = true,
-    --         keymaps = {
-    --             --- ... other keymaps
-    --             ["ib"] = { query = "@code_cell.inner", desc = "in block" },
-    --             ["ab"] = { query = "@code_cell.outer", desc = "around block" },
-    --         },
-    --     },
-    -- },
 })
 
 require("leap").set_default_mappings()
@@ -277,155 +241,13 @@ require("Comment").setup({
     },
 })
 
--- require("jupytext").setup({
---     style = "percent",
---     output_extension = "ju.py",
--- })
---
--- require("quarto").setup({
---     lspFeatures = {
---         languages = { "python" },
---         chunks = "all",
---         diagnostics = {
---             enabled = true,
---             triggers = { "BufWritePost" },
---         },
---         completion = {
---             enabled = true,
---         },
---     },
---     keymap = {
---         hover = "E",
---         definition = "gd",
---         references = "gr",
---         format = "<leader>gf",
---     },
---     codeRunner = {
---         enabled = true,
---         default_method = "molten",
---     },
--- })
--- local runner = require("quarto.runner")
--- utils.add_keybinds({
---     { "n", "<leader><CR>", runner.run_cell, { desc = "run cell", silent = true } },
---     -- { "n", "<leader>ra", runner.run_all, { desc = "run all cells", silent = true } },
---     -- { "n", "<leader>rl", runner.run_line, { desc = "run line", silent = true } },
---     { "n", "<leader>r", runner.run_cell, { desc = "run visual range", silent = true } },
---     { "v", "<leader>r", runner.run_range, { desc = "run visual range", silent = true } },
--- })
-
--- require("render-markdown").setup({
---     render_modes = true,
---     overrides = {
---         buftype = {
---             nofile = {
---                 enabled = true,
---                 heading = {
---                     -- enabled = false,
---                     width = "block",
---                     border = false,
---                     border_virtual = false,
---                     left_pad = 0,
---                     right_pad = 0,
---                     left_margin = 0,
---                     position = "inline",
---                     icons = { "" },
---                     sign = false,
---                     min_width = 0,
---                     backgrounds = false,
---                 },
---                 code = {
---                     disable_background = true,
---                     highlight_inline = "RenderMarkdownCodeInlineNoFile",
---                     language = false,
---                     style = "normal",
---                     border = "hide",
---                 },
---             },
---         },
---     },
---     code = {
---         style = "normal",
---         border = "thick",
---     },
---     heading = {
---         width = "block",
---         border = true,
---         border_virtual = true,
---         left_pad = 3,
---         right_pad = 3,
---         left_margin = 7,
---         position = "inline",
---         icons = false,
---         min_width = 30,
---     },
--- })
--- utils.set_hl({
---     { "RenderMarkdownCode", { bg = "#282828" } },
---     { "RenderMarkdownCodeInLineNoFile", { bg = "none", fg = "#d65d0e" } },
---     { "RenderMarkdownH1Bg", { bg = "#458588", fg = "#282828" } },
---     { "RenderMarkdownH2Bg", { bg = "#689d6a", fg = "#282828" } },
---     { "RenderMarkdownH3Bg", { bg = "#98971a", fg = "#282828" } },
---     { "RenderMarkdownH4Bg", { bg = "#b16286", fg = "#282828" } },
---     { "RenderMarkdownH5Bg", { bg = "#458588", fg = "#282828" } },
---     { "RenderMarkdownH6Bg", { bg = "#689d6a", fg = "#282828" } },
--- })
-
--- local molten_gs = {
---     molten_image_provider = "snacks.nvim",
---     molten_wrap_output = true,
---     molten_virt_text_max_lines = 999,
---     molten_virt_text_output = true,
---     molten_output_virt_lines = false,
---     molten_virt_lines_off_by_1 = true,
---     molten_auto_open_output = false,
---     molten_output_win_hide_on_leave = false,
--- }
--- utils.fill_table(vim.g, molten_gs)
--- utils.set_hl({
---     { "MoltenCell", { bg = "NONE" } },
--- })
-
--- utils.add_keybinds({
---     { "n", "<leader>so", ":noautocmd MoltenEnterOutput<CR>" },
--- })
--- local imb = function()
---     vim.schedule(function()
---         local kernels = vim.fn.MoltenAvailableKernels()
---         if vim.tbl_contains(kernels, "python311") then
---             vim.cmd("MoltenInit python311")
---             vim.cmd("MoltenImportOutput")
---         end
---     end)
--- end
-
--- vim.api.nvim_create_autocmd({ "BufEnter" }, {
---     pattern = "*.ipynb",
---     callback = function()
---         require("quarto").activate()
---         if vim.api.nvim_get_vvar("vim_did_enter") ~= 1 then imb() end
---     end,
--- })
-
--- vim.api.nvim_create_autocmd("BufAdd", {
---     pattern = { "*.ipynb" },
---     callback = imb,
--- })
-
--- vim.api.nvim_create_autocmd("BufWritePost", {
---     pattern = { "*.ipynb" },
---     callback = function()
---         if require("molten.status").initialized() == "Molten" then vim.cmd("MoltenExportOutput!") end
---     end,
--- })
-
 vim.pack.add({ "https://github.com/al-kot/typst-preview.nvim.git" })
 local typst = require("typst-preview")
 typst.setup({
     preview = {
         position = "right",
-        ppi = 144,
-        max_width = 100,
+        ppi = 96,
+        max_width = 140,
     },
 })
 -- stylua: ignore
