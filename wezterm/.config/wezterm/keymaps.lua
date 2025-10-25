@@ -12,7 +12,7 @@ local function map(mods, key, action)
 end
 
 function M.apply_to_config(config)
-    config.leader = map('CTRL', 'b')
+    config.leader = map('CTRL', 't')
     config.keys = {
         map("SUPER", "r", act.ReloadConfiguration),
         map('SUPER', 'n', act.PromptInputLine {
@@ -31,19 +31,19 @@ function M.apply_to_config(config)
                 end
             end),
         }),
-        map('CTRL', 'L', wezterm.action.ShowDebugOverlay),
-        map("SUPER", "-", act.SplitVertical { domain = 'CurrentPaneDomain' }),
-        map("SUPER", "|", act.SplitHorizontal { domain = 'CurrentPaneDomain' }),
-        map('CTRL|SHIFT', 'c', act.ActivateCopyMode),
+        map('LEADER', 'd', wezterm.action.ShowDebugOverlay),
+        map("LEADER", "v", act.SplitVertical { domain = 'CurrentPaneDomain' }),
+        map("LEADER", "h", act.SplitHorizontal { domain = 'CurrentPaneDomain' }),
+        map('LEADER', 'c', act.ActivateCopyMode),
 
-        map('ALT', 'h', act.ActivatePaneDirection 'Left'),
-        map('ALT', 'l', act.ActivatePaneDirection 'Right'),
-        map('ALT', 'k', act.ActivatePaneDirection 'Up'),
-        map('ALT', 'j', act.ActivatePaneDirection 'Down'),
-        map('CTRL', 'h', act.AdjustPaneSize { 'Left', 5 }),
-        map('CTRL', 'l', act.AdjustPaneSize { 'Right', 5 }),
-        map('CTRL', 'k', act.AdjustPaneSize { 'Up', 5 }),
-        map('CTRL', 'j', act.AdjustPaneSize { 'Down', 5 }),
+        map('CTRL', 'h', act.ActivatePaneDirection 'Left'),
+        map('CTRL', 'l', act.ActivatePaneDirection 'Right'),
+        map('CTRL', 'k', act.ActivatePaneDirection 'Up'),
+        map('CTRL', 'j', act.ActivatePaneDirection 'Down'),
+        map('CTRL|SHIFT', 'h', act.AdjustPaneSize { 'Left', 5 }),
+        map('CTRL|SHIFT', 'l', act.AdjustPaneSize { 'Right', 5 }),
+        map('CTRL|SHIFT', 'k', act.AdjustPaneSize { 'Up', 5 }),
+        map('CTRL|SHIFT', 'j', act.AdjustPaneSize { 'Down', 5 }),
 
         map('SUPER', 'm', act.TogglePaneZoomState),
         map('SUPER', 'x', act.CloseCurrentPane { confirm = false }),

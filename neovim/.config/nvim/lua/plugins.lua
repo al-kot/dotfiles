@@ -222,14 +222,14 @@ require("leap").opts.safe_labels = "nehmluotsdfw"
 
 local splits = require("smart-splits")
 utils.add_keybinds({
-    { "n", "<A-h>", splits.move_cursor_left },
-    { "n", "<A-j>", splits.move_cursor_down },
-    { "n", "<A-k>", splits.move_cursor_up },
-    { "n", "<A-l>", splits.move_cursor_right },
-    { "n", "<C-h>", splits.resize_left },
-    { "n", "<C-j>", splits.resize_down },
-    { "n", "<C-k>", splits.resize_up },
-    { "n", "<C-l>", splits.resize_right },
+    { "n", "<C-h>", splits.move_cursor_left },
+    { "n", "<C-j>", splits.move_cursor_down },
+    { "n", "<C-k>", splits.move_cursor_up },
+    { "n", "<C-l>", splits.move_cursor_right },
+    { "n", "<C-S-h>", splits.resize_left },
+    { "n", "<C-S-j>", splits.resize_down },
+    { "n", "<C-S-k>", splits.resize_up },
+    { "n", "<C-S-l>", splits.resize_right },
 })
 
 require("Comment").setup({
