@@ -45,11 +45,6 @@ utils.add_keybinds({
     { "n", "<leader>s", "1z=" },
     { "n", "<leader>qn", ":cnext<CR>" },
     { "n", "<leader>qp", ":cprev<CR>" },
-
-    { "n", "<leader>n", "'N" },
-    { "n", "<leader>h", "'H" },
-    { "n", "<leader>m", "'M" },
-    { "n", "<leader>k", "'K" },
 })
 
 vim.keymap.set("n", "<leader>bn", function()

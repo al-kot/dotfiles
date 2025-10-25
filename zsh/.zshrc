@@ -63,7 +63,7 @@ mkenv() {
 
 mkkern() {
     pip install ipykernel
-    python3 -m ipykernel install --user --name="$1"
+    python -m ipykernel install --user --name="$1"
 }
 
 vnv() {
@@ -176,3 +176,8 @@ export SAVEHIST=1000000000
 setopt EXTENDED_HISTORY
 
 fastfetch
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/alekseikotliarov/.lmstudio/bin"
+# End of LM Studio CLI section
+

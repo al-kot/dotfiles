@@ -6,6 +6,7 @@ config = {
     font = wezterm.font('Mononoki Nerd Font Mono', { italic = false }),
     color_scheme = 'Gruvbox dark, hard (base16)',
     warn_about_missing_glyphs = false,
+    font_size = 16,
     -- term = 'wezterm',
     -- enable_kitty_graphics = true,
     window_background_opacity = 0.70,
