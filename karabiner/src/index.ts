@@ -50,6 +50,8 @@ writeToProfile("Default profile", [
             true,
         )
         .manipulators({
+            u: toKey("page_down"),
+            i: toKey("page_up"),
             h: toKey("left_arrow"),
             j: toKey("down_arrow"),
             k: toKey("up_arrow"),
@@ -76,8 +78,8 @@ writeToProfile("Default profile", [
             a: toKey("1", "left_shift"),
             // right
             y: toKey("3", "left_shift"),
-            h: toKey("p"), // colemak semicolon
-            n: toKey("p", "left_shift"), // colemak colon
+            h: toKey("p"),
+            n: toKey("p", "left_shift"),
             u: toKey("4", "left_shift"),
             j: toKey("9", "left_shift"),
             m: toKey("[", "left_shift"),
@@ -86,7 +88,10 @@ writeToProfile("Default profile", [
             ",": toKey("]", "left_shift"),
             l: toKey("["),
             ".": toKey("]"),
+            p: toKey("grave_accent_and_tilde"),
+            "'": toKey("grave_accent_and_tilde"),
             ";": toKey("-", "left_shift"),
+            "/": toKey("backslash"), 
         }),
     layer("spacebar", "numbers-mode")
         .modifiers("optionalAny")

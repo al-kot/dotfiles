@@ -12,14 +12,26 @@ vim.pack.add({
     "https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git",
     "https://github.com/rafamadriz/friendly-snippets.git",
     { src = "https://github.com/Saghen/blink.cmp.git", version = vim.version.range("1.*") },
+    "https://github.com/mistweaverco/kulala.nvim.git",
     "https://github.com/kiyoon/jupynium.nvim.git",
+    "https://github.com/whonore/Coqtail.git",
+})
+
+require("kulala").setup({
+    global_keymaps = true,
+    global_keymaps_prefix = "<leader>r",
+    ui = {
+        default_view = "body",
+        show_request_summary = false,
+        winbar = false,
+    },
 })
 
 require("jupynium").setup({
     default_notebook_URL = "localhost:8888",
     firefox_profile_name = "default-release",
-    firefox_profiles_ini_path = vim.fn.has('macunix') and "~/Library/Application Support/Firefox/profiles.ini" or
-    '~/.mozilla/firefox/profiles.ini',
+    firefox_profiles_ini_path = vim.fn.has("macunix") and "~/Library/Application Support/Firefox/profiles.ini"
+        or "~/.mozilla/firefox/profiles.ini",
     -- firefox_profiles_ini_path = '~/.mozilla/firefox/profiles.ini',
     use_default_keybindings = false,
     textobjects = {
@@ -81,7 +93,7 @@ utils.add_keybinds({
         "<leader>nr",
         ":JupyniumExecuteSelectedCells<CR>:lua require('jupynium.textobj').goto_next_cell_separator()<CR>",
     },
-    { "n", "<leader>r",  ":JupyniumExecuteSelectedCells<CR>" },
+    -- { "n", "<leader>r", ":JupyniumExecuteSelectedCells<CR>" },
     { "n", "<leader>na", ":JupyniumStartAndAttachToServer<CR>" },
     { "n", "<leader>ns", ":JupyniumStartSync " },
     { "n", "<leader>nc", "o<CR># %%<CR>" },
@@ -246,8 +258,8 @@ local typst = require("typst-preview")
 typst.setup({
     preview = {
         position = "right",
-        ppi = 96,
-        max_width = 140,
+        ppi = 144,
+        max_width = 80,
     },
 })
 -- stylua: ignore

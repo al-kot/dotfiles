@@ -45,6 +45,11 @@ vim.diagnostic.config({
 })
 
 local servers = {
+    ["kulala_ls"] = {
+        cmd = { "kulala-ls", "--stdio" },
+        filetypes = { "http" },
+        root_markers = { ".git" },
+    },
     ["luals"] = {
         cmd = { "lua-language-server" },
         filetypes = { "lua" },
