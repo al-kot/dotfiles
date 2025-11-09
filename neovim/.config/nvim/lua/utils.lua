@@ -16,6 +16,12 @@ function M.add_keybinds(binds)
     end
 end
 
+function M.del_keybinds(binds)
+    for _, bind in ipairs(binds) do
+        vim.keymap.del(bind[1], bind[2])
+    end
+end
+
 function M.set_hl(hls)
     for _, hl in ipairs(hls) do
         if #hl == 3 then

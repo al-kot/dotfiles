@@ -12,94 +12,38 @@ vim.pack.add({
     "https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git",
     "https://github.com/rafamadriz/friendly-snippets.git",
     { src = "https://github.com/Saghen/blink.cmp.git", version = vim.version.range("1.*") },
-    "https://github.com/mistweaverco/kulala.nvim.git",
-    "https://github.com/kiyoon/jupynium.nvim.git",
     "https://github.com/whonore/Coqtail.git",
+    "https://github.com/stevearc/conform.nvim.git",
 })
 
-require("kulala").setup({
-    global_keymaps = true,
-    global_keymaps_prefix = "<leader>r",
-    ui = {
-        default_view = "body",
-        show_request_summary = false,
-        winbar = false,
+require("conform").setup({
+    formatters = {
+        kulala = {
+            command = "kulala-fmt",
+            args = { "format", "$FILENAME" },
+            stdin = false,
+        },
+    },
+    formatters_by_ft = {
+        lua = { "stylua" },
+        python = { "isort", "black" },
+        rust = { "rustfmt", lsp_format = "fallback" },
+        javascript = { "prettierd", "prettier", stop_after_first = true },
+        typescript = { "prettierd", "prettier", stop_after_first = true },
+        c = { "clangd" },
+        typst = { "typstyle" },
+        http = { "kulala" },
     },
 })
 
-require("jupynium").setup({
-    default_notebook_URL = "localhost:8888",
-    firefox_profile_name = "default-release",
-    firefox_profiles_ini_path = vim.fn.has("macunix") and "~/Library/Application Support/Firefox/profiles.ini"
-        or "~/.mozilla/firefox/profiles.ini",
-    -- firefox_profiles_ini_path = '~/.mozilla/firefox/profiles.ini',
-    use_default_keybindings = false,
-    textobjects = {
-        use_default_keybindings = false,
-    },
-})
 utils.add_keybinds({
     {
-        { "x", "o" },
-        "iC",
-        function()
-            require("jupynium.textobj").select_cell(false, true)
-        end,
-    },
-    {
-        { "x", "o" },
-        "aC",
-        function()
-            require("jupynium.textobj").select_cell(true, true)
-        end,
-    },
-    {
-        { "x", "o" },
-        "ic",
-        function()
-            require("jupynium.textobj").select_cell(false, false)
-        end,
-    },
-    {
-        { "x", "o" },
-        "ac",
-        function()
-            require("jupynium.textobj").select_cell(true, false)
-        end,
-    },
-    {
-        { "n", "x", "o" },
-        "<space>jj",
-        function()
-            require("jupynium.textobj").goto_current_cell_separator()
-        end,
-    },
-    {
-        { "n", "x", "o" },
-        ")",
-        function()
-            require("jupynium.textobj").goto_next_cell_separator()
-        end,
-    },
-    {
-        { "n", "x", "o" },
-        "(",
-        function()
-            require("jupynium.textobj").goto_previous_cell_separator()
-        end,
-    },
-    {
         "n",
-        "<leader>nr",
-        ":JupyniumExecuteSelectedCells<CR>:lua require('jupynium.textobj').goto_next_cell_separator()<CR>",
+        "<leader>f",
+        function()
+            require("conform").format({ lsp_format = "fallback" })
+        end,
     },
-    -- { "n", "<leader>r", ":JupyniumExecuteSelectedCells<CR>" },
-    { "n", "<leader>na", ":JupyniumStartAndAttachToServer<CR>" },
-    { "n", "<leader>ns", ":JupyniumStartSync " },
-    { "n", "<leader>nc", "o<CR># %%<CR>" },
-})
-utils.set_hl({
-    { "JupyniumMarkdownCellContent", { bg = "none" } },
 })
 
 require("gruvbox").setup({
@@ -234,10 +178,10 @@ require("leap").opts.safe_labels = "nehmluotsdfw"
 
 local splits = require("smart-splits")
 utils.add_keybinds({
-    { "n", "<C-h>", splits.move_cursor_left },
-    { "n", "<C-j>", splits.move_cursor_down },
-    { "n", "<C-k>", splits.move_cursor_up },
-    { "n", "<C-l>", splits.move_cursor_right },
+    { "n", "<C-h>",   splits.move_cursor_left },
+    { "n", "<C-j>",   splits.move_cursor_down },
+    { "n", "<C-k>",   splits.move_cursor_up },
+    { "n", "<C-l>",   splits.move_cursor_right },
     { "n", "<C-S-h>", splits.resize_left },
     { "n", "<C-S-j>", splits.resize_down },
     { "n", "<C-S-k>", splits.resize_up },
@@ -253,25 +197,6 @@ require("Comment").setup({
     },
 })
 
-vim.pack.add({ "https://github.com/al-kot/typst-preview.nvim.git" })
-local typst = require("typst-preview")
-typst.setup({
-    preview = {
-        position = "right",
-        ppi = 144,
-        max_width = 80,
-    },
-})
--- stylua: ignore
-utils.add_keybinds({
-    { "n", "<leader>tn",  function() typst.next_page() end, },
-    { "n", "<leader>te",  function() typst.prev_page() end, },
-    { "n", "<leader>tgg", function() typst.first_page() end, },
-    { "n", "<leader>tG",  function() typst.last_page() end, },
-    { "n", "<leader>td",  function() typst.stop() end, },
-    { "n", "<leader>to",  function() typst.start() end, },
-    { "n", "<leader>tr",  function() typst.refresh() end, },
-})
 
 vim.pack.add({
     "https://github.com/nvim-lua/plenary.nvim.git",

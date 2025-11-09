@@ -23,6 +23,46 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
     end,
 })
 
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(ev)
+        local opt = { buffer = ev.buf }
+        utils.add_keybinds({
+            { "n", "gD", vim.lsp.buf.declaration, opt },
+            {
+                "n",
+                "gd",
+                function()
+                    Snacks.picker.lsp_definitions()
+                end,
+                opt,
+            },
+            { "n", "E", vim.lsp.buf.hover, opt },
+            {
+                "n",
+                "gi",
+                function()
+                    Snacks.picker.lsp_implementations()
+                end,
+                opt,
+            },
+            { { "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, opt },
+            { "n", "<leader>D", vim.lsp.buf.type_definition, opt },
+            -- { "n", "<leader>rn", vim.lsp.buf.rename, opt },
+            -- { 'n',          '<leader>f',  vim.lsp.buf.format,                                 opt },
+            { { "n", "v" }, "<space>va", vim.lsp.buf.code_action, opt },
+            {
+                "n",
+                "gr",
+                function()
+                    Snacks.picker.lsp_references()
+                end,
+                opt,
+            },
+        })
+    end,
+})
+
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*.ipynb",
     callback = function()

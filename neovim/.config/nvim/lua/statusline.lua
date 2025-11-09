@@ -45,16 +45,17 @@ local function truncate_path(path, max_levels)
 end
 
 local function file_info()
-    local size = vim.fn.getfsize(vim.fn.expand("%"))
+    local size_n = vim.fn.getfsize(vim.fn.expand("%"))
+    local size = ''
     local filename = truncate_path(vim.fn.expand("%"), 3)
-    if size < 0 then
+    if size_n < 0 then
         size = ""
-    elseif size < 1024 then
-        size = size .. "B"
-    elseif size < 1024 * 1024 then
-        size = string.format("%.1fK", size / 1024)
+    elseif size_n < 1024 then
+        size = size_n .. "B"
+    elseif size_n < 1024 * 1024 then
+        size = string.format("%.1fK", size_n / 1024)
     else
-        size = string.format("%.1fM", size / 1024 / 1024)
+        size = string.format("%.1fM", size_n / 1024 / 1024)
     end
     if vim.bo.modified or vim.bo.buftype ~= "" or vim.bo.readonly then size = size .. " " end
     return "%#StatusLineFileName#" .. filename .. " " .. size .. "%h%m%r "

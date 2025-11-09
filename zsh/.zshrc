@@ -103,6 +103,7 @@ jupyinit() {
 
 # === env vars ===
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 reset_cursor.sh
 
 case `uname` in
