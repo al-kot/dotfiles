@@ -36,7 +36,6 @@ writeToProfile("Default profile", [
     rule("some remaps").manipulators([
         map("⇪", "optionalAny").to("escape"),
         map("p", "optionalAny").to("'"),
-        map("'", "optionalAny").to("return_or_enter"),
     ]),
     layer(r(gui), "cag-arrow-mode")
         .modifiers("optionalAny")
@@ -88,8 +87,8 @@ writeToProfile("Default profile", [
             ",": toKey("]", "left_shift"),
             l: toKey("["),
             ".": toKey("]"),
-            p: toKey("grave_accent_and_tilde"),
-            "'": toKey("grave_accent_and_tilde"),
+            // p: toKey("grave_accent_and_tilde"),
+            "[": toKey("grave_accent_and_tilde"),
             ";": toKey("-", "left_shift"),
             "/": toKey("backslash"), 
         }),

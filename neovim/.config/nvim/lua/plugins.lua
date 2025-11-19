@@ -12,8 +12,8 @@ vim.pack.add({
     "https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git",
     "https://github.com/rafamadriz/friendly-snippets.git",
     { src = "https://github.com/Saghen/blink.cmp.git", version = vim.version.range("1.*") },
-    "https://github.com/whonore/Coqtail.git",
     "https://github.com/stevearc/conform.nvim.git",
+    "https://github.com/whonore/Coqtail.git",
 })
 
 require("conform").setup({
@@ -71,7 +71,15 @@ require("oil").setup({
     },
 })
 utils.add_keybinds({
-    { "n", "<leader>e", ":Oil<CR>" },
+    {
+        "n",
+        "<leader>e",
+        function()
+            require("oil").open(nil, { preview = {} }, function()
+                vim.api.nvim_win_set_width(0, 40)
+            end)
+        end,
+    },
 })
 
 require("snacks").setup({
@@ -178,10 +186,10 @@ require("leap").opts.safe_labels = "nehmluotsdfw"
 
 local splits = require("smart-splits")
 utils.add_keybinds({
-    { "n", "<C-h>",   splits.move_cursor_left },
-    { "n", "<C-j>",   splits.move_cursor_down },
-    { "n", "<C-k>",   splits.move_cursor_up },
-    { "n", "<C-l>",   splits.move_cursor_right },
+    { "n", "<C-h>", splits.move_cursor_left },
+    { "n", "<C-j>", splits.move_cursor_down },
+    { "n", "<C-k>", splits.move_cursor_up },
+    { "n", "<C-l>", splits.move_cursor_right },
     { "n", "<C-S-h>", splits.resize_left },
     { "n", "<C-S-j>", splits.resize_down },
     { "n", "<C-S-k>", splits.resize_up },
@@ -196,7 +204,6 @@ require("Comment").setup({
         line = "<leader>c",
     },
 })
-
 
 vim.pack.add({
     "https://github.com/nvim-lua/plenary.nvim.git",
