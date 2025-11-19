@@ -117,6 +117,7 @@ case `uname` in
         export CPATH="/opt/homebrew/include"
         ;;
     Linux)
+        export PATH=/opt/cuda/bin:$PATH
         ;;
 esac
 
