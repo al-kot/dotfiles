@@ -115,6 +115,7 @@ case `uname` in
         export CPPFLAGS="-I/opt/homebrew/opt/llvm/include -I/opt/homebrew/include"
         # export CFLAGS="-I/opt/homebrew/include"
         export CPATH="/opt/homebrew/include"
+        export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
         ;;
     Linux)
         export PATH=/opt/cuda/bin:$PATH
@@ -183,3 +184,5 @@ fastfetch
 export PATH="$PATH:/Users/alekseikotliarov/.lmstudio/bin"
 # End of LM Studio CLI section
 
+export PGDATA="$HOME/postgres_data"
+export PGHOST="/tmp"

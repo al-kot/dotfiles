@@ -23,6 +23,14 @@ require("conform").setup({
             args = { "format", "$FILENAME" },
             stdin = false,
         },
+        sqlfluff = {
+            command = "sqlfluff",
+            args = { "format", "--dialect=postgres", "-" },
+            stdin = true,
+            cwd = function()
+                return vim.fn.getcwd()
+            end,
+        },
     },
     formatters_by_ft = {
         lua = { "stylua" },
@@ -33,6 +41,7 @@ require("conform").setup({
         c = { "clangd" },
         typst = { "typstyle" },
         http = { "kulala" },
+        sql = { "sqlfluff" },
     },
 })
 
@@ -142,6 +151,9 @@ require("blink.cmp").setup({
     },
     sources = {
         default = { "lsp", "path", "snippets", "buffer" },
+        per_filetype = {
+            sql = { "snippets", "dadbod", "buffer" },
+        },
         providers = {
             jupynium = {
                 name = "Jupynium",
@@ -149,6 +161,7 @@ require("blink.cmp").setup({
                 -- Consider higher priority than LSP
                 score_offset = 100,
             },
+            dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
         },
     },
     cmdline = {
