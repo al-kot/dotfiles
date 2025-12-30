@@ -2,6 +2,9 @@ local utils = require("utils")
 
 vim.pack.add({
     "https://github.com/ellisonleao/gruvbox.nvim.git",
+    "https://github.com/AlexvZyl/nordic.nvim.git",
+    "https://github.com/neanias/everforest-nvim.git",
+    "https://github.com/rebelot/kanagawa.nvim.git",
 
     "https://github.com/stevearc/oil.nvim.git",
     "https://github.com/numToStr/Comment.nvim.git",
@@ -55,17 +58,59 @@ utils.add_keybinds({
     },
 })
 
-require("gruvbox").setup({
-    transparent_mode = true,
-    italic = {
-        strings = false,
-        emphasis = false,
-        comments = false,
-        operators = false,
-        folds = false,
+-- require("gruvbox").setup({
+--     transparent_mode = true,
+--     italic = {
+--         strings = false,
+--         emphasis = false,
+--         comments = false,
+--         operators = false,
+--         folds = false,
+--     },
+-- })
+-- require('nordic').setup({
+--     transparent = {
+--         bg = true,
+--         float = true
+--     },
+--     italic_comments = false,
+-- })
+-- require("nordic").load()
+-- require('everforest').setup({
+--     transparent_background_level = 2,
+--     italics = false,
+--     disable_italic_comments = true,
+-- })
+-- require("everforest").load()
+--
+require("kanagawa").setup({
+    transparent = true,
+    theme = "dragon",
+    commentStyle = { italic = false },
+    keywordStyle = { italic = false },
+    statementStyle = { bold = false },
+    colors = {
+        theme = {
+            all = {
+                ui = {
+                    bg_gutter = "none",
+                },
+            },
+        },
     },
+    overrides = function(colors)
+        local theme = colors.theme
+        return {
+            NormalFloat = { bg = "none" },
+            FloatBorder = { bg = "none" },
+            FloatTitle = { bg = "none" },
+            NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+            LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+        }
+    end,
 })
-vim.cmd("colorscheme gruvbox")
+vim.cmd("colorscheme kanagawa-dragon")
 vim.cmd(":hi statusline guibg=NONE")
 
 require("oil").setup({

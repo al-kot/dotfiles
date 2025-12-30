@@ -119,6 +119,10 @@ case `uname` in
         ;;
     Linux)
         export PATH=/opt/cuda/bin:$PATH
+        export PATH="/opt/postgresql17/bin:$PATH"
+        export CUDACXX="/opt/cuda/bin/nvcc"
+        export HOST_COMPILER="/usr/bin/g++-12"
+        # export PATH="/usr/lib/gcc/x86_64-pc-linux-gnu/14.3.1:$PATH"
         ;;
 esac
 

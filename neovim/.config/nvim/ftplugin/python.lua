@@ -98,9 +98,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
             python_host = { "uv", "run", "--with", "selenium,geckodriver,jupynium,ipykernel", "python" },
             jupyter_command = { "uv", "run", "--with", "notebook,nbclassic", "jupyter" },
             default_notebook_URL = "localhost:8888/nbclassic",
-            firefox_profile_name = "default-release",
-            firefox_profiles_ini_path = vim.fn.has("macunix") and "~/Library/Application Support/Firefox/profiles.ini"
-                or "~/.mozilla/firefox/profiles.ini",
+            -- firefox_profile_name = "default-release",
+            -- firefox_profiles_ini_path = vim.fn.has("macunix") and "~/Library/Application Support/Firefox/profiles.ini"
+                -- or "~/.mozilla/firefox/profiles.ini",
             use_default_keybindings = false,
             textobjects = {
                 use_default_keybindings = false,

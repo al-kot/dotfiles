@@ -3,6 +3,7 @@
     "output": "DP-2",
     "margin-left": 5,
     "margin-right": 5,
+    "margin-top": 5,
     "position": "up",
     "spacing": 0,
     "modules-left": ["hyprland/workspaces"],

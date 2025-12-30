@@ -1,4 +1,3 @@
-print("hello from c")
 local cmd = vim.bo.filetype == "cuda"
         and {
             "clangd",
