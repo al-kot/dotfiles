@@ -176,9 +176,12 @@ eval "$(fzf --zsh)"
 
 # === aliases ===
 
-alias vim="nvim"
-alias vi="nvim"
-alias cim="nvim"
+if [ "$(which nvim)" != "nvim not found" ]; then
+    alias vim="nvim"
+    alias vi="nvim"
+    alias cim="nvim"
+fi
+
 
 alias ll='lsd -l'
 alias la='lsd -a'
