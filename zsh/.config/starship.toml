@@ -17,7 +17,7 @@ disabled = false
 [os.symbols]
 Macos = ""
 Arch = "󰣇"
-Raspbian = ""
+Debian = ""
 
 [character]
 success_symbol = '[](bold cyan)'
