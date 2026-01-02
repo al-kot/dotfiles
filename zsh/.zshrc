@@ -3,26 +3,46 @@ bindkey -e
 setopt share_history
 
 # === fzf ===
-color00="#32302f"
-color01="#3c3836"
-color02="#504945"
-color03="#665c54"
-color04="#bdae93"
-color05="#d5c4a1"
-color06="#ebdbb2"
-color07="#fbf1c7"
-color08="#fb4934"
-color09="#fe8019"
-color0A="#fabd2f"
-color0B="#b8bb26"
-color0C="#8ec07c"
-color0D="#83a598"
-color0E="#d3869b"
-color0F="#d65d0e"
+# color00="#32302f"
+# color01="#3c3836"
+# color02="#504945"
+# color03="#665c54"
+# color04="#bdae93"
+# color05="#d5c4a1"
+# color06="#ebdbb2"
+# color07="#fbf1c7"
+# color08="#fb4934"
+# color09="#fe8019"
+# color0A="#fabd2f"
+# color0B="#b8bb26"
+# color0C="#8ec07c"
+# color0D="#83a598"
+# color0E="#d3869b"
+# color0F="#d65d0e"
 
-export FZF_DEFAULT_OPTS="--color=bg+:$color01,bg:-1,spinner:$color0C,hl:$color0D \
-                        --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C \
-                        --color=fg+:$color06,prompt:$color0A,hl+:$color0D,gutter:-1 \
+color00="#0d0c0c"
+color01="#c4746e"
+color02="#8a9a7b"
+color03="#c4b28a"
+color04="#8ba4b0"
+color05="#a292a3"
+color06="#8ea4a2"
+color07="#C8C093"
+
+color08="#a6a69c"
+color09="#E46876"
+color0A="#87a987"
+color0B="#E6C384"
+color0C="#7FB4CA"
+color0D="#938AA9"
+color0E="#7AA89F"
+color0F="#c5c9c5"
+
+selection="#2d4f67"
+
+export FZF_DEFAULT_OPTS="--color=bg+:$selection,bg:-1,spinner:$color0C,hl:$color0D \
+                        --color=fg:$color07,header:$color0D,info:$color0A,pointer:-1 \
+                        --color=fg+:$color07,prompt:$color0C,hl+:$color0D,gutter:-1 \
                         --padding=\"1\" \
                         --prompt=\"> \" \
                         --marker=\">\" \
@@ -31,7 +51,8 @@ export FZF_DEFAULT_OPTS="--color=bg+:$color01,bg:-1,spinner:$color0C,hl:$color0D
                         --layout=\"reverse\" \
                         --info=\"right\" \
                         --border=none \
-                        --height 50%"
+                        --height 50% \
+                        --gutter=' '"
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
