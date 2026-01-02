@@ -107,6 +107,7 @@ require("kanagawa").setup({
             NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
             LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
             MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            CursorLineNr = { bg = 'none', fg = '#e6c384'},
         }
     end,
 })
