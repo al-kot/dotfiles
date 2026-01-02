@@ -1,4 +1,5 @@
 format = """
+$os\
 $directory\
 $git_branch$git_commit$git_state$git_metrics$git_status$python\
 $jobs\
@@ -10,11 +11,13 @@ add_newline = true
 
 [os]
 format = "[$symbol]($style)[]()"
-style = "fg:white"
+# style = "fg:white"
 disabled = false
 
 [os.symbols]
 Macos = ""
+Arch = "󰣇"
+Raspbian = ""
 
 [character]
 success_symbol = '[](bold cyan)'
