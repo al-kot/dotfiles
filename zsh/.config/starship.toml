@@ -24,13 +24,13 @@ success_symbol = '[](bold cyan)'
 error_symbol = '[](bold red)'
 
 [directory]
-format = ' [](fg:blue bold)[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)[ ]()'
+format = ' [](fg:blue bold)[$repo_root]($repo_root_style)[$path]($style)[ ]()'
 style = 'fg:blue bold'
 home_symbol = '~'
-read_only = ' '
-read_only_style = 'fg:orange'
+read_only = ' '
+read_only_style = 'fg:yellow'
 truncation_length = 4
-truncation_symbol = '../'
+truncation_symbol = '.../'
 truncate_to_repo = false
 repo_root_format = ' [](fg:blue bold)[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[ ]()'
 repo_root_style = 'fg:blue bold'
@@ -71,11 +71,11 @@ deleted = '[${count} ](fg:red)'
 disabled = false
 
 [jobs]
-format = '[ ❯ ](fg:cyan bold)[$number$symbol]($style)'
+format = '[ ❯ ](fg:cyan bold)[$number $symbol]($style)'
 style = 'fg:cyan'
 symbol = '󰜎'
 symbol_threshold = 1
-number_threshold = 4
+number_threshold = 2
 disabled = false
 
 [python]
