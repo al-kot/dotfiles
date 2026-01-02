@@ -1,17 +1,17 @@
 local utils = require("utils")
 
 utils.set_hl({
-    { "StatusLineNormalMode", { bold = true, fg = "#83a598", bg = "none" } },
-    { "StatusLineVisualMode", { bold = true, fg = "#d3869b", bg = "none" } },
-    { "StatusLineInsertMode", { bold = true, fg = "#8ec07c", bg = "none" } },
-    { "StatusLineNC", { bold = true, fg = "#83a598", bg = "none" } },
+    { "StatusLineNormalMode", { bold = true, fg = "#8ba4b0", bg = "none" } },
+    { "StatusLineVisualMode", { bold = true, fg = "#8992a7", bg = "none" } },
+    { "StatusLineInsertMode", { bold = true, fg = "#87a987", bg = "none" } },
+    { "StatusLineNC", { bold = true, fg = "#8ba4b0", bg = "none" } },
 
-    { "StatusLineGitBranch", { fg = "#83a598", bg = "none" } },
-    { "StatusLineFileName", { fg = "#fe8019", bg = "none" } },
-    { "StatusLineFileType", { fg = "#fe8019", bg = "none" } },
+    { "StatusLineGitBranch", { fg = "#8a9a7b", bg = "none" } },
+    { "StatusLineFileName", { fg = "#b98d7b", bg = "none" } },
+    { "StatusLineFileType", { fg = "#b98d7b", bg = "none" } },
     { "StatusLineLnCo", { fg = "#ebdbb2", bg = "none" } },
     { "StatusLinePerc", { fg = "#ebdbb2", bg = "none" } },
-    { "StatusLineLSP", { fg = "#8ec07c", bg = "none" } },
+    { "StatusLineLSP", { fg = "#87a987", bg = "none" } },
 })
 
 local function git_branch()
