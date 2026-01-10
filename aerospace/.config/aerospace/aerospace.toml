@@ -36,45 +36,45 @@ outer.right =      3
 [mode.main.binding]
 ctrl-alt-cmd-u = 'layout tiles horizontal vertical'
 
-ctrl-alt-cmd-h = 'focus left'
-ctrl-alt-cmd-n = 'focus down'
-ctrl-alt-cmd-e = 'focus up'
-ctrl-alt-cmd-i = 'focus right'
+alt-h = 'focus left'
+alt-n = 'focus down'
+alt-e = 'focus up'
+alt-i = 'focus right'
 
-ctrl-alt-cmd-shift-h = 'move left'
-ctrl-alt-cmd-shift-n = 'move down'
-ctrl-alt-cmd-shift-e = 'move up'
-ctrl-alt-cmd-shift-i = 'move right'
+alt-shift-h = 'move left'
+alt-shift-n = 'move down'
+alt-shift-e = 'move up'
+alt-shift-i = 'move right'
 
-ctrl-alt-cmd-minus = 'resize smart -50'
-ctrl-alt-cmd-equal = 'resize smart +50'
+alt-minus = 'resize smart -50'
+alt-equal = 'resize smart +50'
 
-ctrl-alt-cmd-1 = 'workspace 1'
-ctrl-alt-cmd-2 = 'workspace 2'
-ctrl-alt-cmd-3 = 'workspace 3'
-ctrl-alt-cmd-a = 'workspace A'
-ctrl-alt-cmd-t = 'workspace T'
-ctrl-alt-cmd-f = 'workspace T'
-ctrl-alt-cmd-s = 'workspace S'
-ctrl-alt-cmd-d = 'workspace S'
-ctrl-alt-cmd-v = 'workspace V'
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-a = 'workspace A'
+alt-t = 'workspace T'
+alt-f = 'workspace T'
+alt-s = 'workspace S'
+alt-d = 'workspace S'
+alt-v = 'workspace V'
 
-ctrl-alt-cmd-shift-1 = 'move-node-to-workspace 1'
-ctrl-alt-cmd-shift-2 = 'move-node-to-workspace 2'
-ctrl-alt-cmd-shift-3 = 'move-node-to-workspace 3'
-ctrl-alt-cmd-shift-a = 'move-node-to-workspace A'
-ctrl-alt-cmd-shift-t = 'move-node-to-workspace T'
-ctrl-alt-cmd-shift-f = 'move-node-to-workspace T'
-ctrl-alt-cmd-shift-s = 'move-node-to-workspace S'
-ctrl-alt-cmd-shift-d = 'move-node-to-workspace S'
-ctrl-alt-cmd-shift-v = 'move-node-to-workspace V'
+alt-shift-1 = 'move-node-to-workspace 1'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3'
+alt-shift-a = 'move-node-to-workspace A'
+alt-shift-t = 'move-node-to-workspace T'
+alt-shift-f = 'move-node-to-workspace T'
+alt-shift-s = 'move-node-to-workspace S'
+alt-shift-d = 'move-node-to-workspace S'
+alt-shift-v = 'move-node-to-workspace V'
 
-ctrl-alt-cmd-m = 'fullscreen'
-ctrl-alt-cmd-tab = 'workspace-back-and-forth'
-ctrl-alt-cmd-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+alt-m = 'fullscreen'
+alt-tab = 'workspace-back-and-forth'
+alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-# ctrl-alt-cmd-semicolon = ['mode service', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=on']
-ctrl-alt-cmd-esc = ['mode service']
+# alt-semicolon = ['mode service', 'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=on']
+alt-esc = ['mode service']
 
 # [workspace-to-monitor-force-assignment]
 # S = ['secondary', 'main']
@@ -90,10 +90,10 @@ f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling
 # backspace = ['close-all-windows-but-current',  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=off', 'mode main']
 backspace = ['close-all-windows-but-current', 'mode main']
 
-ctrl-alt-cmd-shift-h = ['join-with left', 'mode main']
-ctrl-alt-cmd-shift-n = ['join-with down', 'mode main']
-ctrl-alt-cmd-shift-e = ['join-with up', 'mode main']
-ctrl-alt-cmd-shift-i = ['join-with right', 'mode main']
+alt-shift-h = ['join-with left', 'mode main']
+alt-shift-n = ['join-with down', 'mode main']
+alt-shift-e = ['join-with up', 'mode main']
+alt-shift-i = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'

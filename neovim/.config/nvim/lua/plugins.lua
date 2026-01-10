@@ -88,7 +88,9 @@ require("kanagawa").setup({
     theme = "dragon",
     commentStyle = { italic = false },
     keywordStyle = { italic = false },
-    statementStyle = { bold = false },
+    statementStyle = { bold = false, italic = false },
+    functionStyle = { italic = false },
+    typeStyle = { italic = false },
     colors = {
         theme = {
             all = {
@@ -107,7 +109,8 @@ require("kanagawa").setup({
             NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
             LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
             MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-            CursorLineNr = { bg = 'none', fg = '#e6c384'},
+            CursorLineNr = { bg = "none", fg = "#e6c384" },
+            ["@variable.builtin"] = { italic = false },
         }
     end,
 })
