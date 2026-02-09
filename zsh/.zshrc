@@ -144,6 +144,7 @@ case `uname` in
         export CUDACXX="/opt/cuda/bin/nvcc"
         export HOST_COMPILER="/usr/bin/g++-12"
         # export PATH="/usr/lib/gcc/x86_64-pc-linux-gnu/14.3.1:$PATH"
+	export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
         ;;
 esac
 
@@ -214,3 +215,6 @@ export PATH="$PATH:/Users/alekseikotliarov/.lmstudio/bin"
 
 export PGDATA="$HOME/postgres_data"
 export PGHOST="/tmp"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

@@ -9,14 +9,13 @@ vim.pack.add({
     "https://github.com/stevearc/oil.nvim.git",
     "https://github.com/numToStr/Comment.nvim.git",
     "https://github.com/folke/snacks.nvim.git",
-    "https://github.com/ggandor/leap.nvim.git",
+    "https://codeberg.org/andyg/leap.nvim",
     "https://github.com/mrjones2014/smart-splits.nvim.git",
     "https://github.com/nvim-treesitter/nvim-treesitter.git",
     "https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git",
     "https://github.com/rafamadriz/friendly-snippets.git",
     { src = "https://github.com/Saghen/blink.cmp.git", version = vim.version.range("1.*") },
     "https://github.com/stevearc/conform.nvim.git",
-    "https://github.com/whonore/Coqtail.git",
 })
 
 require("conform").setup({
@@ -222,9 +221,7 @@ require("blink.cmp").setup({
     fuzzy = { implementation = "prefer_rust" },
 })
 
-require("nvim-treesitter.configs").setup({
-    ensure_installed = {
-        "c",
+require('nvim-treesitter').install({        "c",
         "cpp",
         "lua",
         "vim",
@@ -236,15 +233,14 @@ require("nvim-treesitter.configs").setup({
         "rust",
         "python",
         "latex",
-    },
-    sync_install = false,
-    highlight = { enable = true },
-    indent = { enable = true },
 })
 
-require("leap").set_default_mappings()
+-- require("leap").set_default_mappings()
 require("leap").opts.labels = "nehmluyotsrvcdpfwNEIMHLUYOTSRVCPFWDA"
 require("leap").opts.safe_labels = "nehmluotsdfw"
+vim.keymap.set({'n', 'x', 'o'}, 's',  '<Plug>(leap-forward)')
+vim.keymap.set({'n', 'x', 'o'}, 'S',  '<Plug>(leap-backward)')
+vim.keymap.set('n',             'gs', '<Plug>(leap-from-window)')
 
 local splits = require("smart-splits")
 utils.add_keybinds({
