@@ -216,5 +216,4 @@ export PATH="$PATH:/Users/alekseikotliarov/.lmstudio/bin"
 export PGDATA="$HOME/postgres_data"
 export PGHOST="/tmp"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+export QMK_HOME="$HOME/qmk"
