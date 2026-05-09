@@ -173,5 +173,12 @@ export PGHOST="/tmp"
 
 export QMK_HOME="$HOME/qmk"
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This loads nvm
 
+
+# bun completions
+[ -s "/home/asq/.bun/_bun" ] && source "/home/asq/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
