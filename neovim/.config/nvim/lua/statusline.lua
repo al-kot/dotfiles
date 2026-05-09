@@ -15,7 +15,11 @@ utils.set_hl({
 })
 
 local function git_branch()
-    local branch = vim.fn.system("git branch --show-current 2>/dev/null | tr -d '\n'")
+    local branch = string.gsub(
+        vim.system({ "git", "branch", "--show-current", "2>/dev/null" }, { text = true }):wait().stdout,
+        "\n",
+        ""
+    )
     if branch ~= "" then return "%#StatusLineGitBranch#" .. branch .. " " end
     return ""
 end
@@ -46,7 +50,7 @@ end
 
 local function file_info()
     local size_n = vim.fn.getfsize(vim.fn.expand("%"))
-    local size = ''
+    local size = ""
     local filename = truncate_path(vim.fn.expand("%"), 3)
     if size_n < 0 then
         size = ""

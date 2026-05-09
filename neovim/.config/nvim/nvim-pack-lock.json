@@ -1,0 +1,131 @@
+{
+  "plugins": {
+    "Comment.nvim": {
+      "rev": "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
+      "src": "https://github.com/numToStr/Comment.nvim.git"
+    },
+    "Coqtail": {
+      "rev": "b12c31e8aa8d0f3bddd9a804b315a0de0823b989",
+      "src": "https://github.com/whonore/Coqtail.git"
+    },
+    "blink.cmp": {
+      "rev": "bae4bae0eedd1fa55f34b685862e94a222d5c6f8",
+      "src": "https://github.com/Saghen/blink.cmp.git",
+      "version": "1.0.0 - 2.0.0"
+    },
+    "conform.nvim": {
+      "rev": "26ebdcfb4f3c9d33d6f81c9534037bd5172b6d65",
+      "src": "https://github.com/stevearc/conform.nvim.git"
+    },
+    "everforest-nvim": {
+      "rev": "557bce922401e247a596583679bc181d4d688554",
+      "src": "https://github.com/neanias/everforest-nvim.git"
+    },
+    "friendly-snippets": {
+      "rev": "572f5660cf05f8cd8834e096d7b4c921ba18e175",
+      "src": "https://github.com/rafamadriz/friendly-snippets.git"
+    },
+    "gruvbox.nvim": {
+      "rev": "58a2cda2e953a99e2f87c12b7fb4602da4e0709c",
+      "src": "https://github.com/ellisonleao/gruvbox.nvim.git"
+    },
+    "harpoon": {
+      "rev": "ed1f853847ffd04b2b61c314865665e1dadf22c7",
+      "src": "https://github.com/ThePrimeagen/harpoon.git",
+      "version": "'harpoon2'"
+    },
+    "image.nvim": {
+      "rev": "4c51d6202628b3b51e368152c053c3fb5c5f76f2",
+      "src": "https://github.com/3rd/image.nvim.git"
+    },
+    "jupynium.nvim": {
+      "rev": "144ab6e46d2b42264c16a4f3c780d88feb0a89e8",
+      "src": "https://github.com/kiyoon/jupynium.nvim.git"
+    },
+    "jupytext.nvim": {
+      "rev": "c8baf3ad344c59b3abd461ecc17fc16ec44d0f7b",
+      "src": "https://github.com/GCBallesteros/jupytext.nvim.git"
+    },
+    "kanagawa.nvim": {
+      "rev": "aef7f5cec0a40dbe7f3304214850c472e2264b10",
+      "src": "https://github.com/rebelot/kanagawa.nvim.git"
+    },
+    "kulala.nvim": {
+      "rev": "c328aeb219c4b77106917dd2698c90ea9657281b",
+      "src": "https://github.com/mistweaverco/kulala.nvim.git"
+    },
+    "leap.nvim": {
+      "rev": "ebaf38f7fd7193cc918c10eb955afed63301cd76",
+      "src": "https://github.com/ggandor/leap.nvim.git"
+    },
+    "llama.vim": {
+      "rev": "4103c5c764c875b814e2cd7f60753a3b2f0cba18",
+      "src": "https://github.com/ggml-org/llama.vim.git"
+    },
+    "mdmath.nvim": {
+      "rev": "699acb27fd34bfdf92a43ce0abdd17f0c7a948fe",
+      "src": "https://github.com/Thiago4532/mdmath.nvim.git"
+    },
+    "molten-nvim": {
+      "rev": "f9c9f2df3030732240751a000b1475b01a91738d",
+      "src": "https://github.com/aleshasuqa/molten-nvim.git"
+    },
+    "nordic.nvim": {
+      "rev": "082b61f583317cb529530c85466541d5442a2aae",
+      "src": "https://github.com/AlexvZyl/nordic.nvim.git"
+    },
+    "nvim-treesitter": {
+      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter.git",
+      "version": "'main'"
+    },
+    "nvim-treesitter-textobjects": {
+      "rev": "71385f191ec06ffc60e80e6b0c9a9d5daed4824c",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git"
+    },
+    "oil.nvim": {
+      "rev": "bbad9a76b2617ce1221d49619e4e4b659b3c61fc",
+      "src": "https://github.com/stevearc/oil.nvim.git"
+    },
+    "otter.nvim": {
+      "rev": "fcc8cf1eeb39f16c309bb27a7ff140ddf87c9fcb",
+      "src": "https://github.com/jmbuhr/otter.nvim.git"
+    },
+    "plenary.nvim": {
+      "rev": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
+      "src": "https://github.com/nvim-lua/plenary.nvim.git"
+    },
+    "quarto-nvim": {
+      "rev": "5325af3731ac9840b308791f08ad660958d76163",
+      "src": "https://github.com/quarto-dev/quarto-nvim.git"
+    },
+    "render-markdown.nvim": {
+      "rev": "9e51b7711c6159511e966dc42fafd58a9db9ad1d",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim.git"
+    },
+    "smart-splits.nvim": {
+      "rev": "825073e87de5fae98b0c107917e15977d100323b",
+      "src": "https://github.com/mrjones2014/smart-splits.nvim.git"
+    },
+    "snacks.nvim": {
+      "rev": "7e3c655bec091e39d35ce950a41efd52c6341801",
+      "src": "https://github.com/folke/snacks.nvim.git"
+    },
+    "typst-preview.nvim": {
+      "rev": "3d0e5991c14099425ac002af30cdb3dc167e5587",
+      "src": "git@github.com:aleshasuqa/typst-preview.nvim.git"
+    },
+    "vim-dadbod": {
+      "rev": "e95afed23712f969f83b4857a24cf9d59114c2e6",
+      "src": "https://github.com/tpope/vim-dadbod.git"
+    },
+    "vim-dadbod-completion": {
+      "rev": "a8dac0b3cf6132c80dc9b18bef36d4cf7a9e1fe6",
+      "src": "https://github.com/kristijanhusak/vim-dadbod-completion.git"
+    },
+    "vim-dadbod-ui": {
+      "rev": "48c4f271da13d380592f4907e2d1d5558044e4e5",
+      "src": "https://github.com/kristijanhusak/vim-dadbod-ui.git"
+    }
+  }
+}

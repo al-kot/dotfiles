@@ -3,7 +3,7 @@ local utils = require("utils")
 vim.pack.add({
     "https://github.com/tpope/vim-dadbod.git",
     "https://github.com/kristijanhusak/vim-dadbod-ui.git",
-    "https://github.com/kristijanhusak/vim-dadbod-completion.git"
+    "https://github.com/kristijanhusak/vim-dadbod-completion.git",
 })
 vim.pack.add({
     "https://github.com/ellisonleao/gruvbox.nvim.git",
@@ -16,8 +16,8 @@ vim.pack.add({
     "https://github.com/folke/snacks.nvim.git",
     "https://codeberg.org/andyg/leap.nvim",
     "https://github.com/mrjones2014/smart-splits.nvim.git",
-    "https://github.com/nvim-treesitter/nvim-treesitter.git",
-    "https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git",
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter.git", version = 'main' },
+    -- "https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git",
     "https://github.com/rafamadriz/friendly-snippets.git",
     { src = "https://github.com/Saghen/blink.cmp.git", version = vim.version.range("1.*") },
     "https://github.com/stevearc/conform.nvim.git",
@@ -39,8 +39,6 @@ vim.pack.add({
 --     model_fim = "Qwen2.5 Coder 1.5B",
 --     model_inst = "qwen2.5-coder:3b",
 -- }
-
-
 
 vim.pack.add({ "https://github.com/al-kot/typst-preview.nvim.git" })
 local typst = require("typst-preview")
@@ -254,26 +252,27 @@ require("blink.cmp").setup({
     fuzzy = { implementation = "prefer_rust" },
 })
 
-require('nvim-treesitter').install({        "c",
-        "cpp",
-        "lua",
-        "vim",
-        "vimdoc",
-        "query",
-        "javascript",
-        "html",
-        "css",
-        "rust",
-        "python",
-        "latex",
+require("nvim-treesitter").install({
+    "c",
+    "cpp",
+    "lua",
+    "vim",
+    "vimdoc",
+    "query",
+    "javascript",
+    "html",
+    "css",
+    "rust",
+    "python",
+    "latex",
 })
 
 -- require("leap").set_default_mappings()
 require("leap").opts.labels = "nehmluyotsrvcdpfwNEIMHLUYOTSRVCPFWDA"
 require("leap").opts.safe_labels = "nehmluotsdfw"
-vim.keymap.set({'n', 'x', 'o'}, 's',  '<Plug>(leap-forward)')
-vim.keymap.set({'n', 'x', 'o'}, 'S',  '<Plug>(leap-backward)')
-vim.keymap.set('n',             'gs', '<Plug>(leap-from-window)')
+vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward)")
+vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
+vim.keymap.set("n", "gs", "<Plug>(leap-from-window)")
 
 local splits = require("smart-splits")
 utils.add_keybinds({
