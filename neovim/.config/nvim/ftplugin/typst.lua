@@ -1,14 +1,14 @@
 local utils = require("utils")
 
-vim.pack.add({ "https://github.com/al-kot/typst-preview.nvim.git" })
+-- vim.pack.add({ "https://github.com/al-kot/typst-preview.nvim.git" })
 local typst = require("typst-preview")
-typst.setup({
-    preview = {
-        position = "right",
-        ppi = 144,
-        max_width = 80,
-    },
-})
+-- typst.setup({
+--     preview = {
+--         position = "right",
+--         ppi = 144,
+--         max_width = 80,
+--     },
+-- })
 
 -- stylua: ignore
 local keymaps = {

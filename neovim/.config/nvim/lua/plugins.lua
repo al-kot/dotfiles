@@ -1,6 +1,11 @@
 local utils = require("utils")
 
 vim.pack.add({
+    "https://github.com/tpope/vim-dadbod.git",
+    "https://github.com/kristijanhusak/vim-dadbod-ui.git",
+    "https://github.com/kristijanhusak/vim-dadbod-completion.git"
+})
+vim.pack.add({
     "https://github.com/ellisonleao/gruvbox.nvim.git",
     "https://github.com/AlexvZyl/nordic.nvim.git",
     "https://github.com/neanias/everforest-nvim.git",
@@ -18,6 +23,34 @@ vim.pack.add({
     "https://github.com/stevearc/conform.nvim.git",
 })
 
+-- vim.g.llama_config = {
+--     auto_fim = true,
+--     keymap_fim_trigger = "<C-llf>",
+--     keymap_fim_accept_full = "<Tab>",
+--     keymap_fim_accept_line = "<S-Tab>",
+--     keymap_fim_accept_word = "<leader>ll]",
+--     keymap_inst_trigger = "<leader>lli",
+--     keymap_inst_retry = "<leader>llr",
+--     keymap_inst_continue = "<leader>llc",
+--     keymap_inst_accept = "<Tab>",
+--     keymap_inst_cancel = "<Esc>",
+--     endpoint_fim = "http://192.168.1.249:6942/infill",
+--     endpoint_inst = "http://192.168.1.249:11434/v1/chat/completions",
+--     model_fim = "Qwen2.5 Coder 1.5B",
+--     model_inst = "qwen2.5-coder:3b",
+-- }
+
+
+
+vim.pack.add({ "https://github.com/al-kot/typst-preview.nvim.git" })
+local typst = require("typst-preview")
+typst.setup({
+    preview = {
+        position = "right",
+        ppi = 144,
+        max_width = 80,
+    },
+})
 require("conform").setup({
     formatters = {
         kulala = {

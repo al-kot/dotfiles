@@ -16,25 +16,28 @@ const ctrl = "⌃";
 const alt = "⌥";
 const gui = "⌘";
 const caps = "⇪";
+const sft = "⇧";
 
 writeToProfile("Default profile", [
     rule("Home row mods").manipulators(
         hrm(
             new Map([
+                ["a", l(gui)],
                 ["d", l(ctrl)],
                 ["s", l(alt)],
-                ["f", l(gui)],
-                ["j", r(gui)],
+                ["f", l(sft)],
+                ["j", r(sft)],
                 ["k", r(ctrl)],
                 ["l", r(alt)],
+                [";", r(gui)],
             ]),
         )
             .tappingTerm(150)
             .build(),
     ),
-    capsWord().toggle(map("grave_accent_and_tilde").build()[0]).build(),
+    // capsWord().toggle(map("grave_accent_and_tilde").build()[0]).build(),
     rule("some remaps").manipulators([
-        map("⇪", "optionalAny").to("escape"),
+        map("⇪", "optionalAny").to(l(ctrl)),
         map("p", "optionalAny").to("'"),
     ]),
     layer(r(gui), "cag-arrow-mode")
@@ -55,9 +58,10 @@ writeToProfile("Default profile", [
             j: toKey("down_arrow"),
             k: toKey("up_arrow"),
             l: toKey("right_arrow"),
-            f: toKey(l(gui)),
+            f: toKey(l(sft)),
             d: toKey(l(ctrl)),
             s: toKey(l(alt)),
+            a: toKey(l(gui)),
             m: toKey("delete_or_backspace"),
         }),
     layer(l(gui), "shift-symbol-mode")

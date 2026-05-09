@@ -75,52 +75,6 @@ gsb() {
 gcb() {
     _fzf_git_branches | xargs git checkout
 }
-mkenv() {
-    [ "$1" = "" ] && { echo 'provide a name'; return }
-    [ -d "$HOME/.virtualenvs" ] || mkdir "$HOME/.virtualenvs"
-    python3 -m venv "$HOME/.virtualenvs/$1"
-    # source venv/bin/activate
-}
-
-mkkern() {
-    pip install ipykernel
-    python -m ipykernel install --user --name="$1"
-}
-
-vnv() {
-    [ -d "$HOME/.virtualenvs" ] || mkdir "$HOME/.virtualenvs"
-    name="$(ls "$HOME/.virtualenvs" | fzf --print-query | tail -1)"
-    [ "$name" = "" ] && return
-    [ -d "$HOME/.virtualenvs/$name" ] || python3 -m venv "$HOME/.virtualenvs/$name"
-}
-
-vnva() {
-    [ -d "$HOME/.virtualenvs" ] || mkdir "$HOME/.virtualenvs"
-    name="$(ls "$HOME/.virtualenvs" | fzf --print-query | tail -1)"
-    [ "$name" = "" ] && return
-    [ -d "$HOME/.virtualenvs/$name" ] || $1 -m venv "$HOME/.virtualenvs/$name"
-    source "$HOME/.virtualenvs/$name/bin/activate"
-}
-
-vnva311() {
-    [ -d "$HOME/.virtualenvs" ] || mkdir "$HOME/.virtualenvs"
-    name="$(ls "$HOME/.virtualenvs" | fzf --print-query | tail -1)"
-    [ "$name" = "" ] && return
-    [ -d "$HOME/.virtualenvs/$name" ] || python3.11 -m venv "$HOME/.virtualenvs/$name"
-    source "$HOME/.virtualenvs/$name/bin/activate"
-}
-
-m() {
-    make DIR=$1
-    ./$1/a.out
-}
-mc() {
-    make clean DIR=$1
-}
-
-jupyinit() {
-    pip install pynvim jupyter_client cairosvg plotly kaleido pnglatex pyperclip
-}
 
 # === env vars ===
 export PATH=$HOME/.local/bin:$PATH
@@ -217,3 +171,6 @@ export PGDATA="$HOME/postgres_data"
 export PGHOST="/tmp"
 
 export QMK_HOME="$HOME/qmk"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+

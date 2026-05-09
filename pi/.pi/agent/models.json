@@ -1,0 +1,63 @@
+{
+    "providers": {
+        "ollama": {
+            "baseUrl": "http://192.168.1.249:11434/v1",
+            "api": "openai-completions",
+            "apiKey": "ollama",
+            "models": [
+                {
+                    "id": "gemma4:26b_100k",
+                    "contextWindow": 100000,
+                    "maxTokens": 32000
+                }
+            ]
+        },
+        "llama-cpp": {
+            "baseUrl": "http://192.168.1.249:9898/v1",
+            "api": "openai-completions",
+            "apiKey": "llama",
+            "models": [
+                {
+                    "id": "qwen3.6:35b",
+                    "contextWindow": 65536,
+                    "maxTokens":16384 
+                },
+                {
+                    "id": "qwen3.6_opus:35b",
+                    "contextWindow": 65536,
+                    "maxTokens": 16384
+                },
+                {
+                    "id": "qwopus-moe-3.6-4.7",
+                    "contextWindow": 262144,
+                    "maxTokens": 32768
+                },
+                {
+                    "id": "qwopus-moe-3.6-4.6:5bit",
+                    "contextWindow": 262144,
+                    "maxTokens": 32768
+                },
+                {
+                    "id": "deepseekR1_qwen:32b",
+                    "contextWindow": 65536,
+                    "maxTokens": 16384
+                },
+                {
+                    "id": "qwen3.5:9b",
+                    "contextWindow": 65536,
+                    "maxTokens":16384 
+                }
+            ]
+        },
+        "openrouter": {
+            "models": [
+                {
+                    "id": "inclusionai/ring-2.6-1t:free",
+                    "name": "Ring 2.6 1T (Free)",
+                    "contextWindow": 262144,
+                    "maxTokens": 65536
+                }
+            ]
+        }
+    }
+}

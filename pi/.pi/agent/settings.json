@@ -1,0 +1,12 @@
+{
+  "lastChangelogVersion": "0.74.0",
+  "defaultProvider": "openrouter",
+  "defaultModel": "inclusionai/ring-2.6-1t:free",
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "npm:pi-mcp-adapter",
+    "npm:pi-subagents",
+    "npm:context-mode"
+  ],
+  "editorPaddingX": 1
+}
