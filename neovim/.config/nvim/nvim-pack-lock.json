@@ -13,6 +13,10 @@
       "src": "https://github.com/Saghen/blink.cmp.git",
       "version": "1.0.0 - 2.0.0"
     },
+    "codecompanion.nvim": {
+      "rev": "f76cd2598e1d4a5fd78e27c29e2e5f53c9a99c21",
+      "src": "https://www.github.com/olimorris/codecompanion.nvim"
+    },
     "conform.nvim": {
       "rev": "26ebdcfb4f3c9d33d6f81c9534037bd5172b6d65",
       "src": "https://github.com/stevearc/conform.nvim.git"
@@ -57,14 +61,6 @@
     "leap.nvim": {
       "rev": "ebaf38f7fd7193cc918c10eb955afed63301cd76",
       "src": "https://github.com/ggandor/leap.nvim.git"
-    },
-    "llama.vim": {
-      "rev": "4103c5c764c875b814e2cd7f60753a3b2f0cba18",
-      "src": "https://github.com/ggml-org/llama.vim.git"
-    },
-    "mdmath.nvim": {
-      "rev": "699acb27fd34bfdf92a43ce0abdd17f0c7a948fe",
-      "src": "https://github.com/Thiago4532/mdmath.nvim.git"
     },
     "molten-nvim": {
       "rev": "f9c9f2df3030732240751a000b1475b01a91738d",
