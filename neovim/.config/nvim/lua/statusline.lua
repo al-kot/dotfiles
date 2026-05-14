@@ -34,6 +34,12 @@ local function lsp_status()
     return ""
 end
 
+local function fim_status()
+    local fim = vim.g.llama_config.auto_fim
+    if fim > 0 then return "%#StatusLineFileType#FIM " end
+    return ""
+end
+
 local function truncate_path(path, max_levels)
     local parts = {}
     for part in path:gmatch("[^/]+") do
@@ -115,6 +121,7 @@ function _G.statusline()
         "%=",
         file_type(),
         lsp_status(),
+        fim_status(),
         line_col(),
     })
 end

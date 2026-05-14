@@ -21,6 +21,27 @@ vim.pack.add({
     "https://github.com/rafamadriz/friendly-snippets.git",
     { src = "https://github.com/Saghen/blink.cmp.git", version = vim.version.range("1.*") },
     "https://github.com/stevearc/conform.nvim.git",
+    "https://github.com/ggml-org/llama.vim.git",
+})
+
+vim.g.llama_config = {
+    auto_fim = 0,
+    keymap_fim_trigger = "",
+    keymap_fim_accept_full = "<Tab>",
+    keymap_fim_accept_line = "<S-Tab>",
+    keymap_fim_accept_word = "<leader>lw",
+    keymap_inst_trigger = "<leader>li",
+    keymap_inst_retry = "<leader>lr",
+    keymap_inst_continue = "<leader>lc",
+    keymap_inst_accept = "<Tab>",
+    keymap_inst_cancel = "<Esc>",
+    endpoint_fim = "http://192.168.1.249:9898/infill",
+    endpoint_inst = "http://192.168.1.249:9898/v1/chat/completions",
+    model_fim = "qwen3-coder",
+    model_inst = "qwopus-moe-3.6-4.6:5bit",
+}
+utils.add_keybinds({
+    { "n", "<leader>lf", ":silent LlamaToggleAutoFim<CR>:set statusline=%!v:lua.statusline()<CR>", { silent = true } },
 })
 
 

@@ -62,6 +62,14 @@
       "rev": "ebaf38f7fd7193cc918c10eb955afed63301cd76",
       "src": "https://github.com/ggandor/leap.nvim.git"
     },
+    "llama.vim": {
+      "rev": "4103c5c764c875b814e2cd7f60753a3b2f0cba18",
+      "src": "https://github.com/ggml-org/llama.vim.git"
+    },
+    "mdmath.nvim": {
+      "rev": "699acb27fd34bfdf92a43ce0abdd17f0c7a948fe",
+      "src": "https://github.com/Thiago4532/mdmath.nvim.git"
+    },
     "molten-nvim": {
       "rev": "f9c9f2df3030732240751a000b1475b01a91738d",
       "src": "https://github.com/aleshasuqa/molten-nvim.git"
