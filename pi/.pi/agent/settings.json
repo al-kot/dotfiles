@@ -8,5 +8,6 @@
     "npm:pi-subagents",
     "npm:context-mode"
   ],
-  "editorPaddingX": 1
+  "editorPaddingX": 1,
+  "hideThinkingBlock": false
 }

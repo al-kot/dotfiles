@@ -100,6 +100,7 @@ case `uname` in
         export HOST_COMPILER="/usr/bin/g++-12"
         # export PATH="/usr/lib/gcc/x86_64-pc-linux-gnu/14.3.1:$PATH"
         export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
+        export PATH="$HOME/.nvm/versions/node/v23.1.0/bin:$PATH"
         ;;
 esac
 
