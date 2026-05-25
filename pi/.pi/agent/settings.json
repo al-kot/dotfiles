@@ -1,7 +1,7 @@
 {
-  "lastChangelogVersion": "0.74.0",
+  "lastChangelogVersion": "0.75.5",
   "defaultProvider": "openrouter",
-  "defaultModel": "inclusionai/ring-2.6-1t:free",
+  "defaultModel": "openrouter/owl-alpha",
   "defaultThinkingLevel": "medium",
   "packages": [
     "npm:pi-mcp-adapter",
@@ -9,5 +9,6 @@
     "npm:context-mode"
   ],
   "editorPaddingX": 1,
-  "hideThinkingBlock": false
+  "hideThinkingBlock": false,
+  "theme": "kanagawa-dragon"
 }
