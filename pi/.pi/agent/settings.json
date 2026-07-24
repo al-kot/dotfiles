@@ -1,12 +1,11 @@
 {
-  "lastChangelogVersion": "0.75.5",
-  "defaultProvider": "openrouter",
-  "defaultModel": "openrouter/owl-alpha",
-  "defaultThinkingLevel": "medium",
+  "lastChangelogVersion": "0.81.1",
+  "defaultProvider": "llama-swap",
+  "defaultModel": "qwen3.6:35b:Q6_K_P",
+  "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-mcp-adapter",
-    "npm:pi-subagents",
-    "npm:context-mode"
+    "npm:pi-subagents"
   ],
   "editorPaddingX": 1,
   "hideThinkingBlock": false,

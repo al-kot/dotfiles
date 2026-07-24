@@ -91,7 +91,7 @@ case `uname` in
         # export CFLAGS="-I/opt/homebrew/include"
         export CPATH="/opt/homebrew/include"
         export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
-        export PATH="$PATH:/.local/share/bob/nvim-bin"
+        export PATH="$HOME/.local/share/bob/nvim-bin:$PATH"
         ;;
     Linux)
         export PATH=/opt/cuda/bin:$PATH

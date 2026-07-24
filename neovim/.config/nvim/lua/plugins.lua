@@ -16,7 +16,7 @@ vim.pack.add({
     "https://github.com/folke/snacks.nvim.git",
     "https://codeberg.org/andyg/leap.nvim",
     "https://github.com/mrjones2014/smart-splits.nvim.git",
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter.git", version = 'main' },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter.git", version = "main" },
     -- "https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git",
     "https://github.com/rafamadriz/friendly-snippets.git",
     { src = "https://github.com/Saghen/blink.cmp.git", version = vim.version.range("1.*") },
@@ -24,34 +24,68 @@ vim.pack.add({
     "https://github.com/ggml-org/llama.vim.git",
 })
 
+-- llama.vim configuration
 vim.g.llama_config = {
-    auto_fim = 0,
-    keymap_fim_trigger = "",
+    show_info = false,
+    -- FIM (Fill-in-the-Middle) settings
+    auto_fim = true,
+    keymap_fim_trigger = "<C-f>",
     keymap_fim_accept_full = "<Tab>",
     keymap_fim_accept_line = "<S-Tab>",
-    keymap_fim_accept_word = "<leader>lw",
+    keymap_fim_accept_word = "<C-w>",
+
+    -- Instruction mode settings
     keymap_inst_trigger = "<leader>li",
     keymap_inst_retry = "<leader>lr",
     keymap_inst_continue = "<leader>lc",
     keymap_inst_accept = "<Tab>",
     keymap_inst_cancel = "<Esc>",
-    endpoint_fim = "http://192.168.1.249:9898/infill",
-    endpoint_inst = "http://192.168.1.249:9898/v1/chat/completions",
-    model_fim = "qwen3-coder",
-    model_inst = "qwopus-moe-3.6-4.6:5bit",
+
+    -- API endpoints
+    -- endpoint_fim = "http://192.168.1.249:9898/infill",
+    endpoint_fim = "http://127.0.0.1:9896/infill",
+    -- endpoint_inst = "http://192.168.1.249:9898/v1/chat/completions",
+    endpoint_inst = "https://openrouter.ai/api/v1/chat/completions",
+
+    -- Models
+    model_fim = "qwen2.5:7b:Q6_K",
+    -- model_inst = "ornith:35b:Q6_K",
+    model_inst = "deepseek/deepseek-v4-flash",
+    api_key = os.getenv('OR_API_KEY')
+    -- deepseek/deepseek-v4-flash
 }
 utils.add_keybinds({
     { "n", "<leader>lf", ":silent LlamaToggleAutoFim<CR>:set statusline=%!v:lua.statusline()<CR>", { silent = true } },
 })
 
+		-- vim.api.nvim_set_hl(0, "llama_hl_fim_hint", {fg = "#f8732e", ctermfg=209})
+		-- vim.api.nvim_set_hl(0, "llama_hl_fim_info", {fg = "#50fa7b", ctermfg=119})
+        --llama_hl_inst_src guibg=#554433 ctermbg=236
 
-vim.pack.add({ "https://github.com/al-kot/typst-preview.nvim.git" })
+ -- " virtual text colors for instructions
+ -- highlight default llama_hl_inst_virt_proc  guifg=#77ff2f ctermfg=119
+ -- highlight default llama_hl_inst_virt_gen   guifg=#77ff2f ctermfg=119
+ -- highlight default llama_hl_inst_virt_ready
+-- Llama.vim highlight groups
+utils.set_hl({
+    { "llama_hl_fim_hint", { fg = "#737c73" } },       -- FIM hint text color
+    { "llama_hl_fim_info", { fg = "#737c73" } },       -- FIM info text color
+    { "llama_hl_inst_src", { bg="#223249" } },          -- Instruction source background
+    { "llama_hl_inst_virt_proc", { fg = "#737c73" } },  -- Virtual text for processing instructions
+    { "llama_hl_inst_virt_gen", { fg = "#737c73" } },   -- Virtual text for generated instructions
+    { "llama_hl_inst_virt_ready", { fg = "#737c73" } }, -- Virtual text for ready instructions
+})
+
+
+-- vim.pack.add({ "https://github.com/al-kot/typst-preview.nvim.git" })
+vim.pack.add({ "https://github.com/ruizlenato/typst-preview.nvim.git" })
 local typst = require("typst-preview")
 typst.setup({
     preview = {
         position = "right",
         ppi = 144,
         max_width = 80,
+        backend = "kitty",
     },
 })
 require("conform").setup({
@@ -246,6 +280,13 @@ require("blink.cmp").setup({
                 score_offset = 100,
             },
             dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+            llama = {
+                name = "Llama",
+                module = "llama.fim_source", -- blink calls require('llama.fim_source').new(opts)
+                opts = {
+                    -- endpoint_fim etc. come from g:llama_config / vim.g.llama_config
+                },
+            },
         },
     },
     cmdline = {

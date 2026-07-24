@@ -9,9 +9,13 @@
       "src": "https://github.com/whonore/Coqtail.git"
     },
     "blink.cmp": {
-      "rev": "bae4bae0eedd1fa55f34b685862e94a222d5c6f8",
+      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
       "src": "https://github.com/Saghen/blink.cmp.git",
       "version": "1.0.0 - 2.0.0"
+    },
+    "blink.lib": {
+      "rev": "5876dd95deeb70aadbe9f1c0b7117a135061cdac",
+      "src": "https://github.com/saghen/blink.lib"
     },
     "codecompanion.nvim": {
       "rev": "f76cd2598e1d4a5fd78e27c29e2e5f53c9a99c21",
@@ -116,8 +120,8 @@
       "src": "https://github.com/folke/snacks.nvim.git"
     },
     "typst-preview.nvim": {
-      "rev": "3d0e5991c14099425ac002af30cdb3dc167e5587",
-      "src": "git@github.com:aleshasuqa/typst-preview.nvim.git"
+      "rev": "d9fb0c8adcaf65d43172595507e2c96e9c7cb996",
+      "src": "https://github.com/ruizlenato/typst-preview.nvim.git"
     },
     "vim-dadbod": {
       "rev": "e95afed23712f969f83b4857a24cf9d59114c2e6",

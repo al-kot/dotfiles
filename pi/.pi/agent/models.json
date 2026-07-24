@@ -1,51 +1,48 @@
 {
     "providers": {
-        "ollama": {
-            "baseUrl": "http://192.168.1.249:11434/v1",
-            "api": "openai-completions",
-            "apiKey": "ollama",
-            "models": [
-                {
-                    "id": "gemma4:26b_100k",
-                    "contextWindow": 100000,
-                    "maxTokens": 32000
-                }
-            ]
-        },
         "llama-cpp": {
-            "baseUrl": "http://192.168.1.249:9898/v1",
+            "baseUrl": "http://192.168.1.250:9896/v1",
             "api": "openai-completions",
             "apiKey": "llama",
             "models": [
                 {
-                    "id": "qwen3.6:35b",
-                    "contextWindow": 65536,
-                    "maxTokens":16384 
-                },
-                {
-                    "id": "qwen3.6_opus:35b",
+                    "id": "fastcontext",
                     "contextWindow": 65536,
                     "maxTokens": 16384
                 },
                 {
-                    "id": "qwopus-moe-3.6-4.7",
-                    "contextWindow": 262144,
+                    "id": "qwen3.6:35b:Q4",
+                    "contextWindow": 131072,
+                    "maxTokens": 32768
+                }
+            ]
+        },
+        "llama-swap": {
+            "baseUrl": "http://192.168.1.250:9898/v1",
+            "api": "openai-completions",
+            "apiKey": "llama",
+            "models": [
+                {
+                    "id": "qwen3.6:35b:IQ4_NL",
+                    "contextWindow": 131072,
                     "maxTokens": 32768
                 },
                 {
-                    "id": "qwopus-moe-3.6-4.6:5bit",
-                    "contextWindow": 262144,
+                    "id": "ornith:35b:Q6_K",
+                    "contextWindow": 200000,
                     "maxTokens": 32768
                 },
                 {
-                    "id": "deepseekR1_qwen:32b",
-                    "contextWindow": 65536,
-                    "maxTokens": 16384
-                },
-                {
-                    "id": "qwen3.5:9b",
-                    "contextWindow": 65536,
-                    "maxTokens":16384 
+                    "id": "qwen3.6:35b:Q6_K_P",
+                    "contextWindow": 131072,
+                    "maxTokens": 32768,
+                    "params": {
+                        "temp": 0.6,
+                        "top-p": 0.95,
+                        "top-k": 20,
+                        "min-p": 0,
+                        "presence-penalty": 0
+                    }
                 }
             ]
         },
@@ -54,6 +51,12 @@
                 {
                     "id": "inclusionai/ring-2.6-1t:free",
                     "name": "Ring 2.6 1T (Free)",
+                    "contextWindow": 262144,
+                    "maxTokens": 65536
+                },
+                {
+                    "id": "tencent/hy3:free",
+                    "name": "Tencent: Hy3 (free)",
                     "contextWindow": 262144,
                     "maxTokens": 65536
                 }

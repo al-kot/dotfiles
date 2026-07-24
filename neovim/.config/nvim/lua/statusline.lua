@@ -121,7 +121,7 @@ function _G.statusline()
         "%=",
         file_type(),
         lsp_status(),
-        fim_status(),
+        -- fim_status(),
         line_col(),
     })
 end
