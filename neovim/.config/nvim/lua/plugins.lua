@@ -1,40 +1,20 @@
 local utils = require("utils")
 
 vim.pack.add({
-    "https://github.com/tpope/vim-dadbod.git",
-    "https://github.com/kristijanhusak/vim-dadbod-ui.git",
-    "https://github.com/kristijanhusak/vim-dadbod-completion.git",
-})
-vim.pack.add({
-    "https://github.com/ellisonleao/gruvbox.nvim.git",
-    "https://github.com/AlexvZyl/nordic.nvim.git",
-    "https://github.com/neanias/everforest-nvim.git",
-    "https://github.com/rebelot/kanagawa.nvim.git",
-
-    "https://github.com/stevearc/oil.nvim.git",
-    "https://github.com/numToStr/Comment.nvim.git",
-    "https://github.com/folke/snacks.nvim.git",
-    "https://codeberg.org/andyg/leap.nvim",
-    "https://github.com/mrjones2014/smart-splits.nvim.git",
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter.git", version = "main" },
-    -- "https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git",
     "https://github.com/rafamadriz/friendly-snippets.git",
-    { src = "https://github.com/Saghen/blink.cmp.git", version = vim.version.range("1.*") },
-    "https://github.com/stevearc/conform.nvim.git",
+})
+
+vim.pack.add({
     "https://github.com/ggml-org/llama.vim.git",
 })
-
--- llama.vim configuration
 vim.g.llama_config = {
     show_info = false,
-    -- FIM (Fill-in-the-Middle) settings
     auto_fim = true,
     keymap_fim_trigger = "<C-f>",
     keymap_fim_accept_full = "<Tab>",
     keymap_fim_accept_line = "<S-Tab>",
     keymap_fim_accept_word = "<C-w>",
 
-    -- Instruction mode settings
     keymap_inst_trigger = "<leader>li",
     keymap_inst_retry = "<leader>lr",
     keymap_inst_continue = "<leader>lc",
@@ -51,42 +31,23 @@ vim.g.llama_config = {
     model_fim = "qwen2.5:7b:Q6_K",
     -- model_inst = "ornith:35b:Q6_K",
     model_inst = "deepseek/deepseek-v4-flash",
-    api_key = os.getenv('OR_API_KEY')
+    api_key = os.getenv("OR_API_KEY"),
     -- deepseek/deepseek-v4-flash
 }
 utils.add_keybinds({
     { "n", "<leader>lf", ":silent LlamaToggleAutoFim<CR>:set statusline=%!v:lua.statusline()<CR>", { silent = true } },
 })
-
-		-- vim.api.nvim_set_hl(0, "llama_hl_fim_hint", {fg = "#f8732e", ctermfg=209})
-		-- vim.api.nvim_set_hl(0, "llama_hl_fim_info", {fg = "#50fa7b", ctermfg=119})
-        --llama_hl_inst_src guibg=#554433 ctermbg=236
-
- -- " virtual text colors for instructions
- -- highlight default llama_hl_inst_virt_proc  guifg=#77ff2f ctermfg=119
- -- highlight default llama_hl_inst_virt_gen   guifg=#77ff2f ctermfg=119
- -- highlight default llama_hl_inst_virt_ready
--- Llama.vim highlight groups
 utils.set_hl({
-    { "llama_hl_fim_hint", { fg = "#737c73" } },       -- FIM hint text color
-    { "llama_hl_fim_info", { fg = "#737c73" } },       -- FIM info text color
-    { "llama_hl_inst_src", { bg="#223249" } },          -- Instruction source background
-    { "llama_hl_inst_virt_proc", { fg = "#737c73" } },  -- Virtual text for processing instructions
-    { "llama_hl_inst_virt_gen", { fg = "#737c73" } },   -- Virtual text for generated instructions
+    { "llama_hl_fim_hint", { fg = "#737c73" } }, -- FIM hint text color
+    { "llama_hl_fim_info", { fg = "#737c73" } }, -- FIM info text color
+    { "llama_hl_inst_src", { bg = "#223249" } }, -- Instruction source background
+    { "llama_hl_inst_virt_proc", { fg = "#737c73" } }, -- Virtual text for processing instructions
+    { "llama_hl_inst_virt_gen", { fg = "#737c73" } }, -- Virtual text for generated instructions
     { "llama_hl_inst_virt_ready", { fg = "#737c73" } }, -- Virtual text for ready instructions
 })
 
-
--- vim.pack.add({ "https://github.com/al-kot/typst-preview.nvim.git" })
-vim.pack.add({ "https://github.com/ruizlenato/typst-preview.nvim.git" })
-local typst = require("typst-preview")
-typst.setup({
-    preview = {
-        position = "right",
-        ppi = 144,
-        max_width = 80,
-        backend = "kitty",
-    },
+vim.pack.add({
+    "https://github.com/stevearc/conform.nvim.git",
 })
 require("conform").setup({
     formatters = {
@@ -127,31 +88,9 @@ utils.add_keybinds({
     },
 })
 
--- require("gruvbox").setup({
---     transparent_mode = true,
---     italic = {
---         strings = false,
---         emphasis = false,
---         comments = false,
---         operators = false,
---         folds = false,
---     },
--- })
--- require('nordic').setup({
---     transparent = {
---         bg = true,
---         float = true
---     },
---     italic_comments = false,
--- })
--- require("nordic").load()
--- require('everforest').setup({
---     transparent_background_level = 2,
---     italics = false,
---     disable_italic_comments = true,
--- })
--- require("everforest").load()
---
+vim.pack.add({
+    "https://github.com/rebelot/kanagawa.nvim.git",
+})
 require("kanagawa").setup({
     transparent = true,
     theme = "dragon",
@@ -180,12 +119,19 @@ require("kanagawa").setup({
             MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
             CursorLineNr = { bg = "none", fg = "#e6c384" },
             ["@variable.builtin"] = { italic = false },
+            Pmenu = { fg = theme.ui.shade0, bg = "none" }, -- add `blend = vim.o.pumblend` to enable transparency
+            PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+            PmenuSbar = { bg = theme.ui.bg_m1 },
+            PmenuThumb = { bg = theme.ui.bg_p2 },
         }
     end,
 })
 vim.cmd("colorscheme kanagawa-dragon")
 vim.cmd(":hi statusline guibg=NONE")
 
+vim.pack.add({
+    "https://github.com/stevearc/oil.nvim.git",
+})
 require("oil").setup({
     view_options = {
         show_hidden = false,
@@ -209,6 +155,9 @@ utils.add_keybinds({
     },
 })
 
+vim.pack.add({
+    "https://github.com/folke/snacks.nvim.git",
+})
 require("snacks").setup({
     image = {
         enabled = true,
@@ -256,15 +205,21 @@ utils.add_keybinds({
         end,
     },
     { "n", "<leader>h", Snacks.picker.help },
+    { "n", "<leader>b", Snacks.picker.buffers },
+    { "n", "<leader>n", Snacks.picker.lines },
 })
 
-require("blink.cmp").setup({
+vim.pack.add({ "https://github.com/saghen/blink.lib", "https://github.com/saghen/blink.cmp" })
+local cmp = require("blink.cmp")
+cmp.build():pwait()
+cmp.setup()
+cmp.setup({
     keymap = { preset = "default" },
     appearance = {
         nerd_font_variant = "mono",
     },
     completion = {
-        menu = { border = "rounded", winhighlight = "Pmenu:BlinkCmpMenu" },
+        menu = { border = "rounded" },
         documentation = { auto_show = true, window = { border = "rounded" } },
     },
     sources = {
@@ -273,12 +228,6 @@ require("blink.cmp").setup({
             sql = { "snippets", "dadbod", "buffer" },
         },
         providers = {
-            jupynium = {
-                name = "Jupynium",
-                module = "jupynium.blink_cmp",
-                -- Consider higher priority than LSP
-                score_offset = 100,
-            },
             dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
             llama = {
                 name = "Llama",
@@ -298,6 +247,13 @@ require("blink.cmp").setup({
     fuzzy = { implementation = "prefer_rust" },
 })
 
+utils.set_hl({
+    { "BlinkCmpMenuBorder", { link = "Pmenu" } },
+})
+
+vim.pack.add({
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter.git", version = "main" },
+})
 require("nvim-treesitter").install({
     "c",
     "cpp",
@@ -314,12 +270,18 @@ require("nvim-treesitter").install({
 })
 
 -- require("leap").set_default_mappings()
+vim.pack.add({
+    "https://codeberg.org/andyg/leap.nvim",
+})
 require("leap").opts.labels = "nehmluyotsrvcdpfwNEIMHLUYOTSRVCPFWDA"
 require("leap").opts.safe_labels = "nehmluotsdfw"
 vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward)")
 vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
 vim.keymap.set("n", "gs", "<Plug>(leap-from-window)")
 
+vim.pack.add({
+    "https://github.com/mrjones2014/smart-splits.nvim.git",
+})
 local splits = require("smart-splits")
 utils.add_keybinds({
     { "n", "<C-h>", splits.move_cursor_left },
@@ -332,6 +294,9 @@ utils.add_keybinds({
     { "n", "<C-S-l>", splits.resize_right },
 })
 
+vim.pack.add({
+    "https://github.com/numToStr/Comment.nvim.git",
+})
 require("Comment").setup({
     toggler = {
         line = "<leader>c",
@@ -342,19 +307,91 @@ require("Comment").setup({
 })
 
 vim.pack.add({
-    "https://github.com/nvim-lua/plenary.nvim.git",
-    { src = "https://github.com/ThePrimeagen/harpoon.git", version = "harpoon2" },
+    "https://github.com/lewis6991/gitsigns.nvim.git",
 })
-local harpoon = require("harpoon")
-harpoon:setup()
--- stylua: ignore
-utils.add_keybinds({
-    { "n", "<leader>a", function() harpoon:list():add() end },
-    { "n", "<leader>m", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end },
+local git = require("gitsigns")
+git.setup({
+    on_attach = function(bufnr)
+        utils.add_keybinds({
+            {
+                "n",
+                "]c",
+                function()
+                    if vim.wo.diff then
+                        vim.cmd.normal({ "]c", bang = true })
+                    else
+                        git.nav_hunk("next")
+                    end
+                end,
+            },
+            {
+                "n",
+                "[c",
+                function()
+                    if vim.wo.diff then
+                        vim.cmd.normal({ "[c", bang = true })
+                    else
+                        git.nav_hunk("prev")
+                    end
+                end,
+            },
+            { "n", "<leader>hs", git.stage_hunk },
+            { "n", "<leader>hr", git.reset_hunk },
+
+            {
+                "v",
+                "<leader>hs",
+                function()
+                    git.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+                end,
+            },
+
+            {
+                "v",
+                "<leader>hr",
+                function()
+                    git.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+                end,
+            },
+
+            { "n", "<leader>hS", git.stage_buffer },
+            { "n", "<leader>hR", git.reset_buffer },
+            { "n", "<leader>hp", git.preview_hunk },
+            { "n", "<leader>hi", git.preview_hunk_inline },
+
+            {
+                "n",
+                "<leader>hb",
+                function()
+                    git.blame_line({ full = true })
+                end,
+            },
+
+            { "n", "<leader>hd", git.diffthis },
+
+            {
+                "n",
+                "<leader>hD",
+                function()
+                    git.diffthis("~")
+                end,
+            },
+
+            {
+                "n",
+                "<leader>hQ",
+                function()
+                    git.setqflist("all")
+                end,
+            },
+            { "n", "<leader>hq", git.setqflist },
+
+            -- Toggles
+            { "n", "<leader>tb", git.toggle_current_line_blame },
+            { "n", "<leader>tw", git.toggle_word_diff },
+
+            -- Text object
+            { { "o", "x" }, "ih", git.select_hunk },
+        })
+    end,
 })
--- stylua: ignore
-for i = 1, 9 do
-    utils.add_keybinds({
-        { "n", "<leader>" .. i, function() harpoon:list():select(i) end },
-    })
-end

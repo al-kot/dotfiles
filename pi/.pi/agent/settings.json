@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.81.1",
+  "lastChangelogVersion": "0.82.0",
   "defaultProvider": "llama-swap",
   "defaultModel": "qwen3.6:35b:Q6_K_P",
   "defaultThinkingLevel": "high",

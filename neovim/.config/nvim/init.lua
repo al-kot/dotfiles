@@ -41,11 +41,13 @@ utils.add_keybinds({
     { "n", "<C-u>", "<C-u>zz" },
     { "x", "p", '"_dP' },
     { "i", "<C-c>", "<Esc>" },
-    -- { "n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>]] },
     { "n", "<leader>d", vim.diagnostic.open_float },
     { "n", "<leader>s", "1z=" },
-    { "n", "<leader>qn", ":cnext<CR>" },
-    { "n", "<leader>qp", ":cprev<CR>" },
+    { "n", "<A-)>", ":cnext<CR>" },
+    { "n", "<A-(>", ":cprev<CR>" },
+    { "n", "<A-d>", vim.diagnostic.setloclist },
+    { "n", "<A-}>", ":lnext<CR>" },
+    { "n", "<A-{>", ":lprev<CR>" },
 })
 
 vim.diagnostic.config({
@@ -69,5 +71,3 @@ vim.diagnostic.config({
 require("plugins")
 require("statusline")
 require("autocmds")
-require("autocmds")
-require("commands")
