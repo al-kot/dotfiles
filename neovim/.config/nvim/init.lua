@@ -46,8 +46,8 @@ utils.add_keybinds({
     { "n", "<A-)>", ":cnext<CR>" },
     { "n", "<A-(>", ":cprev<CR>" },
     { "n", "<A-d>", vim.diagnostic.setloclist },
-    { "n", "<A-}>", ":lnext<CR>" },
-    { "n", "<A-{>", ":lprev<CR>" },
+    { "n", "<A-}>", function() vim.diagnostic.jump({count=1}) end },
+    { "n", "<A-{>", function() vim.diagnostic.jump({count=-1}) end },
 })
 
 vim.diagnostic.config({
