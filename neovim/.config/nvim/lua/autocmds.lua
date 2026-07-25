@@ -36,6 +36,7 @@ vim.api.nvim_create_autocmd("FileType", {
         "rust",
         "python",
         "latex",
+        "http",
     },
     callback = function()
         vim.treesitter.start()

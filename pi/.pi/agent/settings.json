@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.82.0",
   "defaultProvider": "llama-swap",
-  "defaultModel": "qwen3.6:35b:Q6_K_P",
+  "defaultModel": "ornith:35b:Q6_K",
   "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-mcp-adapter",

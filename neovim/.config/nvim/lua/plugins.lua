@@ -22,15 +22,15 @@ vim.g.llama_config = {
     keymap_inst_cancel = "<Esc>",
 
     -- API endpoints
-    -- endpoint_fim = "http://192.168.1.249:9898/infill",
-    endpoint_fim = "http://127.0.0.1:9896/infill",
-    -- endpoint_inst = "http://192.168.1.249:9898/v1/chat/completions",
-    endpoint_inst = "https://openrouter.ai/api/v1/chat/completions",
+    endpoint_fim = "http://192.168.1.250:9898/infill",
+    -- endpoint_fim = "http://127.0.0.1:9896/infill",
+    endpoint_inst = "http://192.168.1.250:9898/v1/chat/completions",
+    -- endpoint_inst = "https://openrouter.ai/api/v1/chat/completions",
 
     -- Models
     model_fim = "qwen2.5:7b:Q6_K",
-    -- model_inst = "ornith:35b:Q6_K",
-    model_inst = "deepseek/deepseek-v4-flash",
+    model_inst = "ornith:35b:Q6_K",
+    -- model_inst = "deepseek/deepseek-v4-flash",
     api_key = os.getenv("OR_API_KEY"),
     -- deepseek/deepseek-v4-flash
 }
@@ -267,6 +267,7 @@ require("nvim-treesitter").install({
     "rust",
     "python",
     "latex",
+    "http",
 })
 
 -- require("leap").set_default_mappings()

@@ -18,4 +18,6 @@ vim.lsp.config["kulala_ls"] = {
     filetypes = { "http" },
     root_markers = { ".git" },
 }
+
+vim.treesitter.language.register("kulala_http", "http")
 vim.lsp.enable('kulala_ls')
