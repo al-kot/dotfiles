@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "0.82.0",
-  "defaultProvider": "llama-swap",
-  "defaultModel": "ornith:35b:Q6_K",
+  "defaultProvider": "openrouter",
+  "defaultModel": "deepseek/deepseek-v4-flash",
   "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-mcp-adapter",
