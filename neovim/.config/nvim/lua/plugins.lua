@@ -150,6 +150,7 @@ require("monoglow").setup({
         highlights.DiagnosticVirtualTextHint = { fg = colors.hint }
         highlights.DiagnosticVirtualTextInfo = { fg = colors.info }
         highlights.DiagnosticVirtualTextOk = { fg = colors.ok }
+        highlights.NormalFloat = { bg = 'none' }
     end,
 })
 
