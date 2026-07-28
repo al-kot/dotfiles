@@ -71,3 +71,4 @@ vim.diagnostic.config({
 require("plugins")
 require("statusline")
 require("autocmds")
+vim.cmd(":hi statusline guibg=NONE")

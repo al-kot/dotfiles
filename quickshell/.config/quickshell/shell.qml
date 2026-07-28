@@ -14,13 +14,13 @@ PanelWindow {
 
     FontLoader {
         id: monoBold
-        source: "file:///usr/share/fonts/TTF/MononokiNerdFontMono-Bold.ttf"
+        source: "file:///usr/share/fonts/TTF/MononokiNerdFontMono-Regular.ttf"
     }
 
     readonly property var colors: ({
         fg: {
-            normal: "#ebdbb2",
-            inactive: "#a89984"
+            normal: "#cccccc",
+            inactive: "#7a7a7a"
         }
     })
 
@@ -32,7 +32,6 @@ PanelWindow {
         height: label.height
         Text {
             id: label
-            height: 25
             color: colors.fg.normal
             font {
                 family: monoBold
@@ -60,12 +59,12 @@ PanelWindow {
         right: true
     }
 
-    margins.top: 12
+    margins.top: 6
 
 
     color: 'transparent'
 
-    implicitHeight: 20
+    implicitHeight: 15
 
     RowLayout {
         anchors {
@@ -84,6 +83,11 @@ PanelWindow {
                 CustomText {
                     text: modelData.name.toUpperCase()
                     color: modelData.focused ? colors.fg.normal : colors.fg.inactive
+                    font {
+                        family: monoBold
+                        bold: modelData.focused
+                        pixelSize: 14
+                    }
                 }
             }
         }

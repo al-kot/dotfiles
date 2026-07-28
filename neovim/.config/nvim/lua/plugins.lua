@@ -126,8 +126,34 @@ require("kanagawa").setup({
         }
     end,
 })
-vim.cmd("colorscheme kanagawa-dragon")
-vim.cmd(":hi statusline guibg=NONE")
+
+vim.pack.add({ "https://github.com/al-kot/monoglow.nvim.git" })
+
+require("monoglow").setup({
+    transparent = true,
+    italic = false,
+    on_colors = function(colors)
+        colors.glow = "#98BB6C"
+        colors.blue1 = "#76946A"
+        colors.blue2 = "#76946A"
+        colors.syntax = {
+            string = "#727169",
+        }
+        colors.light_red = "#663333"
+        colors.git.delete = "#663333"
+        colors.git.add = "#76946A"
+    end,
+    on_highlights = function(highlights, colors)
+        -- remove background from inline diagnostic virtual text
+        highlights.DiagnosticVirtualTextError = { fg = colors.error }
+        highlights.DiagnosticVirtualTextWarn = { fg = colors.warning }
+        highlights.DiagnosticVirtualTextHint = { fg = colors.hint }
+        highlights.DiagnosticVirtualTextInfo = { fg = colors.info }
+        highlights.DiagnosticVirtualTextOk = { fg = colors.ok }
+    end,
+})
+
+vim.cmd("colorscheme monoglow")
 
 vim.pack.add({
     "https://github.com/stevearc/oil.nvim.git",

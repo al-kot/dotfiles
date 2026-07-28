@@ -1,26 +1,40 @@
-group: 229      # Comment
+# monoglow-inspired lsd theme
+# Based on muted olive/sage green palette
+#
+# 150 = olive green  (#98BB6C ~ glow)
+# 108 = sage green   (#76946A ~ blue1/blue2)
+# 242 = muted gray   (#727169 ~ syntax.string)
+# 233 = near black   (#121212 ~ bg)
+# 235 = dark gray    (#2A2A2A ~ gray3)
+# 238 = med-dark gray (#444444 ~ gray4)
+# 243 = medium gray  (#7A7A7A ~ gray6)
+# 248 = light gray   (#AAAAAA ~ gray7)
+# 188 = foreground   (#CCCCCC ~ fg)
+
+user: 150
+group: 108
 permission:
-  read: 183     # Purple
-  write: 212    # Pink
-  exec: 159     # Cyan
-  exec-sticky: 231  # Foreground
-  no-access: 210    # Red
-  octal: 120    # Green
-  acl: 60       # Current Line
-  context: 103  # Comment
+  read: 242
+  write: 150
+  exec: 108
+  exec-sticky: 188
+  no-access: 95
+  octal: 150
+  acl: 243
+  context: 242
 date:
-  hour-old: 5 # Comment - 40% lighter
-  day-old: 7  # Comment - 20% lighter
-  older: 8    # Comment
+  hour-old: 150
+  day-old: 108
+  older: 243
 size:
-  none: 60      # Current Line
-  small: 120    # Green
-  medium: 222   # Orange
-  large: 210    # Red
+  none: 243
+  small: 150
+  medium: 108
+  large: 95
 inode:
-  valid: 159    # Cyan
-  invalid: 210  # Red
+  valid: 108
+  invalid: 95
 links:
-  valid: 159    # Cyan
-  invalid: 210  # Red
-tree-edge: 60   # Current Line
+  valid: 108
+  invalid: 95
+tree-edge: 235

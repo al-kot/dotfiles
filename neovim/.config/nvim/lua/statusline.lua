@@ -1,17 +1,33 @@
 local utils = require("utils")
 
+        -- colors.glow = '#98BB6C'
+        -- colors.blue1 = '#76946A'
+        -- colors.blue2 = '#76946A'
+        -- colors.syntax = {
+        --     string = '#727169'
+  local gray1 = "#080808"
+  local gray2 = "#191919"
+  local gray3 = "#2a2a2a"
+  local gray4 = "#444444"
+  local gray5 = "#555555"
+  local gray6 = "#7a7a7a"
+  local gray7 = "#aaaaaa"
+  local gray8 = "#cccccc"
+  local gray9 = "#dddddd"
+  local gray10 = "#f1f1f1"
+  local white = "#ffffff"
 utils.set_hl({
-    { "StatusLineNormalMode", { bold = true, fg = "#8ba4b0", bg = "none" } },
-    { "StatusLineVisualMode", { bold = true, fg = "#8992a7", bg = "none" } },
-    { "StatusLineInsertMode", { bold = true, fg = "#87a987", bg = "none" } },
-    { "StatusLineNC", { bold = true, fg = "#8ba4b0", bg = "none" } },
+    { "StatusLineNormalMode", { bold = true, fg = "#555555", bg = "none" } },
+    { "StatusLineVisualMode", { bold = true, fg = "#76946A", bg = "none" } },
+    { "StatusLineInsertMode", { bold = true, fg = "#98BB6C", bg = "none" } },
+    { "StatusLineNC", { bold = true, fg = "#aaaaaa", bg = "none" } },
 
-    { "StatusLineGitBranch", { fg = "#8a9a7b", bg = "none" } },
-    { "StatusLineFileName", { fg = "#b98d7b", bg = "none" } },
-    { "StatusLineFileType", { fg = "#b98d7b", bg = "none" } },
-    { "StatusLineLnCo", { fg = "#ebdbb2", bg = "none" } },
-    { "StatusLinePerc", { fg = "#ebdbb2", bg = "none" } },
-    { "StatusLineLSP", { fg = "#87a987", bg = "none" } },
+    { "StatusLineGitBranch", { fg = "#aaaaaa", bg = "none" } },
+    { "StatusLineFileName", { fg = "#7a7a7a", bg = "none" } },
+    { "StatusLineFileType", { fg = "#555555", bg = "none" } },
+    { "StatusLineLnCo", { fg = "#7a7a7a", bg = "none" } },
+    { "StatusLinePerc", { fg = "#aaaaaa", bg = "none" } },
+    { "StatusLineLSP", { fg = "#98BB6C", bg = "none" } },
 })
 
 local function git_branch()
@@ -93,7 +109,7 @@ local function mode_icon()
         i = "%#StatusLineInsertMode#",
         v = "%#StatusLineVisualMode#",
         V = "%#StatusLineVisualMode#",
-        ["\22"] = "StatusLineVisualMode", -- Ctrl-V
+        ["\22"] = "%#StatusLineVisualMode#", -- Ctrl-V
     }
     local str = modes[mode] or mode:upper()
     local hl = hls[mode] or "%#StatusLineNormalMode#"
@@ -101,15 +117,15 @@ local function mode_icon()
 end
 
 local function line_col()
-    local mode = vim.fn.mode()
-    local hls = {
-        n = "%#StatusLineNormalMode#",
-        i = "%#StatusLineInsertMode#",
-        v = "%#StatusLineVisualMode#",
-        V = "%#StatusLineVisualMode#",
-        ["\22"] = "StatusLineVisualMode", -- Ctrl-V
-    }
-    local hl = hls[mode] or "%#StatusLineNormalMode#"
+    -- local mode = vim.fn.mode()
+    -- local hls = {
+    --     n = "%#StatusLineNormalMode#",
+    --     i = "%#StatusLineInsertMode#",
+    --     v = "%#StatusLineVisualMode#",
+    --     V = "%#StatusLineVisualMode#",
+    --     ["\22"] = "StatusLineVisualMode", -- Ctrl-V
+    -- }
+    local hl = "%#StatusLineLnCo#"-- hls[mode] or "%#StatusLineNormalMode#"
     return hl .. "%l:%c  %P "
 end
 
