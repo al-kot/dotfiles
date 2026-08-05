@@ -1,10 +1,11 @@
 {
-  "lastChangelogVersion": "0.82.0",
+  "lastChangelogVersion": "0.83.0",
   "defaultProvider": "openrouter",
-  "defaultModel": "deepseek/deepseek-v4-flash",
+  "defaultModel": "deepseek/deepseek-v4-flash-0731",
   "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-mcp-adapter",
+    "npm:pi-ask-user",
     "npm:pi-subagents"
   ],
   "editorPaddingX": 1,

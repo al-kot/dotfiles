@@ -75,6 +75,7 @@ require("conform").setup({
         typst = { "typstyle" },
         http = { "kulala" },
         sql = { "sqlfluff" },
+        json = { "fixjson" },
     },
 })
 
@@ -150,7 +151,7 @@ require("monoglow").setup({
         highlights.DiagnosticVirtualTextHint = { fg = colors.hint }
         highlights.DiagnosticVirtualTextInfo = { fg = colors.info }
         highlights.DiagnosticVirtualTextOk = { fg = colors.ok }
-        highlights.NormalFloat = { bg = 'none' }
+        highlights.NormalFloat = { bg = "none" }
     end,
 })
 
@@ -320,18 +321,6 @@ utils.add_keybinds({
     { "n", "<C-S-j>", splits.resize_down },
     { "n", "<C-S-k>", splits.resize_up },
     { "n", "<C-S-l>", splits.resize_right },
-})
-
-vim.pack.add({
-    "https://github.com/numToStr/Comment.nvim.git",
-})
-require("Comment").setup({
-    toggler = {
-        line = "<leader>c",
-    },
-    opleader = {
-        line = "<leader>c",
-    },
 })
 
 vim.pack.add({

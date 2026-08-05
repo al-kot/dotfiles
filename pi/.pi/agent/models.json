@@ -35,14 +35,19 @@
                 {
                     "id": "qwen3.6:35b:Q6_K_P",
                     "contextWindow": 131072,
-                    "maxTokens": 32768,
-                    "params": {
-                        "temp": 0.6,
-                        "top-p": 0.95,
-                        "top-k": 20,
-                        "min-p": 0,
-                        "presence-penalty": 0
-                    }
+                    "maxTokens": 32768
+                },
+                {
+                    "id": "qwen3.6:35b:Q6_K_P:mmproj",
+                    "contextWindow": 131072,
+                    "input": ["text", "image"],
+                    "maxTokens": 32768
+                },
+                {
+                    "id": "qwen3.5:9b-nothink",
+                    "contextWindow": 65536,
+                    "maxTokens": 16384,
+                    "input": ["text", "image"]
                 }
             ]
         },
