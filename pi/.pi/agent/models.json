@@ -64,6 +64,62 @@
                     "name": "Tencent: Hy3 (free)",
                     "contextWindow": 262144,
                     "maxTokens": 65536
+                },
+                {
+                    "id": "@preset/mimo-v2-5",
+                    "name": "Xiaomi: MiMo-V2.5",
+                    "api": "openai-completions",
+                    "baseUrl": "https://openrouter.ai/api/v1",
+                    "provider": "openrouter",
+                    "reasoning": true,
+                    "input": [
+                        "text",
+                        "image"
+                    ],
+                    "cost": {
+                        "input": 0.14,
+                        "output": 0.28,
+                        "cacheRead": 0.0028,
+                        "cacheWrite": 0
+                    },
+                    "contextWindow": 1048576,
+                    "maxTokens": 131072,
+                    "compat": {
+                        "supportsDeveloperRole": false,
+                        "thinkingFormat": "openrouter"
+                    }
+                },
+                {
+                    "id": "@preset/deepseek-v4-flash",
+                    "name": "DeepSeek: DeepSeek V4 Flash 0731 (preset)",
+                    "api": "openai-completions",
+                    "baseUrl": "https://openrouter.ai/api/v1",
+                    "provider": "openrouter",
+                    "reasoning": true,
+                    "input": [
+                        "text"
+                    ],
+                    "cost": {
+                        "input": 0.09,
+                        "output": 0.18,
+                        "cacheRead": 0.018,
+                        "cacheWrite": 0
+                    },
+                    "contextWindow": 1048576,
+                    "maxTokens": 65536,
+                    "compat": {
+                        "supportsDeveloperRole": false,
+                        "thinkingFormat": "openrouter",
+                        "requiresReasoningContentOnAssistantMessages": true
+                    },
+                    "thinkingLevelMap": {
+                        "minimal": null,
+                        "low": null,
+                        "medium": null,
+                        "high": "high",
+                        "max": null,
+                        "xhigh": "xhigh"
+                    }
                 }
             ]
         }

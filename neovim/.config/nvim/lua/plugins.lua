@@ -22,7 +22,8 @@ vim.g.llama_config = {
     keymap_inst_cancel = "<Esc>",
 
     -- API endpoints
-    endpoint_fim = "http://192.168.1.250:9898/infill",
+    -- endpoint_fim = "http://192.168.1.250:9898/infill",
+    endpoint_fim = "http://192.168.1.250:9896/infill",
     -- endpoint_fim = "http://127.0.0.1:9896/infill",
     endpoint_inst = "http://192.168.1.250:9898/v1/chat/completions",
     -- endpoint_inst = "https://openrouter.ai/api/v1/chat/completions",
@@ -321,94 +322,4 @@ utils.add_keybinds({
     { "n", "<C-S-j>", splits.resize_down },
     { "n", "<C-S-k>", splits.resize_up },
     { "n", "<C-S-l>", splits.resize_right },
-})
-
-vim.pack.add({
-    "https://github.com/lewis6991/gitsigns.nvim.git",
-})
-local git = require("gitsigns")
-git.setup({
-    on_attach = function(bufnr)
-        utils.add_keybinds({
-            {
-                "n",
-                "]c",
-                function()
-                    if vim.wo.diff then
-                        vim.cmd.normal({ "]c", bang = true })
-                    else
-                        git.nav_hunk("next")
-                    end
-                end,
-            },
-            {
-                "n",
-                "[c",
-                function()
-                    if vim.wo.diff then
-                        vim.cmd.normal({ "[c", bang = true })
-                    else
-                        git.nav_hunk("prev")
-                    end
-                end,
-            },
-            { "n", "<leader>hs", git.stage_hunk },
-            { "n", "<leader>hr", git.reset_hunk },
-
-            {
-                "v",
-                "<leader>hs",
-                function()
-                    git.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-                end,
-            },
-
-            {
-                "v",
-                "<leader>hr",
-                function()
-                    git.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-                end,
-            },
-
-            { "n", "<leader>hS", git.stage_buffer },
-            { "n", "<leader>hR", git.reset_buffer },
-            { "n", "<leader>hp", git.preview_hunk },
-            { "n", "<leader>hi", git.preview_hunk_inline },
-
-            {
-                "n",
-                "<leader>hb",
-                function()
-                    git.blame_line({ full = true })
-                end,
-            },
-
-            { "n", "<leader>hd", git.diffthis },
-
-            {
-                "n",
-                "<leader>hD",
-                function()
-                    git.diffthis("~")
-                end,
-            },
-
-            {
-                "n",
-                "<leader>hQ",
-                function()
-                    git.setqflist("all")
-                end,
-            },
-            { "n", "<leader>hq", git.setqflist },
-
-            -- Toggles
-            { "n", "<leader>tb", git.toggle_current_line_blame },
-            { "n", "<leader>tw", git.toggle_word_diff },
-
-            -- Text object
-            { { "o", "x" }, "ih", git.select_hunk },
-        })
-    end,
 })

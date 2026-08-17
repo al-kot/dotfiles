@@ -2,7 +2,6 @@ local utils = require("utils")
 
 local gs = {
     mapleader = " ",
-    -- python3_host_prog = io.popen("which python3"):read("*a"):gsub("[\n\r]", ""),
 }
 utils.fill_table(vim.g, gs)
 
