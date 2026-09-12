@@ -1,5 +1,4 @@
 format = """
-$os\
 $directory\
 $git_branch$git_commit$git_state$git_metrics$git_status$python\
 $jobs\
@@ -24,13 +23,13 @@ success_symbol = '[](bold cyan)'
 error_symbol = '[](bold red)'
 
 [directory]
-format = ' [](fg:blue bold)[$repo_root]($repo_root_style)[$path]($style)[ ]()'
-style = 'fg:blue bold'
+format = ' [$path]($style)[ ]()'
+style = 'fg:cyan bold'
 home_symbol = '~'
-read_only = ' '
+read_only = 'ro '
 read_only_style = 'fg:yellow'
 truncation_length = 4
-truncation_symbol = '.../'
+truncation_symbol = '../'
 truncate_to_repo = false
 repo_root_format = ' [](fg:blue bold)[$read_only]($read_only_style)[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[ ]()'
 repo_root_style = 'fg:blue bold'
@@ -38,7 +37,7 @@ use_os_path_sep = true
 disabled = false
 
 [git_branch]
-format = '[❯ $symbol $branch(:$remote_branch)]($style)[ ]()'
+format = '[  $branch(:$remote_branch)]($style)[ ]()'
 style = 'fg:cyan'
 symbol = ''
 
@@ -46,7 +45,7 @@ symbol = ''
 format = '[\($hash$tag\)]($style)[ ]()'
 style = 'fg:yellow'
 commit_hash_length = 8
-tag_symbol = ' '
+tag_symbol = 't '
 disabled = false
 
 [git_metrics]
@@ -58,24 +57,24 @@ disabled = false
 [git_status]
 format = '([$all_status$ahead_behind]($style))'
 style = 'fg:orange'
-conflicted = '[${count} ](fg:red)'
+conflicted = '[=${count} ](fg:red)'
 ahead = '[⇡${count} ](fg:yellow)'
 behind = '[⇣${count} ](fg:yellow)'
 diverged = '[⇕${ahead_count}⇡${behind_count}⇣ ](fg:yellow)'
-untracked = '[${count} ](fg:red)'
-stashed = '[${count} ](fg:blue)'
-modified = '[${count} ](fg:yellow)'
-staged = '[${count} ](fg:green)'
-renamed = '[${count} ](fg:orange)'
-deleted = '[${count} ](fg:red)'
+untracked = '[?${count} ](fg:red)'
+stashed = '[*${count} ](fg:blue)'
+modified = '[!${count} ](fg:yellow)'
+staged = '[+${count} ](fg:green)'
+renamed = '[>${count} ](fg:orange)'
+deleted = '[-${count} ](fg:red)'
 disabled = false
 
 [jobs]
-format = '[ ❯ ](fg:cyan bold)[$number $symbol]($style)'
+format = '[  ](fg:cyan bold)[$symbol$number]($style)'
 style = 'fg:cyan'
-symbol = '󰜎'
+symbol = ''
 symbol_threshold = 1
-number_threshold = 2
+number_threshold = 1
 disabled = false
 
 [python]
