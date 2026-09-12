@@ -15,13 +15,15 @@
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
-	output = "HDMI-A-1",
+	output = "DP-2",
+	-- output = "HDMI-A-1",
 	mode = "preferred",
 	position = "0x0",
 	scale = 1,
 })
 hl.monitor({
-	output = "DP-2",
+	-- output = "DP-2",
+	output = "HDMI-A-1",
 	mode = "preferred",
 	position = "1920x0",
 	scale = 1,
@@ -103,7 +105,8 @@ hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.config({
 	cursor = {
 		no_hardware_cursors = true,
-        default_monitor = 'DP-2'
+        -- default_monitor = 'DP-2'
+        default_monitor = 'HDMI-A-1'
 	},
 	general = {
 		gaps_in = 2,
@@ -259,6 +262,7 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(pwrmenu))
+hl.bind(mainMod .. " + G", hl.dsp.exec_cmd('if [ -n "$(pkill hyprsunset)" ]; then pkill hyprsunset; else hyprsunset --temperature 4500 --gamma 50 & fi'))
 
 -- Move focus with mainMod + arrow keys
 local moves = {
@@ -414,12 +418,14 @@ hl.window_rule({
 
 hl.workspace_rule({
 	workspace = "name:s",
-	monitor = "HDMI-A-1",
+	-- monitor = "HDMI-A-1",
+	monitor = "DP-2",
     default = true
 })
 hl.workspace_rule({
 	workspace = "name:t",
-	monitor = "DP-2",
+	monitor = "HDMI-A-1",
+	-- monitor = "DP-2",
 	default = true,
 })
 hl.workspace_rule({
