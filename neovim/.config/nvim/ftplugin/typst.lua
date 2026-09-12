@@ -12,14 +12,24 @@ typst.setup({
 
 -- stylua: ignore
 local keymaps = {
-    { "n", "<leader>tn",  function() typst.next_page() end, },
-    { "n", "<leader>te",  function() typst.prev_page() end, },
+    { "n", "<A-n>",  function() typst.next_page() end, },
+    { "n", "<A-p>",  function() typst.prev_page() end, },
     { "n", "<leader>tgg", function() typst.first_page() end, },
     { "n", "<leader>tG",  function() typst.last_page() end, },
     { "n", "<leader>td",  function() typst.stop() end, },
     { "n", "<leader>to",  function() typst.start() end, },
     { "n", "<leader>tr",  function() typst.refresh() end, },
 }
+
+for i = 1, 9 do
+    table.insert(keymaps, {
+        "n",
+        "<A-" .. i .. ">",
+        function()
+            typst.goto_page(i)
+        end,
+    })
+end
 
 utils.add_keybinds(keymaps)
 vim.opt.spell = true

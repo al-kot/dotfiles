@@ -8,6 +8,10 @@
       "rev": "b12c31e8aa8d0f3bddd9a804b315a0de0823b989",
       "src": "https://github.com/whonore/Coqtail.git"
     },
+    "ashen.nvim": {
+      "rev": "bfb04bd50b69d863469b2deb9fb361cf0d945ba7",
+      "src": "https://github.com/ficd0/ashen.nvim.git"
+    },
     "blink.cmp": {
       "rev": "0f54bd78892f587db4dcf100a23eaddfc2a9df7d",
       "src": "https://github.com/saghen/blink.cmp"
@@ -65,9 +69,17 @@
       "rev": "1afbbb449aa0254823dbe1932e3cbb51886ff9fe",
       "src": "https://github.com/webhooked/kanso.nvim.git"
     },
+    "koda.nvim": {
+      "rev": "25a5c98ca2f6bb0b69f5e2654a78f0d7c7e0721d",
+      "src": "https://github.com/oskarnurm/koda.nvim"
+    },
     "kulala.nvim": {
       "rev": "c328aeb219c4b77106917dd2698c90ea9657281b",
       "src": "https://github.com/mistweaverco/kulala.nvim.git"
+    },
+    "lackluster.nvim": {
+      "rev": "70dd682e564784893b984deb51dd5ddd263c8cc7",
+      "src": "https://github.com/slugbyte/lackluster.nvim.git"
     },
     "leap.nvim": {
       "rev": "ebaf38f7fd7193cc918c10eb955afed63301cd76",
@@ -89,9 +101,21 @@
       "rev": "20e729321744e4ae96a3c4465f643fa4ac2696f3",
       "src": "https://github.com/al-kot/monoglow.nvim.git"
     },
+    "neomodern.nvim": {
+      "rev": "d41469578922a23d75a0d9e8deef1e34837230a6",
+      "src": "https://github.com/casedami/neomodern.nvim"
+    },
+    "no-clown-fiesta.nvim": {
+      "rev": "04b808e9769ded988089772ffcaf08d92d75d927",
+      "src": "https://github.com/aktersnurra/no-clown-fiesta.nvim.git"
+    },
     "nordic.nvim": {
       "rev": "082b61f583317cb529530c85466541d5442a2aae",
       "src": "https://github.com/AlexvZyl/nordic.nvim.git"
+    },
+    "nvim-highlight-colors": {
+      "rev": "e4c7af0211866162d999ce0bdd6a029302e19139",
+      "src": "https://github.com/brenoprata10/nvim-highlight-colors.git"
     },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
@@ -133,6 +157,10 @@
     "typst-preview.nvim": {
       "rev": "d9fb0c8adcaf65d43172595507e2c96e9c7cb996",
       "src": "https://github.com/ruizlenato/typst-preview.nvim.git"
+    },
+    "vesper.nvim": {
+      "rev": "1717b1ad657c94bec3fc2bdebb0c55452d9fe46d",
+      "src": "https://github.com/datsfilipe/vesper.nvim.git"
     },
     "vim-dadbod": {
       "rev": "e95afed23712f969f83b4857a24cf9d59114c2e6",

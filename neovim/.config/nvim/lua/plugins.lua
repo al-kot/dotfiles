@@ -156,7 +156,28 @@ require("monoglow").setup({
     end,
 })
 
-vim.cmd("colorscheme monoglow")
+vim.pack.add({ "https://github.com/brenoprata10/nvim-highlight-colors.git" })
+require("nvim-highlight-colors").setup({})
+
+vim.pack.add({ "https://github.com/slugbyte/lackluster.nvim.git" })
+local lackluster = require("lackluster")
+local lack_colors = lackluster.color
+
+lackluster.setup({
+    tweak_background = {
+        normal = "none",
+        menu = "none",
+        popup = "none",
+    },
+    tweak_syntax = {
+        keyword = lack_colors.green,
+    },
+    tweak_color = {
+        orange = "#dfAA88",
+        red = "#663333",
+    }
+})
+vim.cmd("colorscheme lackluster")
 
 vim.pack.add({
     "https://github.com/stevearc/oil.nvim.git",

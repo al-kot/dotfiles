@@ -1,21 +1,5 @@
 local utils = require("utils")
 
-        -- colors.glow = '#98BB6C'
-        -- colors.blue1 = '#76946A'
-        -- colors.blue2 = '#76946A'
-        -- colors.syntax = {
-        --     string = '#727169'
-  local gray1 = "#080808"
-  local gray2 = "#191919"
-  local gray3 = "#2a2a2a"
-  local gray4 = "#444444"
-  local gray5 = "#555555"
-  local gray6 = "#7a7a7a"
-  local gray7 = "#aaaaaa"
-  local gray8 = "#cccccc"
-  local gray9 = "#dddddd"
-  local gray10 = "#f1f1f1"
-  local white = "#ffffff"
 utils.set_hl({
     { "StatusLineNormalMode", { bold = true, fg = "#555555", bg = "none" } },
     { "StatusLineVisualMode", { bold = true, fg = "#76946A", bg = "none" } },

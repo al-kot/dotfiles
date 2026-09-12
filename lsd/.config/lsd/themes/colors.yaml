@@ -1,40 +1,42 @@
-# monoglow-inspired lsd theme
-# Based on muted olive/sage green palette
+# lackluster-inspired lsd theme
+# Mostly shades of gray with very rare muted accents
 #
-# 150 = olive green  (#98BB6C ~ glow)
-# 108 = sage green   (#76946A ~ blue1/blue2)
-# 242 = muted gray   (#727169 ~ syntax.string)
-# 233 = near black   (#121212 ~ bg)
-# 235 = dark gray    (#2A2A2A ~ gray3)
-# 238 = med-dark gray (#444444 ~ gray4)
-# 243 = medium gray  (#7A7A7A ~ gray6)
-# 248 = light gray   (#AAAAAA ~ gray7)
-# 188 = foreground   (#CCCCCC ~ fg)
+# 236 = near black   (#080808 ~ lack bg)
+# 238 = med-dark gray (#444444 ~ lack gray)
+# 240 = dark gray    (between lack grays)
+# 242 = slate        (#708090 ~ lack cyan)
+# 243 = medium gray  (#7A7A7A ~ luster gray)
+# 245 = light-mid gray (between luster gray and fg)
+# 255 = foreground   (#DEEEED ~ luster fg)
+# 108 = muted green  (#789978 ~ primary accent)
+# 103 = muted blue   (#7788AA ~ rare accent)
+# 180 = muted orange (#dfAA88 ~ rare accent)
+# 95  = dark red     (#663333 ~ warning accent)
 
-user: 150
-group: 108
+user: 243
+group: 242
 permission:
-  read: 242
-  write: 150
+  read: 243
+  write: 243
   exec: 108
-  exec-sticky: 188
+  exec-sticky: 255
   no-access: 95
-  octal: 150
-  acl: 243
+  octal: 243
+  acl: 242
   context: 242
 date:
-  hour-old: 150
-  day-old: 108
-  older: 243
+  hour-old: 108
+  day-old: 243
+  older: 240
 size:
-  none: 243
-  small: 150
-  medium: 108
+  none: 240
+  small: 243
+  medium: 245
   large: 95
 inode:
-  valid: 108
+  valid: 242
   invalid: 95
 links:
-  valid: 108
+  valid: 242
   invalid: 95
-tree-edge: 235
+tree-edge: 236
