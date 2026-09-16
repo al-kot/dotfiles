@@ -170,7 +170,8 @@ lackluster.setup({
         popup = "none",
     },
     tweak_syntax = {
-        keyword = lack_colors.green,
+        keyword_return = lack_colors.green,
+        type = lack_colors.green,
     },
     tweak_color = {
         orange = "#dfAA88",
