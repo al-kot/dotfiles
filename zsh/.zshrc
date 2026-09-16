@@ -184,6 +184,7 @@ export NVM_DIR="$HOME/.nvm"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+precmd() { printf '\e[6 q'; }
 
 if [[ $- =~ i ]] && [[ -z "$TMUX" ]] && [[ -n "$SSH_TTY" ]]; then;
     tmux a -s ssh_tmux || tmux new -s ssh_tmux

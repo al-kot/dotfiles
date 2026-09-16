@@ -1,36 +1,5 @@
 local utils = require("utils")
-
-local gs = {
-    mapleader = " ",
-}
-utils.fill_table(vim.g, gs)
-
-local opts = {
-    number = true,
-    relativenumber = true,
-    tabstop = 4,
-    shiftwidth = 4,
-    swapfile = false,
-    mouse = "a",
-    expandtab = true,
-    autoindent = true,
-    background = "dark",
-    cursorline = true,
-    wrap = false,
-    signcolumn = "yes",
-    winborder = "rounded",
-    pumblend = 10,
-    autoread = true,
-    completeopt = "noselect,menuone,popup,fuzzy,preview",
-    termguicolors = true,
-    undofile = true,
-    splitright = true,
-    showmode = false,
-}
-utils.fill_table(vim.o, opts)
-vim.opt.path:append("**")
-vim.opt.fillchars = { eob = " " }
-vim.opt.clipboard:append("unnamedplus")
+require('opts')
 
 utils.add_keybinds({
     { "n", "<leader>o", ":update<CR>:so<CR>", { silent = true } },
