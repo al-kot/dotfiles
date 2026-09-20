@@ -5,49 +5,6 @@ vim.pack.add({
 })
 
 vim.pack.add({
-    "https://github.com/ggml-org/llama.vim.git",
-})
-vim.g.llama_config = {
-    show_info = false,
-    auto_fim = true,
-    keymap_fim_trigger = "<C-f>",
-    keymap_fim_accept_full = "<Tab>",
-    keymap_fim_accept_line = "<S-Tab>",
-    keymap_fim_accept_word = "<C-w>",
-
-    keymap_inst_trigger = "<leader>li",
-    keymap_inst_retry = "<leader>lr",
-    keymap_inst_continue = "<leader>lc",
-    keymap_inst_accept = "<Tab>",
-    keymap_inst_cancel = "<Esc>",
-
-    -- API endpoints
-    -- endpoint_fim = "http://192.168.1.250:9898/infill",
-    endpoint_fim = "http://192.168.1.250:9896/infill",
-    -- endpoint_fim = "http://127.0.0.1:9896/infill",
-    endpoint_inst = "http://192.168.1.250:9898/v1/chat/completions",
-    -- endpoint_inst = "https://openrouter.ai/api/v1/chat/completions",
-
-    -- Models
-    model_fim = "qwen2.5:7b:Q6_K",
-    model_inst = "ornith:35b:Q6_K",
-    -- model_inst = "deepseek/deepseek-v4-flash",
-    api_key = os.getenv("OR_API_KEY"),
-    -- deepseek/deepseek-v4-flash
-}
-utils.add_keybinds({
-    { "n", "<leader>lf", ":silent LlamaToggleAutoFim<CR>:set statusline=%!v:lua.statusline()<CR>", { silent = true } },
-})
-utils.set_hl({
-    { "llama_hl_fim_hint", { fg = "#737c73" } }, -- FIM hint text color
-    { "llama_hl_fim_info", { fg = "#737c73" } }, -- FIM info text color
-    { "llama_hl_inst_src", { bg = "#223249" } }, -- Instruction source background
-    { "llama_hl_inst_virt_proc", { fg = "#737c73" } }, -- Virtual text for processing instructions
-    { "llama_hl_inst_virt_gen", { fg = "#737c73" } }, -- Virtual text for generated instructions
-    { "llama_hl_inst_virt_ready", { fg = "#737c73" } }, -- Virtual text for ready instructions
-})
-
-vim.pack.add({
     "https://github.com/stevearc/conform.nvim.git",
 })
 require("conform").setup({
