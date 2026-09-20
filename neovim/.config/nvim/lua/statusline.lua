@@ -68,7 +68,7 @@ local function file_info()
         size = string.format("%.1fM", size_n / 1024 / 1024)
     end
     if vim.bo.modified or vim.bo.buftype ~= "" or vim.bo.readonly then size = size .. " " end
-    return "%#StatusLineFileName#" .. filename .. " " .. size .. "%h%m%r "
+    return "%#StatusLineFileName#" .. filename --.. " " .. size .. "%h%m%r "
 end
 
 local function mode_icon()
@@ -116,13 +116,13 @@ end
 function _G.statusline()
     return table.concat({
         mode_icon(),
-        git_branch(),
+        -- git_branch(),
         file_info(),
         "%=",
-        file_type(),
         lsp_status(),
+        file_type(),
         -- fim_status(),
-        line_col(),
+        -- line_col(),
     })
 end
 
@@ -131,7 +131,7 @@ function _G.statusline_inactive()
         file_info(),
         "%=",
         file_type(),
-        line_col(),
+        -- line_col(),
     })
 end
 

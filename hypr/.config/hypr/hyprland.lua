@@ -16,13 +16,11 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 hl.monitor({
 	output = "DP-2",
-	-- output = "HDMI-A-1",
 	mode = "preferred",
 	position = "0x0",
 	scale = 1,
 })
 hl.monitor({
-	-- output = "DP-2",
 	output = "HDMI-A-1",
 	mode = "preferred",
 	position = "1920x0",
@@ -32,7 +30,7 @@ hl.monitor({
 	output = "DP-1",
 	mode = "preferred",
 	position = "3840x-650",
-    transform = true,
+	transform = true,
 	scale = 1,
 })
 
@@ -42,7 +40,7 @@ hl.monitor({
 
 -- Set programs that you use
 local fileManager = "dolphin"
-local menu = 'hyprctl dispatch "hl.exec_cmd(\'$(tofi-run --fuzzy-match true -c $HOME/.config/tofi/config)\')"'
+local menu = "hyprctl dispatch \"hl.exec_cmd('$(tofi-run --fuzzy-match true -c $HOME/.config/tofi/config)')\""
 local pwrmenu = "$HOME/.config/tofi/pwrmenu.sh -c $HOME/.config/tofi/config"
 
 -------------------
@@ -55,7 +53,7 @@ local pwrmenu = "$HOME/.config/tofi/pwrmenu.sh -c $HOME/.config/tofi/config"
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function()
-    hl.dsp.focus({ workspace = 'name:t' })
+	hl.dsp.focus({ workspace = "name:t" })
 	hl.exec_cmd("qs")
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("swaync")
@@ -80,24 +78,6 @@ hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 
 -----------------------
------ PERMISSIONS -----
------------------------
-
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
--- Please note permission changes here require a Hyprland restart and are not applied on-the-fly
--- for security reasons
-
--- hl.config({
---   ecosystem = {
---     enforce_permissions = true,
---   },
--- })
-
--- hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
--- hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
--- hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
-
------------------------
 ---- LOOK AND FEEL ----
 -----------------------
 
@@ -105,12 +85,12 @@ hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.config({
 	cursor = {
 		no_hardware_cursors = true,
-        -- default_monitor = 'DP-2'
-        default_monitor = 'HDMI-A-1'
+		-- default_monitor = 'DP-2'
+		default_monitor = "HDMI-A-1",
 	},
 	general = {
 		gaps_in = 2,
-		gaps_out = 7,
+		gaps_out = 7, -- { top = 4, bottom = 7, right = 7, left = 7 },
 
 		border_size = 2,
 
@@ -146,7 +126,7 @@ hl.config({
 
 		blur = {
 			enabled = true,
-			size = 1,
+			size = 5,
 			passes = 3,
 			vibrancy = 0.1596,
 		},
@@ -183,7 +163,6 @@ hl.animation({ leaf = "fadeLayersOut", enabled = true, speed = 1.39, bezier = "a
 hl.animation({ leaf = "workspaces", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "workspacesIn", enabled = true, speed = 1.21, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade" })
-
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
@@ -262,7 +241,12 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(pwrmenu))
-hl.bind(mainMod .. " + G", hl.dsp.exec_cmd('if [ -n "$(pkill hyprsunset)" ]; then pkill hyprsunset; else hyprsunset --temperature 4500 --gamma 50 & fi'))
+hl.bind(
+	mainMod .. " + G",
+	hl.dsp.exec_cmd(
+		'if [ -n "$(pkill hyprsunset)" ]; then pkill hyprsunset; else hyprsunset --temperature 4500 --gamma 50 & fi'
+	)
+)
 
 -- Move focus with mainMod + arrow keys
 local moves = {
@@ -280,10 +264,26 @@ end
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
-local ws = { "t", "v", "s" }
-for _, w in ipairs(ws) do
-	hl.bind(mainMod .. " + " .. string.upper(w), hl.dsp.focus({ workspace = "name:" .. w }))
-	hl.bind(mainMod .. " + SHIFT + " .. string.upper(w), hl.dsp.window.move({ workspace = "name:" .. w }))
+local workspaces = {
+	["DP-2"] = {'r', 'a'},
+	["HDMI-A-1"] = {'t', 's'},
+	["DP-1"] = {'v', 'c'},
+}
+for m, ws in pairs(workspaces) do
+    for i, w in ipairs(ws) do
+        hl.bind(mainMod .. " + " .. string.upper(w), hl.dsp.focus({ workspace = "name:" .. w }))
+        hl.bind(mainMod .. " + SHIFT + " .. string.upper(w), hl.dsp.window.move({ workspace = "name:" .. w }))
+
+        local opts = {
+            workspace = "name:" .. w,
+            monitor = m,
+            default = i == 1,
+        }
+        if m == "HDMI-A-1" then
+            opts.gaps_out = { top = 3, bottom = 7, right = 7, left = 7 }
+        end
+        hl.workspace_rule(opts)
+    end
 end
 for i = 1, 10 do
 	local key = i % 10 -- 10 maps to key 0
@@ -339,39 +339,31 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 hl.window_rule({
 	-- Ignore maximize requests from all apps. You'll probably like this.
 	name = "suppress-maximize-events",
-	match = { class = ".*" },
+	match = { namespace = ".*" },
 
 	suppress_event = "maximize",
 })
 
 hl.layer_rule({
-	name = "blur-launcher",
 	match = {
-		class = "launcher",
+		namespace = "launcher",
 	},
 	blur = true,
 })
-hl.layer_rule({
-	name = "blur-wlogout",
-	match = {
-		class = "wlogout",
-	},
-	blur = true,
-})
-hl.layer_rule({
-	name = "blur-waybar",
-	match = {
-		class = "waybar",
-	},
-	blur = false,
-})
-hl.layer_rule({
-	name = "blur-quickshell",
-	match = {
-		class = "quickshell",
-	},
-	blur = false,
-})
+-- hl.layer_rule({
+-- 	name = "blur-wlogout",
+-- 	match = {
+-- 		class = "wlogout",
+-- 	},
+-- 	blur = true,
+-- })
+-- hl.layer_rule({
+-- 	name = "blur-quickshell",
+-- 	match = {
+-- 		class = "quickshell",
+-- 	},
+-- 	blur = false,
+-- })
 
 hl.window_rule({
 	-- Fix some dragging issues with XWayland
@@ -399,15 +391,6 @@ hl.window_rule({
 	size = { 1080, 600 },
 })
 
--- Layer rules also return a handle.
--- local overlayLayerRule = hl.layer_rule({
---     name  = "no-anim-overlay",
---     match = { namespace = "^my-overlay$" },
---     no_anim = true,
--- })
--- overlayLayerRule:set_enabled(false)
-
--- Hyprland-run windowrule
 hl.window_rule({
 	name = "move-hyprland-run",
 	match = { class = "hyprland-run" },
@@ -416,33 +399,15 @@ hl.window_rule({
 	float = true,
 })
 
-hl.workspace_rule({
-	workspace = "name:s",
-	-- monitor = "HDMI-A-1",
-	monitor = "DP-2",
-    default = true
-})
-hl.workspace_rule({
+hl.window_rule({
+	match = {
+		class = "kitty",
+	},
 	workspace = "name:t",
-	monitor = "HDMI-A-1",
-	-- monitor = "DP-2",
-	default = true,
-})
-hl.workspace_rule({
-	workspace = "name:v",
-	monitor = "DP-1",
-    default = true
-})
-
-hl.window_rule({
-    match = {
-        class = 'kitty'
-    },
-    workspace = 'name:t'
 })
 hl.window_rule({
-    match = {
-        class = 'zen'
-    },
-    workspace = 'name:s'
+	match = {
+		class = "zen",
+	},
+	workspace = "name:r",
 })

@@ -19,6 +19,7 @@ vim.opt.autoread = true
 vim.opt.completeopt = "noselect,menuone,popup,fuzzy,preview"
 vim.opt.termguicolors = true
 vim.opt.undofile = true
+vim.opt.cmdheight = 0
 
 vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
 

@@ -1,12 +1,13 @@
 {
-  "lastChangelogVersion": "0.83.0",
+  "lastChangelogVersion": "0.84.4",
   "defaultProvider": "openrouter",
   "defaultModel": "@preset/deepseek-v4-flash",
   "defaultThinkingLevel": "high",
   "packages": [
     "npm:pi-mcp-adapter",
     "npm:pi-ask-user",
-    "npm:pi-subagents"
+    "npm:pi-subagents",
+    "git:github.com/DietrichGebert/ponytail"
   ],
   "editorPaddingX": 1,
   "hideThinkingBlock": false,

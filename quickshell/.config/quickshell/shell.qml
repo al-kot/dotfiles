@@ -13,13 +13,13 @@ PanelWindow {
     id: root
 
     FontLoader {
-        id: monoBold
-        source: "file:///usr/share/fonts/TTF/MononokiNerdFontMono-Regular.ttf"
+        id: sfPro
+        source: "/usr/share/fonts/Apple/SF-Pro-Display-Bold.otf"//"/usr/share/fonts/Apple/SF-Pro-Display.otf"
     }
 
     readonly property var colors: ({
         fg: {
-            normal: "#cccccc",
+            normal: "#acacac",
             inactive: "#7a7a7a"
         }
     })
@@ -34,8 +34,8 @@ PanelWindow {
             id: label
             color: colors.fg.normal
             font {
-                family: monoBold
-                bold: true
+                family: sfPro.name//"SF Pro Display"
+                // bold: true
                 pixelSize: 14
             }
         }
@@ -84,7 +84,7 @@ PanelWindow {
                     text: modelData.name.toUpperCase()
                     color: modelData.focused ? colors.fg.normal : colors.fg.inactive
                     font {
-                        family: monoBold
+                        family: sfPro.name //"SF Pro Display"
                         bold: modelData.focused
                         pixelSize: 14
                     }
@@ -114,7 +114,7 @@ PanelWindow {
         Item { Layout.fillWidth: true }
         
         Row {
-            spacing: 25
+            spacing: 30
             Layout.alignment: Qt.AlignRight
             anchors.verticalCenter: parent.verticalCenter
 
@@ -125,7 +125,7 @@ PanelWindow {
                 command: ["sh", "-c", "df / --output=avail --block-size=1G | tail -1 | tr -d ' '"]
                 running: true
                 stdout: StdioCollector {
-                    onStreamFinished: diskUsage.text = "" + this.text.trim().padStart(4, "\u2007") + " GB"
+                    onStreamFinished: diskUsage.text = "􀥾" + this.text.trim().padStart(4, "\u2007") + " GB"
                 }
             }
 
@@ -135,7 +135,7 @@ PanelWindow {
                 command: ["sh", "-c", "grep 'cpu ' /proc/stat | awk '{u=$2;n=$3;s=$4;i=$5;w=$6;x=$7;y=$8;z=$9; t=u+n+s+i+w+x+y+z; id=i+w; print t, id}' | (read t1 i1; sleep 0.1; grep 'cpu ' /proc/stat | awk -v t1=$t1 -v i1=$i1 '{u=$2;n=$3;s=$4;i=$5;w=$6;x=$7;y=$8;z=$9; t=u+n+s+i+w+x+y+z; id=i+w; print int(100*(1-(id-i1)/(t-t1)))}')"]
                 running: true
                 stdout: StdioCollector {
-                    onStreamFinished: cpuUsage.text = "" + this.text.trim().padStart(4, "\u2007") + "%"
+                    onStreamFinished: cpuUsage.text = "􀫥" + this.text.trim().padStart(4, "\u2007") + "%"
                 }
             }
 
@@ -146,7 +146,7 @@ PanelWindow {
                 running: true
                 stdout: StdioCollector {
                     onStreamFinished: {
-                        ramUsage.text = "" + this.text.trim().padStart(6, "\u2007") + " GiB"
+                        ramUsage.text = "􀫦" + this.text.trim().padStart(6, "\u2007") + " GiB"
                     }
                 }
             }
@@ -158,7 +158,7 @@ PanelWindow {
                 command: ["sh", "-c", "nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader,nounits | awk -F', ' '{printf \"%.2f\", $1 / 1024}'"]
                 running: true
                 stdout: StdioCollector {
-                    onStreamFinished: gpuUsage.text = "󰢮" + this.text.trim().padStart(6, "\u2007") + " GiB"
+                    onStreamFinished: gpuUsage.text = "􀲵" + this.text.trim().padStart(6, "\u2007") + " GiB"
                 }
             }
             Process { id: volAdjust }
@@ -167,7 +167,7 @@ PanelWindow {
                 command: ["sh", "-c", "pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '\\d+(?=%)' | head -1"]
                 running: true
                 stdout: StdioCollector {
-                    onStreamFinished: volume.text = "" + this.text.trim().padStart(4, "\u2007") + "%"
+                    onStreamFinished: volume.text = "􀊨" + this.text.trim().padStart(4, "\u2007") + "%"
                 }
             }
             CustomText {

@@ -4,9 +4,13 @@ border-width = 0
 outline-width = 0
 padding-left = 35%
 padding-top = 35%
-result-spacing = 25
+result-spacing = 15
 num-results = 5
 prompt-text = ""
-font = /usr/share/fonts/TTF/MononokiNerdFontMono-Regular.ttf
-background-color = #000A
-selection-color = #689d6a
+font = /usr/share/fonts/Apple/SF-Pro-Text-Regular.otf
+font-size = 20
+fuzzy-match = true
+
+text-color = #808080
+background-color = #000000a0
+selection-color = #ffffff
