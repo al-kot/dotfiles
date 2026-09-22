@@ -276,6 +276,7 @@ require("nvim-treesitter").install({
     "python",
     "latex",
     "http",
+    "zig",
 })
 
 -- require("leap").set_default_mappings()
