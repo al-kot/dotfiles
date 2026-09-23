@@ -265,8 +265,8 @@ end
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 local workspaces = {
-	["DP-2"] = {'r', 'a'},
-	["HDMI-A-1"] = {'t', 's'},
+	["DP-2"] = {'s', 'a'},
+	["HDMI-A-1"] = {'t', 'r'},
 	["DP-1"] = {'v', 'c'},
 }
 for m, ws in pairs(workspaces) do
