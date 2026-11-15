@@ -42,6 +42,7 @@ hl.monitor({
 local fileManager = "dolphin"
 local menu = "hyprctl dispatch \"hl.exec_cmd('$(tofi-run --fuzzy-match true -c $HOME/.config/tofi/config)')\""
 local pwrmenu = "$HOME/.config/tofi/pwrmenu.sh -c $HOME/.config/tofi/config"
+local hermes = 'hermes desktop'
 
 -------------------
 ---- AUTOSTART ----
@@ -238,6 +239,7 @@ hl.bind(
 	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
 )
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + K", hl.dsp.exec_cmd(hermes))
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(pwrmenu))
@@ -265,25 +267,25 @@ end
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 local workspaces = {
-	["DP-2"] = {'s', 'a'},
-	["HDMI-A-1"] = {'t', 'r'},
-	["DP-1"] = {'v', 'c'},
+	["DP-2"] = { "s", "a" },
+	["HDMI-A-1"] = { "t", "r" },
+	["DP-1"] = { "v", "c" },
 }
 for m, ws in pairs(workspaces) do
-    for i, w in ipairs(ws) do
-        hl.bind(mainMod .. " + " .. string.upper(w), hl.dsp.focus({ workspace = "name:" .. w }))
-        hl.bind(mainMod .. " + SHIFT + " .. string.upper(w), hl.dsp.window.move({ workspace = "name:" .. w }))
+	for i, w in ipairs(ws) do
+		hl.bind(mainMod .. " + " .. string.upper(w), hl.dsp.focus({ workspace = "name:" .. w }))
+		hl.bind(mainMod .. " + SHIFT + " .. string.upper(w), hl.dsp.window.move({ workspace = "name:" .. w }))
 
-        local opts = {
-            workspace = "name:" .. w,
-            monitor = m,
-            default = i == 1,
-        }
-        if m == "HDMI-A-1" then
-            opts.gaps_out = { top = 3, bottom = 7, right = 7, left = 7 }
-        end
-        hl.workspace_rule(opts)
-    end
+		local opts = {
+			workspace = "name:" .. w,
+			monitor = m,
+			default = i == 1,
+		}
+		if m == "HDMI-A-1" then
+			opts.gaps_out = { top = 3, bottom = 7, right = 7, left = 7 }
+		end
+		hl.workspace_rule(opts)
+	end
 end
 for i = 1, 10 do
 	local key = i % 10 -- 10 maps to key 0
@@ -329,6 +331,16 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("kitty --class kitty-bluetooth -e bluetoothctl"))
+hl.window_rule({
+	name = "kitty-bluetooth-popup",
+	match = {
+		class = "kitty-bluetooth",
+	},
+	float = true,
+	center = true,
+	size = { 850, 650 },
+})
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
@@ -409,5 +421,5 @@ hl.window_rule({
 	match = {
 		class = "zen",
 	},
-	workspace = "name:r",
+	workspace = "name:s",
 })

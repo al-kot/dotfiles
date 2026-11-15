@@ -1,5 +1,10 @@
 bindkey -e
 
+export EDITOR='nvim'
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
 setopt share_history
 
 kanagawa_dragon_fzf="--highlight-line --info=inline-right --ansi --layout=reverse --border=sharp --style=full \
@@ -93,7 +98,13 @@ fi
 fpath=($HOME/.zsh/zsh-completions $fpath)
 
 # === evals ===
-
+# Check that the function `starship_zle-keymap-select()` is defined.
+# xref: https://github.com/starship/starship/issues/3418
+# type starship_zle-keymap-select >/dev/null || \
+#   {
+#     echo "Load starship"
+#     eval "$(starship init zsh)"
+#   }
 eval "$(starship init zsh)"
 eval "$(fzf --zsh)"
 
