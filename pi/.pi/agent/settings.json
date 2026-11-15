@@ -1,15 +1,18 @@
 {
-  "lastChangelogVersion": "0.84.4",
+  "lastChangelogVersion": "1.5.2",
   "defaultProvider": "openrouter",
-  "defaultModel": "@preset/deepseek-v4-flash",
+  "defaultModel": "xiaomi/mimo-v2.6-pro",
   "defaultThinkingLevel": "high",
   "packages": [
-    "npm:pi-mcp-adapter",
-    "npm:pi-ask-user",
     "npm:pi-subagents",
-    "git:github.com/DietrichGebert/ponytail"
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:pi-web-access"
   ],
   "editorPaddingX": 1,
   "hideThinkingBlock": false,
-  "theme": "monoglow"
+  "theme": "kanagawa-dragon",
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.88.1",
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.47.0"
+  }
 }

@@ -2,47 +2,13 @@ bindkey -e
 
 setopt share_history
 
-# === fzf ===
-# color00="#32302f"
-# color01="#3c3836"
-# color02="#504945"
-# color03="#665c54"
-# color04="#bdae93"
-# color05="#d5c4a1"
-# color06="#ebdbb2"
-# color07="#fbf1c7"
-# color08="#fb4934"
-# color09="#fe8019"
-# color0A="#fabd2f"
-# color0B="#b8bb26"
-# color0C="#8ec07c"
-# color0D="#83a598"
-# color0E="#d3869b"
-# color0F="#d65d0e"
+kanagawa_dragon_fzf="--highlight-line --info=inline-right --ansi --layout=reverse --border=sharp --style=full \
+--color=border:#625e5a,fg:#c5c9c5,gutter:#1d1c19 \
+--color=header:#c4746e,hl+:#c4b28a,hl:#c4b28a,info:#7a8382,marker:#87a987 \
+--color=pointer:#8ba4b0,prompt:#8992a7,query:#c5c9c5:regular,scrollbar:#625e5a \
+--color=separator:#625e5a,spinner:#b6927b"
 
-color00="#121212"
-color01="#663333"
-color02="#76946A"
-color03="#b4a87a"
-color04="#7a7a7a"
-color05="#727169"
-color06="#98BB6C"
-color07="#cccccc"
-
-color08="#444444"
-color09="#663333"
-color0A="#98BB6C"
-color0B="#b4a87a"
-color0C="#76946A"
-color0D="#727169"
-color0E="#76946A"
-color0F="#aaaaaa"
-
-selection="#2a2a2a"
-
-export FZF_DEFAULT_OPTS="--color=bg+:$selection,bg:-1,spinner:$color0C,hl:$color0D \
-                        --color=fg:$color07,header:$color0D,info:$color0A,pointer:-1 \
-                        --color=fg+:$color07,prompt:$color0C,hl+:$color0D,gutter:-1 \
+export FZF_DEFAULT_OPTS="$kanagawa_dragon_fzf \
                         --padding=\"1\" \
                         --prompt=\"> \" \
                         --marker=\">\" \
@@ -139,11 +105,11 @@ if [ "$(which nvim)" != "nvim not found" ]; then
     alias cim="nvim"
 fi
 
-
-alias ll='lsd -l'
-alias la='lsd -a'
-alias lla='lsd -la'
-alias lt='lsd --tree -I node_modules'
+eza_cmd="EZA_CONFIG_DIR=~/.config/eza eza --icons --hyperlink --git --time-style=relative --color-scale=age --show-symlinks"
+alias ll="$eza_cmd -l"
+alias la="$eza_cmd -a"
+alias lla="$eza_cmd -la"
+alias lt="$eza_cmd -Tla --ignore-glob='__pycache__|.git|node_modules'"
 
 alias lg='lazygit'
 

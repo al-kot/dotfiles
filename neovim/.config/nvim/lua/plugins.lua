@@ -85,83 +85,7 @@ require("kanagawa").setup({
         }
     end,
 })
-
-vim.pack.add({ "https://github.com/al-kot/monoglow.nvim.git" })
-
-require("monoglow").setup({
-    transparent = true,
-    italic = false,
-    on_colors = function(colors)
-        colors.glow = "#98BB6C"
-        colors.blue1 = "#76946A"
-        colors.blue2 = "#76946A"
-        colors.syntax = {
-            string = "#727169",
-        }
-        colors.light_red = "#663333"
-        colors.git.delete = "#663333"
-        colors.git.add = "#76946A"
-    end,
-    on_highlights = function(highlights, colors)
-        -- remove background from inline diagnostic virtual text
-        highlights.DiagnosticVirtualTextError = { fg = colors.error }
-        highlights.DiagnosticVirtualTextWarn = { fg = colors.warning }
-        highlights.DiagnosticVirtualTextHint = { fg = colors.hint }
-        highlights.DiagnosticVirtualTextInfo = { fg = colors.info }
-        highlights.DiagnosticVirtualTextOk = { fg = colors.ok }
-        highlights.NormalFloat = { bg = "none" }
-    end,
-})
-
-vim.pack.add({ "https://github.com/brenoprata10/nvim-highlight-colors.git" })
-require("nvim-highlight-colors").setup({})
-
-vim.pack.add({ "https://github.com/slugbyte/lackluster.nvim.git" })
-local lackluster = require("lackluster")
-local lack_colors = lackluster.color
-
-lackluster.setup({
-    tweak_background = {
-        normal = "none",
-        menu = "none",
-        popup = "none",
-    },
-    tweak_syntax = {
-        keyword_return = lack_colors.green,
-        type = lack_colors.green,
-    },
-    tweak_color = {
-        orange = "#dfAA88",
-        red = "#663333",
-    }
-})
-vim.cmd("colorscheme lackluster")
-
-vim.pack.add({
-    "https://github.com/stevearc/oil.nvim.git",
-})
-require("oil").setup({
-    view_options = {
-        show_hidden = false,
-        is_hidden_file = function(_, _)
-            return false
-        end,
-    },
-    keymaps = {
-        ["<C-h>"] = false,
-    },
-})
-utils.add_keybinds({
-    {
-        "n",
-        "<leader>e",
-        function()
-            require("oil").open(nil, { preview = {} }, function()
-                vim.api.nvim_win_set_width(0, 40)
-            end)
-        end,
-    },
-})
+vim.cmd.colorscheme("kanagawa-dragon")
 
 vim.pack.add({
     "https://github.com/folke/snacks.nvim.git",
@@ -193,8 +117,11 @@ require("snacks").setup({
             },
         },
         layout = {
-            preset = "left",
+            preset = "ivy",
         },
+    },
+    explorer = {
+        enabled = true,
     },
 })
 utils.add_keybinds({
@@ -215,6 +142,13 @@ utils.add_keybinds({
     { "n", "<leader>h", Snacks.picker.help },
     { "n", "<leader>b", Snacks.picker.buffers },
     { "n", "<leader>n", Snacks.picker.lines },
+    {
+        "n",
+        "<leader>e",
+        function()
+            Snacks.picker.explorer({ auto_close = true, hidden = true, layout = { preset = "ivy", preview = true } })
+        end,
+    },
 })
 
 vim.pack.add({ "https://github.com/saghen/blink.lib", "https://github.com/saghen/blink.cmp" })

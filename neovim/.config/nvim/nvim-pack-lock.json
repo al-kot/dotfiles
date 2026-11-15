@@ -12,6 +12,10 @@
       "rev": "bfb04bd50b69d863469b2deb9fb361cf0d945ba7",
       "src": "https://github.com/ficd0/ashen.nvim.git"
     },
+    "black-metal-theme-neovim": {
+      "rev": "14f15d89956a4cd9da3a40cb36982e6e1fa5a4f4",
+      "src": "https://github.com/metalelf0/black-metal-theme-neovim.git"
+    },
     "blink.cmp": {
       "rev": "0f54bd78892f587db4dcf100a23eaddfc2a9df7d",
       "src": "https://github.com/saghen/blink.cmp"
@@ -19,6 +23,10 @@
     "blink.lib": {
       "rev": "5876dd95deeb70aadbe9f1c0b7117a135061cdac",
       "src": "https://github.com/saghen/blink.lib"
+    },
+    "cendre": {
+      "rev": "5c9d924a4c75c130a1c812ee3e240d78a92d2c3a",
+      "src": "https://github.com/Aejkatappaja/cendre.git"
     },
     "codecompanion.nvim": {
       "rev": "f76cd2598e1d4a5fd78e27c29e2e5f53c9a99c21",
@@ -32,6 +40,10 @@
       "rev": "557bce922401e247a596583679bc181d4d688554",
       "src": "https://github.com/neanias/everforest-nvim.git"
     },
+    "falcon": {
+      "rev": "276cd483c73f5389f0bd99b18e2452bd57b77bf6",
+      "src": "https://github.com/fenetikm/falcon.git"
+    },
     "friendly-snippets": {
       "rev": "572f5660cf05f8cd8834e096d7b4c921ba18e175",
       "src": "https://github.com/rafamadriz/friendly-snippets.git"
@@ -43,6 +55,10 @@
     "gruvbox.nvim": {
       "rev": "58a2cda2e953a99e2f87c12b7fb4602da4e0709c",
       "src": "https://github.com/ellisonleao/gruvbox.nvim.git"
+    },
+    "guts.nvim": {
+      "rev": "e033ab8d594159d79c099764f8e7c63a733aa471",
+      "src": "https://github.com/vossenwout/guts.nvim"
     },
     "harpoon": {
       "rev": "ed1f853847ffd04b2b61c314865665e1dadf22c7",
@@ -60,6 +76,10 @@
     "jupytext.nvim": {
       "rev": "c8baf3ad344c59b3abd461ecc17fc16ec44d0f7b",
       "src": "https://github.com/GCBallesteros/jupytext.nvim.git"
+    },
+    "kanagawa-paper": {
+      "rev": "1eb80b48a8eab7b80aaa5a5dd5d5d128b9b65650",
+      "src": "https://github.com/thesimonho/kanagawa-paper.git"
     },
     "kanagawa.nvim": {
       "rev": "aef7f5cec0a40dbe7f3304214850c472e2264b10",
@@ -89,9 +109,17 @@
       "rev": "4103c5c764c875b814e2cd7f60753a3b2f0cba18",
       "src": "https://github.com/ggml-org/llama.vim.git"
     },
+    "luna.nvim": {
+      "rev": "727c19334528e1b8939f518d1ea43c4e62d98f91",
+      "src": "https://github.com/WTFox/luna.nvim.git"
+    },
     "mdmath.nvim": {
       "rev": "699acb27fd34bfdf92a43ce0abdd17f0c7a948fe",
       "src": "https://github.com/Thiago4532/mdmath.nvim.git"
+    },
+    "minimal.nvim": {
+      "rev": "22d837b814d3bd22625640ef63cc73b8507f291d",
+      "src": "https://github.com/yazeed1s/minimal.nvim.git"
     },
     "molten-nvim": {
       "rev": "f9c9f2df3030732240751a000b1475b01a91738d",
@@ -154,9 +182,17 @@
       "rev": "7e3c655bec091e39d35ce950a41efd52c6341801",
       "src": "https://github.com/folke/snacks.nvim.git"
     },
+    "tairiki.nvim": {
+      "rev": "4699c41536fb83e2dadae436e1eba2435fa64b08",
+      "src": "https://github.com/deparr/tairiki.nvim.git"
+    },
     "typst-preview.nvim": {
-      "rev": "d9fb0c8adcaf65d43172595507e2c96e9c7cb996",
-      "src": "https://github.com/ruizlenato/typst-preview.nvim.git"
+      "rev": "1c2e19486397be1c580b560fc50ee36abe329c46",
+      "src": "https://github.com/chomosuke/typst-preview.nvim.git"
+    },
+    "vague.nvim": {
+      "rev": "73f8aaa866bf3d14dd0b0ab9e48c11794c1cb7ab",
+      "src": "https://github.com/vague-theme/vague.nvim"
     },
     "vesper.nvim": {
       "rev": "1717b1ad657c94bec3fc2bdebb0c55452d9fe46d",

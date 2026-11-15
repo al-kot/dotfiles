@@ -1,0 +1,12 @@
+modelRoles:
+  default: openai-codex/gpt-6-luna:xhigh
+symbolPreset: nerd
+composer:
+  shape: rule
+theme:
+  dark: kanagawa-dragon
+  light: light
+update:
+  auto: false
+setupVersion: 3
+hideThinkingBlock: false

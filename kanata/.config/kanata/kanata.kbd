@@ -1,0 +1,102 @@
+;; Colemak-DH Matrix with Temper-style home-row modifiers.
+;; Select the U.S. input source in macOS. Do not also enable OS Colemak-DH.
+;; defsrc names refer to physical QWERTY positions, not printed output.
+
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
+  tap-hold-require-prior-idle 150
+  ;; macOS only. Leave firmware-remapped keyboards, including Temper, alone.
+  ;; Device filter changes require a process restart, not just live reload.
+  macos-dev-names-include ("Apple Internal Keyboard / Trackpad")
+)
+
+(defvar
+  quick-tap 200
+  hold 280
+  ;; Physical keys. Same-hand releases select the letter, not the modifier.
+  left-hand  (q w e r t a s d f g z x c v b)
+  right-hand (y u i o p [ ] \ h j k l ; ' n m , . /)
+)
+
+(defalias
+  spc (tap-hold-release 200 200 spc (layer-while-held numbers) (require-prior-idle 0))
+  ;; A R S T: Command/Alt/Control/Shift on hold.
+  a (tap-hold-release-tap-keys-release $quick-tap $hold a lmet () $left-hand)
+  r (tap-hold-release-tap-keys-release $quick-tap $hold r lalt () $left-hand)
+  s (tap-hold-release-tap-keys-release $quick-tap $hold s lctl () $left-hand)
+  t (tap-hold-release-tap-keys-release $quick-tap $hold t lsft () $left-hand)
+  ;; N E I O: Shift/Control/Alt/Command on hold.
+  n (tap-hold-release-tap-keys-release $quick-tap $hold n rsft () $right-hand)
+  e (tap-hold-release-tap-keys-release $quick-tap $hold e rctl () $right-hand)
+  i (tap-hold-release-tap-keys-release $quick-tap $hold i ralt () $right-hand)
+  o (tap-hold-release-tap-keys-release $quick-tap $hold o rmet () $right-hand)
+)
+
+;; Physical function row: media by default on macOS, F-keys while Fn is held.
+(platform (macos)
+  (defalias
+    f1  (fork brdn f1 (fn))
+    f2  (fork brup f2 (fn))
+    f3  (fork mctl f3 (fn))
+    f4  (fork sls f4 (fn))
+    f5  (fork dtn f5 (fn))
+    f6  (fork dnd f6 (fn))
+    f7  (fork prev f7 (fn))
+    f8  (fork pp f8 (fn))
+    f9  (fork next f9 (fn))
+    f10 (fork mute f10 (fn))
+    f11 (fork vold f11 (fn))
+    f12 (fork volu f12 (fn))
+  )
+)
+
+(platform (win winiov2 wintercept linux)
+  (defalias
+    f1 f1 f2 f2 f3 f3 f4 f4 f5 f5 f6 f6
+    f7 f7 f8 f8 f9 f9 f10 f10 f11 f11 f12 f12
+  )
+)
+
+(defsrc
+  f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
+  q w e r t  y u i o p
+  a s d f g  h j k l ;
+  z x c v b  n m , . /
+  lalt lmet spc rmet
+)
+
+(deflayer colemak-dh
+  @f1 @f2 @f3 @f4 @f5 @f6 @f7 @f8 @f9 @f10 @f11 @f12
+  q  w  f  p  b   j  l  u  y  ;
+  @a @r @s @t g   m  @n @e @i @o
+  z  x  c  d  v   k  h  ,  .  /
+  (multi lctl lalt lmet) (layer-while-held symbols) @spc (layer-while-held navigation)
+)
+
+;; Temper NUM. XX disables unused positions; _ preserves the base action.
+(deflayer numbers
+  _ _ _ _ _ _ _ _ _ _ _ _
+  XX XX XX XX XX   XX XX XX XX XX
+  6  4  2  0  XX   XX 1  3  5  7
+  XX XX XX 8  XX   XX 9  _  _  XX
+  _ _ _ _
+)
+
+;; Temper SYM, expressed as US keyboard chords.
+(deflayer symbols
+  _ _ _ _ _ _ _ _ _ _ _ _
+  XX  S-grv S-8  S-6 XX    S-3 S-4 S-2 XX grv
+  S-1 -     S-=  =   S-5   ;   S-9 S-0 [  S--
+  XX  XX    S-\  S-7 S-;   S-; S-[ S-] ]  \
+  _ _ _ _
+)
+
+;; Arrows, paging, and modifiers only.
+(deflayer navigation
+  _ _ _ _ _ _ _ _ _ _ _ _
+  XX   XX   XX   XX   XX     XX   pgdn pgup XX   XX
+  lmet lalt lctl lsft XX     left down up   rght XX
+  XX   XX   XX   XX   XX     XX   XX   XX   XX   XX
+  _ _ _ _
+)
